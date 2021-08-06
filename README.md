@@ -1,3 +1,3 @@
 ## Clone App Instruction
-### ' npm install'
-### 'npm install react-scripts --save'
+### ` npm install`
+### `npm install react-scripts --save`
