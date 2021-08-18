@@ -1,0 +1,167 @@
+
+nav ul{
+	list-style: none;
+	background:#444444d6;
+	padding: 0;
+
+    text-align: center;
+    width: 100%;
+ 
+}
+
+nav a{
+	text-decoration: none;
+	display: inline-block;
+	color: #ffffff;
+	padding: 1%;
+}
+
+nav li{
+    width: 10%;
+    transition: width 0.25s linear;
+	/*border-right: 3px solid red; */
+	line-height: 50px;
+	font-size: 140%;
+	margin-right: -4px;
+	display: inline-block;
+}
+
+nav li:hover{
+    background-color:#676b66;
+    width: 15%;
+}
+
+nav li ul{
+	display: none;
+	position: absolute;
+	width: inherit;
+
+	padding: 0;
+	margin: 0 auto;
+}
+
+nav li:hover ul{
+	display: block;
+}
+
+nav li ul li{
+	width: 100%;
+	display:block;
+	text-align: center;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+
+nav li ul li:hover{
+    background-color:#1eb10c;
+    width: 100%;
+}
+body{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:fill;
+    background-attachment: fixed;
+}
+
+.home{
+    text-align: center;
+    margin: 0 auto;
+/*    padding-left: 30%;
+    padding-right: 30%;
+    margin: 10%;    */
+    background-color:#cecece6b;
+    margin-right: 35%;
+    margin-left: 35%;
+    margin-bottom: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+ /*   margin-top: 10%;*/
+    margin-bottom: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    
+}
+.butt{
+    display: block;
+    width: 100%;
+
+    border-radius: 5px  ;
+    border : none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size:15px;
+    text-align:center;
+    width:140px;
+    height:40px;
+    color:#fcfaf8;
+    background-color: #1eb10c;
+    margin-top: 10%;
+    margin-right: auto;
+    margin-left: auto;
+
+    transition: 0.25s linear;
+}
+a{
+    text-decoration: none;
+}
+
+#logo{
+    width:20%;
+    display:block;  
+    margin: 0 auto;
+    margin-bottom: 3%;
+    margin-top: 3%;
+/*    margin-left: 40%;
+    margin-right: 40%;
+    padding-left: 2%;
+    padding-right: 2%; */
+    width: 400px;
+    
+    
+
+}
+
+.copy{
+    font-family: 'Ubuntu', sans-serif;
+    text-align:center;
+    color: #e2f3eebd;
+    font-size:13px;
+    margin-bottom: 3%;
+}
+
+footer{
+    margin-top: 10%;
+    padding: 1%;
+    background-color: #000000b8;
+}
+.copy{
+    font-family: 'Ubuntu', sans-serif;
+    text-align:center;
+    color: #e2f3eebd;
+    font-size:13px;
+    margin-bottom: 1%;
+  /*  margin-left: 40%;
+    margin-right: 40%;
+   padding-left: 2%;
+    padding-right: 2%;  */
+    margin-bottom: 0% ;
+}
+
+.contactuslogo{
+    display:block;
+    width:40px;
+    height: 40px;
+    display : inline-block;
+    margin-right: 2%;
+
+}
+
+.social{
+    margin-left: 5%;
+    margin-right: 10%;
+
+}
+
+.home button:hover{
+    background-color: #0b8e33;
+}
