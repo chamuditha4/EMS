@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from './images/White logo m.png';
 
 function Header() {
   return (
@@ -24,6 +25,7 @@ function Header() {
             <li><a href="contactUs.html">Contact Us</a></li>
             </ul>
         </nav>
+        <img src={logo} id="logo"></img>
     </div>
   )
 }
