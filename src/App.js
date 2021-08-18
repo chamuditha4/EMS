@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles/App.css';
+import  './styles/App.css';
 import Header from './Header';
 
 class App extends React.Component {
@@ -17,7 +17,7 @@ class NavigationBar extends React.Component {
       return (
          <div>
            <Header />
-            <div className={styles.home}>
+            <div className="home">
               <a href="login.html"><button class="butt" id="butt1">Log In</button></a>
               <a href="Register.html"><button class="butt" id="butt2">Register</button></a>
             </div>

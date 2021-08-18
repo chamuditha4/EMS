@@ -58,25 +58,21 @@ nav li ul li:hover{
     width: 100%;
 }
 body{
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:fill;
-    background-attachment: fixed;
+    background-color: #282c34;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
 }
 
 .home{
+    background:#cecece6b;
     text-align: center;
     margin: 0 auto;
-/*    padding-left: 30%;
-    padding-right: 30%;
-    margin: 10%;    */
-    background-color:#cecece6b;
     margin-right: 35%;
     margin-left: 35%;
     margin-bottom: 15%;
     padding-left: 5%;
     padding-right: 5%;
- /*   margin-top: 10%;*/
     margin-bottom: 10%;
     padding-top: 5%;
     padding-bottom: 5%;
