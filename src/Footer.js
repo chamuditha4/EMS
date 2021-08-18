@@ -10,14 +10,14 @@ function Footer() {
     <div>
      <footer>
 
-        <p className= "copy" >© 2020 BetterJobs®</p>
+        <p className= "copy" >© 2021 BetterJobs®</p>
         <p className= "copy" >Created by BetterJobs Developer Team</p>
 
         <div className= "social">
-        <a href="call:0778174156"><img id="lb" className="contactuslogo" src ={contact} width="20" height="20" /></a>
-        <a href="mailto:betterjobs@outlook.com"><img id="lb" className="contactuslogo" src ={mail} width="20" height="20"/></a>
-        <a href="https://www.linkedin.com" target="_blank"><img id="lb" className="contactuslogo" src ={linkdin} width="20" height="20"/></a>
-        <a href="https://www.youtube.com" target="_blank"><img id="lb" className="contactuslogo" src ={youtube} width="20" height="20"/></a>
+        <a href="call:0778174156"><img className="contactuslogo" src ={contact} width="20" height="20" alt="Contact Us"/></a>
+        <a href="mailto:betterjobs@outlook.com"><img className="contactuslogo" src ={mail} width="20" height="20" alt="Mail"/></a>
+        <a href="https://www.linkedin.com"><img className="contactuslogo" src ={linkdin} width="20" height="20" alt="Linkdin"/></a>
+        <a href="https://www.youtube.com" ><img className="contactuslogo" src ={youtube} width="20" height="20" alt="Youtube"/></a>
         </div> 
 
         </footer>

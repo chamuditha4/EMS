@@ -25,7 +25,7 @@ function Header() {
             <li><a href="contactUs.html">Contact Us</a></li>
             </ul>
         </nav>
-        <img src={logo} id="logo"></img>
+        <img src={logo} id="logo" alt="Logo"></img>
     </div>
   )
 }
