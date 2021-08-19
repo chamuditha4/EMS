@@ -6,7 +6,7 @@ function Header() {
     <div>
       <nav>
             <ul>
-            <li><a href="home.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="yy.html">Job Portal</a>
                 <ul>
                 <li><a href="Login.html">Explore Jobs</a></li>
