@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Login from './Login';
 import Signup from './SignUp';
+import DashBoard from './DashBoard';
 
 class App extends React.Component {
    render() {
@@ -31,6 +32,7 @@ const Main = () => (
     <Route exact path='/' component={App}></Route>
     <Route exact path='/Login' component={Login}></Route>
     <Route exact path='/Signup' component={Signup}></Route>
+    <Route exact path='/DashBoard' component={DashBoard}></Route>
   </Switch>
 );
 
