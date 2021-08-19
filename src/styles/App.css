@@ -2,7 +2,7 @@
 
 nav ul{
 	list-style: none;
-	background:#444444d6;
+	background:#ffffff;
 	padding: 0;
 
     text-align: center;
@@ -13,8 +13,12 @@ nav ul{
 nav a{
 	text-decoration: none;
 	display: inline-block;
-	color: #ffffff;
+	color: #000000;
 	padding: 1%;
+}
+
+nav a:hover{
+    color: #ffffff;
 }
 
 nav li{
@@ -28,8 +32,9 @@ nav li{
 }
 
 nav li:hover{
-    background-color:#676b66;
+    background-color:#b00020;
     width: 15%;
+    border-radius: 10px;
 }
 
 nav li ul{
@@ -55,18 +60,18 @@ nav li ul li{
 }
 
 nav li ul li:hover{
-    background-color:#1eb10c;
+    background-color:#b00020;
     width: 100%;
 }
 body{
-    background-color: #282c34;
+    background-color: #ffffff;
     padding: 40px;
     font-family: Arial;
     text-align: center;
 }
 
 .home{
-    background:#cecece6b;
+    background:#ffffff6b;
     text-align: center;
     margin: 0 auto;
     margin-right: 35%;
@@ -77,6 +82,9 @@ body{
     margin-bottom: 10%;
     padding-top: 5%;
     padding-bottom: 5%;
+    border: 2px;
+    box-shadow: 0px 0px 20px 4px #888888;
+    border-radius: 3px;
     
 }
 .butt{
@@ -91,7 +99,7 @@ body{
     width:140px;
     height:40px;
     color:#fcfaf8;
-    background-color: #1eb10c;
+    background-color: #b00020;
     margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
@@ -121,7 +129,7 @@ a{
 .copy{
     font-family: 'Ubuntu', sans-serif;
     text-align:center;
-    color: #e2f3eebd;
+    color: #a7a7a7bd;
     font-size:13px;
     margin-bottom: 3%;
 }
@@ -129,12 +137,14 @@ a{
 footer{
     margin-top: 10%;
     padding: 1%;
-    background-color: #000000b8;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px 4px #888888;
+    border-radius: 50px;
 }
 .copy{
     font-family: 'Ubuntu', sans-serif;
     text-align:center;
-    color: #e2f3eebd;
+    color: #000000bd;
     font-size:13px;
     margin-bottom: 1%;
   /*  margin-left: 40%;
@@ -160,7 +170,7 @@ footer{
 }
 
 .home button:hover{
-    background-color: #0b8e33;
+    background-color: #ad3b50;
 }
 
 input[type=text] {
