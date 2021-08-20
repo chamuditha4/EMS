@@ -12,7 +12,7 @@ import UsersTabs from './UsersTabs';
 import Attendance from './Attendance';
 import SubmissionTabs from './SubmissionTabs';
 import TasksTabs from './TasksTabs';
-import JobTabs from './JobTabs';
+import AnnouncementTabs from './AnnouncementTabs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -96,7 +96,7 @@ export default function MngrDashBoard() {
             <SubmissionTabs/>
         </TabPanel>
         <TabPanel value={value} index={3}>
-            <TasksTabs/>
+            <AnnouncementTabs/>
         </TabPanel>
         <TabPanel value={value} index={4}>
             <Attendance/>
