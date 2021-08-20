@@ -11,7 +11,7 @@ import Footer from './Footer';
 import UsersTabs from './UsersTabs';
 import Attendance from './Attendance';
 import Leave from './Leave';
-import SalaryTab from './SalaryTab';
+import TasksTabs from './TasksTabs';
 import JobTabs from './JobTabs';
 
 function TabPanel(props) {
@@ -90,13 +90,13 @@ export default function MngrDashBoard() {
             <UsersTabs/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-            <JobTabs/>
+            <TasksTabs/>
         </TabPanel>
         <TabPanel value={value} index={2}>
             <Leave/>
         </TabPanel>
         <TabPanel value={value} index={3}>
-            <SalaryTab/>
+            <TasksTabs/>
         </TabPanel>
         <TabPanel value={value} index={4}>
             <Attendance/>
