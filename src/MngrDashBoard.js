@@ -12,7 +12,7 @@ import UsersTabs from './Tabs/UsersTabs';
 import MngerAttendanceTabs from './Tabs/MngerAttendanceTabs';
 import SubmissionTabs from './Tabs/SubmissionTabs';
 import TasksTabs from './Tabs/TasksTabs';
-import AnnouncementTabs from './AnnouncementTabs';
+import AnnouncementTabs from './Tabs/AnnouncementTabs';
 import MngerSalaryTabs from './Tabs/MngerSalaryTabs';
 
 function TabPanel(props) {
