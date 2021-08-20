@@ -11,6 +11,8 @@ import Footer from './Footer';
 import Progress from './Progress';
 import Attendance from './Attendance';
 import Leave from './Leave';
+import SalaryTab from './SalaryTab';
+import JobTabs from './JobTabs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,13 +89,13 @@ export default function DashBoard() {
             <Progress/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-            Item Two
+            <JobTabs/>
         </TabPanel>
         <TabPanel value={value} index={2}>
             <Leave/>
         </TabPanel>
         <TabPanel value={value} index={3}>
-            Item Four
+            <SalaryTab/>
         </TabPanel>
         <TabPanel value={value} index={4}>
             <Attendance/>
