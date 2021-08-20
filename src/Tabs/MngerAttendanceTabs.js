@@ -5,6 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Attendance from '.././Functions/Attendance';
+import Leave from '.././Functions/Leave';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,7 +65,7 @@ export default function MngerAttendanceTabs() {
     <div className={classes.root}>
       <Tabs
         orientation="vertical"
-        variant="scrollable"
+        variant="fullWidth"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
@@ -75,10 +77,10 @@ export default function MngerAttendanceTabs() {
         <Tab label="View Late to work report" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Fuck One
+        <Attendance/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      Fuck Two
+        <Leave/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       Fuck Two
