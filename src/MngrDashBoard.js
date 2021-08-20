@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import Header from './Header';
 import Footer from './Footer';
 import UsersTabs from './UsersTabs';
-import Attendance from './Attendance';
+import MngerAttendanceTabs from './MngerAttendanceTabs';
 import SubmissionTabs from './SubmissionTabs';
 import TasksTabs from './TasksTabs';
 import AnnouncementTabs from './AnnouncementTabs';
@@ -100,7 +100,7 @@ export default function MngrDashBoard() {
             <AnnouncementTabs/>
         </TabPanel>
         <TabPanel value={value} index={4}>
-            <Attendance/>
+            <MngerAttendanceTabs/>
         </TabPanel>
         <TabPanel value={value} index={5}>
             <MngerSalaryTabs/>
