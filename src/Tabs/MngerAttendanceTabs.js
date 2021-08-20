@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import Attendance from '.././Functions/Attendance';
 import Leave from '.././Functions/Leave';
 import ViewAttendanceReport from '.././Functions/ViewAttendanceReport';
+import ViewLeaveReport from '.././Functions/ViewLeaveReport';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,7 +76,8 @@ export default function MngerAttendanceTabs() {
         <Tab label="Mark attendance" {...a11yProps(0)} />
         <Tab label="Mark leave" {...a11yProps(1)} />
         <Tab label="View attendance Report" {...a11yProps(2)} />
-        <Tab label="View Late to work report" {...a11yProps(3)} />
+        <Tab label="View leave Report" {...a11yProps(3)} />
+        <Tab label="View Late to work report" {...a11yProps(4)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Attendance/>
@@ -87,6 +89,9 @@ export default function MngerAttendanceTabs() {
         <ViewAttendanceReport/>
       </TabPanel>
       <TabPanel value={value} index={3}>
+        <ViewLeaveReport/>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
       Fuck Two
       </TabPanel>
     </div>
