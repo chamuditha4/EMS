@@ -403,3 +403,12 @@ color: white;
     height: 100%;
     background-color:#cecece6b ;
   }
+
+  table, td, th {
+    border: 1px solid black;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }

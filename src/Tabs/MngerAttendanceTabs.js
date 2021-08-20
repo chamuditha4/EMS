@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Attendance from '.././Functions/Attendance';
 import Leave from '.././Functions/Leave';
+import ViewAttendanceReport from '.././Functions/ViewAttendanceReport';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -83,7 +84,7 @@ export default function MngerAttendanceTabs() {
         <Leave/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      Fuck Two
+        <ViewAttendanceReport/>
       </TabPanel>
       <TabPanel value={value} index={3}>
       Fuck Two
