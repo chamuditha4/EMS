@@ -8,12 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Header from './Header';
 import Footer from './Footer';
-import UsersTabs from './UsersTabs';
-import MngerAttendanceTabs from './MngerAttendanceTabs';
-import SubmissionTabs from './SubmissionTabs';
-import TasksTabs from './TasksTabs';
+import UsersTabs from './Tabs/UsersTabs';
+import MngerAttendanceTabs from './Tabs/MngerAttendanceTabs';
+import SubmissionTabs from './Tabs/SubmissionTabs';
+import TasksTabs from './Tabs/TasksTabs';
 import AnnouncementTabs from './AnnouncementTabs';
-import MngerSalaryTabs from './MngerSalaryTabs';
+import MngerSalaryTabs from './Tabs/MngerSalaryTabs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

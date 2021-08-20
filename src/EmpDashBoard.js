@@ -11,8 +11,8 @@ import Footer from './Footer';
 import Progress from './Progress';
 import Attendance from './Attendance';
 import Leave from './Leave';
-import SalaryTab from './SalaryTab';
-import JobTabs from './JobTabs';
+import SalaryTab from './Tabs/SalaryTab';
+import JobTabs from './Tabs/JobTabs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
