@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import NewAnnouncement from '.././Functions/NewAnnouncement';
+import EditAnnouncement from '.././Functions/EditAnnouncement';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,7 +79,7 @@ export default function AnnouncementTabs() {
         <NewAnnouncement/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      Fuck Two
+        <EditAnnouncement/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       Fuck Two

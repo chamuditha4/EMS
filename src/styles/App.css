@@ -173,17 +173,16 @@ footer{
 input[type=text] {
 font-family: 'Ubuntu', sans-serif;
 background-color: #757575;
-color: white;
 }
+
 input[type=email] {
 font-family: 'Ubuntu', sans-serif;
 background-color: #ffffff40;
-color: white;
 }
+
 input[type=password] {
 font-family: 'Ubuntu', sans-serif;
 background-color: #757575;
-color: white;
 }
 
 .upload-btn-wrapper {
