@@ -10,7 +10,7 @@ import Header from './Header';
 import Footer from './Footer';
 import UsersTabs from './UsersTabs';
 import Attendance from './Attendance';
-import Leave from './Leave';
+import SubmissionTabs from './SubmissionTabs';
 import TasksTabs from './TasksTabs';
 import JobTabs from './JobTabs';
 
@@ -93,7 +93,7 @@ export default function MngrDashBoard() {
             <TasksTabs/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-            <Leave/>
+            <SubmissionTabs/>
         </TabPanel>
         <TabPanel value={value} index={3}>
             <TasksTabs/>
