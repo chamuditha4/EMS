@@ -8,9 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Header from './Header';
 import Footer from './Footer';
-import Progress from './Progress';
-import Attendance from './Attendance';
-import Leave from './Leave';
+import Progress from './Tabs/Progress';
+import Attendance from './Functions/Attendance';
+import Leave from './Functions/Leave';
 import SalaryTab from './Tabs/SalaryTab';
 import JobTabs from './Tabs/JobTabs';
 

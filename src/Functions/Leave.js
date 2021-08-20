@@ -1,11 +1,11 @@
 import React from 'react';
-import  './styles/App.css';
+import  './../styles/App.css';
 
-function Attendance() {
+function Leave() {
     return (
       <div>
       </div>
     )
   }
   
-  export default Attendance
+  export default Leave
