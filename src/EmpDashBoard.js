@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DashBoard() {
+export default function EmpDashBoard() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
