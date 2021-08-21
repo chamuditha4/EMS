@@ -26,7 +26,7 @@ function NewTasks() {
                 style={{ width: 350 }}
                 variant="standard"
                 label="EIDs"
-                placeholder="Favorites"
+                placeholder="EIDs"
               />
             )}
           /><br></br>

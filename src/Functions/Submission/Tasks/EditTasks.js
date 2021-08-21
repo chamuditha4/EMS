@@ -28,14 +28,14 @@ function EditTasks() {
             size="small"
             options={Eids}
             getOptionLabel={(option) => option.title}
-            defaultValue={[[Eids[1]]]}
+            defaultValue={[Eids[3]]}
             renderInput={(params) => (
               <TextField 
                 {...params}
                 style={{ width: 350 }}
                 variant="standard"
                 label="EIDs"
-                placeholder="Favorites"
+                placeholder="EIDs"
               />
             )}
           /><br></br>
