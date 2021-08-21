@@ -9,6 +9,7 @@ import Attendance from '.././Functions/Attendance';
 import Leave from '.././Functions/Leave';
 import ViewAttendanceReport from '.././Functions/ViewAttendanceReport';
 import ViewLeaveReport from '.././Functions/ViewLeaveReport';
+import ViewLateWorkReport from '.././Functions/ViewLateWorkReport';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -92,7 +93,7 @@ export default function MngerAttendanceTabs() {
         <ViewLeaveReport/>
       </TabPanel>
       <TabPanel value={value} index={4}>
-      Fuck Two
+        <ViewLateWorkReport/>
       </TabPanel>
     </div>
   );
