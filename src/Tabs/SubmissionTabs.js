@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ViewSubmission from '../Functions/Submission/ViewSubmission';
+import RateSubmission from '../Functions/Submission/RateSubmission';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,7 +78,7 @@ export default function SubmissionTabs() {
         <ViewSubmission/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      Fuck Two
+        <RateSubmission/>
       </TabPanel>
     </div>
   );
