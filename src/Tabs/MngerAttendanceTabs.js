@@ -5,11 +5,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Attendance from '.././Functions/Attendance';
-import Leave from '.././Functions/Leave';
-import ViewAttendanceReport from '.././Functions/ViewAttendanceReport';
-import ViewLeaveReport from '.././Functions/ViewLeaveReport';
-import ViewLateWorkReport from '.././Functions/ViewLateWorkReport';
+import Attendance from '../Functions/Attendance/Attendance';
+import Leave from '../Functions/Attendance/Leave';
+import ViewAttendanceReport from '../Functions/Attendance/ViewAttendanceReport';
+import ViewLeaveReport from '../Functions/Attendance/ViewLeaveReport';
+import ViewLateWorkReport from '../Functions/Attendance/ViewLateWorkReport';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

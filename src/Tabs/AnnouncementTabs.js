@@ -5,9 +5,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import NewAnnouncement from '.././Functions/NewAnnouncement';
-import EditAnnouncement from '.././Functions/EditAnnouncement';
-import RemoveAnnouncement from '.././Functions/RemoveAnnouncement';
+import NewAnnouncement from '../Functions/Announcement/NewAnnouncement';
+import EditAnnouncement from '../Functions/Announcement/EditAnnouncement';
+import RemoveAnnouncement from '../Functions/Announcement/RemoveAnnouncement';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

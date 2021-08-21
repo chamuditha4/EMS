@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import  './../styles/App.css';
+import  './../../styles/App.css';
 
 function RemoveAnnouncement() {
     return (

@@ -1,14 +1,14 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import  './../styles/App.css';
+import  './../../styles/App.css';
 
-function Attendance() {
+function Leave() {
     return (
       <div>
         <div className="prof">
-          <h2>Mark Attendance</h2>
+          <h2>Mark Leave</h2>
           <Button variant="contained" color="secondary">
-            Mark Attendance
+            Mark Leave
           </Button><br></br><br></br>
           <Button variant="contained" disabled>
             Marked Time: 
@@ -18,4 +18,4 @@ function Attendance() {
     )
   }
   
-  export default Attendance
+  export default Leave
