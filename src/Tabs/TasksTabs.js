@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import NewTasks from '../Functions/Submission/Tasks/NewTasks';
 import EditTasks from '../Functions/Submission/Tasks/EditTasks';
+import RemoveTasks from '../Functions/Submission/Tasks/RemoveTasks';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,7 +83,7 @@ export default function TasksTabs() {
         <EditTasks/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      Fuck Two
+        <RemoveTasks/>
       </TabPanel>
     </div>
   );
