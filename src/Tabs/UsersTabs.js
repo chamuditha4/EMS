@@ -5,6 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import RemoveUser from '../Functions/Users/RemoveUser';
+import AddRole from '../Functions/Users/AddRole';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,10 +79,10 @@ export default function UsersTabs() {
         Fuck One
       </TabPanel>
       <TabPanel value={value} index={1}>
-      Fuck Two
+        <RemoveUser/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      Fuck Two
+        <AddRole/>
       </TabPanel>
     </div>
   );
