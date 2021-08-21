@@ -5,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import SetSalary from '../Functions/Salary/SetSalary';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,7 +75,7 @@ export default function MngerSalaryTabs() {
         <Tab label="Salary Report" {...a11yProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Fuck One
+        <SetSalary/>
       </TabPanel>
       <TabPanel value={value} index={1}>
       Fuck Two
