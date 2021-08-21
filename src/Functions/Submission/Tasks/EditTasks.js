@@ -18,7 +18,7 @@ function EditTasks() {
           </select>
           <br></br><br></br>
           <Button variant="contained" color="primary">
-          Edit Task
+          Select Task
           </Button><br></br><br></br>
           <TextField id="standard-uncontrolled" label="Title" defaultValue="Web Design Project" /><br></br><br></br>
           <Autocomplete
