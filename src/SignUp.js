@@ -55,8 +55,8 @@ export default class Signup extends Component{
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
-      salary: 'hh',
-      roll: 'employee'
+      salary: '0',
+      roll: this.state.accounttype
     };
     axios.post('http://localhost:4000/users/create-user', UserOBJ)
       .then(res => console.log(res.data));
@@ -81,12 +81,12 @@ export default class Signup extends Component{
               <label for="password">Re-type Password:</label><br></br>
               <input type="password" id="cpassword" name="cpassword"    value={this.state.repassword} onChange={this.onChangeRePassword}  /><br></br><br></br>
               <label>Account type</label><br></br>
-              <label className="container">Employee
-              <input type="radio" checked="checked" name="radio" value="Employee" checked={this.state.accounttype === "Employee"} onChange={this.onChangeAccountType}/>
+              <label className="container">Manager
+              <input type="radio" checked="checked" name="radio" value="Manager" checked={this.state.accounttype === "Manager"} onChange={this.onChangeAccountType}/>
               <span className="checkmark"></span>
               </label>
-              <label className="container">Job seeker
-              <input type="radio" name="radio"   value="seeker" checked={this.state.accounttype === "seeker"} onChange={this.onChangeAccountType}/>
+              <label className="container">Employee
+              <input type="radio" name="radio"   value="Employee" checked={this.state.accounttype === "Employee"} onChange={this.onChangeAccountType}/>
               <span className="checkmark"></span>
               </label><br></br><br></br>
               <input type="submit" id="butto"  value="Submit" />
