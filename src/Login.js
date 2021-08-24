@@ -1,14 +1,37 @@
-import React from 'react';
 import  './styles/App.css';
 import Header from './Header';
 import Footer from './Footer';
+import React, {Component} from "react";
+import axios from 'axios';
 
-function Login() {
-    return (
-      <div>
-          <Header />
 
-          <div className="center">
+export default class Login extends Component{
+    
+    state = {
+        persons: []
+      }
+    
+      componentDidMount() {
+        axios.get(`http://localhost:4000/users`,{
+            params: {
+                username: 'Barbara'
+              }
+        })
+          .then(res => {
+            const persons = res.data;
+            this.setState({ persons });
+          })
+      }
+  
+    render() {
+      return (
+        <div>
+            <Header />
+            
+            <div className="center">
+            <ul>
+                { this.state.persons.map(person => <li>{person.email}</li>)}
+            </ul>
                 <form>
                     <p>Username:</p>
                     <input type="text" id="uname" name="uname" value="" required/><br></br>
@@ -27,9 +50,8 @@ function Login() {
                 </form>
             </div>
 
-          <Footer />
-      </div>
-    )
+            <Footer />
+        </div>
+      );
+    }
   }
-  
-  export default Login
