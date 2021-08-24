@@ -21,7 +21,7 @@ router.route('/create-user').post((req, res, next) => {
 router.route('/').get((req, res) => {
     userSchema .find((error, data) => {
       if (error) {
-        return (error)
+        return next(error)
       } else {
         res.json(data)
       }
