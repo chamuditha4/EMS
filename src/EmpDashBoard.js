@@ -13,9 +13,16 @@ import Attendance from './Functions/Attendance/Attendance';
 import Leave from './Functions/Attendance/Leave';
 import SalaryTab from './Tabs/SalaryTab';
 import JobTabs from './Tabs/JobTabs';
+import { getUser } from './Utils/Common';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+  const user = getUser();
+
+  if(user.roll === "Manager"){
+    window.location.href = "/MngDashBoard";
+  }else{
+  }
 
   return (
     <div

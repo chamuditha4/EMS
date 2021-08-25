@@ -20,6 +20,11 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
   const user = getUser();
 
+  if(user.roll === "Manager"){
+  }else{
+    window.location.href = "/EmpDashBoard";
+  }
+
   return (
     <div>
       <div

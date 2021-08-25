@@ -43,12 +43,7 @@ export default class Login extends Component{
           .then(res =>{
             console.log(res.data)
             setUserSession(res.data.token, res.data.user);
-
-            if(res.data.user.roll === "Manager"){
-                window.location.href = "/DashBoard1";
-            }else{
-                window.location.href = "/DashBoard";
-            }
+            window.location.href = "/EmpDashBoard";
           });
     
     

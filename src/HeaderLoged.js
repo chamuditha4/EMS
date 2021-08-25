@@ -16,22 +16,10 @@ function HeaderLoged(props) {
       <nav>
             <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="yy.html">Job Portal</a>
-                <ul>
-                <li><a href="Login.html">Explore Jobs</a></li>
-                <li><a href="Login.html">Add Jobs</a></li>
-
-                </ul>
-            </li>
-            <li><a href="Map.html">Find Us</a></li>
-            <li><a href="about us.html" class="active">About Us</a>
-                <ul>
-                <li><a href="about%20us.html#aboutsec">Our Story</a></li>
-                <li><a href="about%20us.html#missionpa">Our Mission</a></li>
-                <li><a href="about%20us.html#wherewebac">Where We Work</a></li>
-                </ul>
-            </li>
-            <li><a href="contactUs.html">Contact Us</a></li>
+            <li><a href="yy.html">Profile</a></li>
+            <li><a href="Map.html">Chat</a></li>
+            <li><a href="/EmpDashBoard" class="active">Actions</a></li>
+            <li><a href="contactUs.html">Announcements</a></li>
             <input className="logout" type="button" onClick={handleLogout} value="Logout" />
             </ul>
         </nav>

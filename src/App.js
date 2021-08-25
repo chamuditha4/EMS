@@ -33,8 +33,8 @@ const Main = () => (
     <Route exact path='/' component={App}></Route>
     <Route exact path='/Login' component={Login}></Route>
     <Route exact path='/Signup' component={Signup}></Route>
-    <Route exact path='/DashBoard' component={EmpDashBoard}></Route>
-    <Route exact path='/DashBoard1' component={MngrDashBoard}></Route>
+    <Route exact path='/EmpDashBoard' component={EmpDashBoard}></Route>
+    <Route exact path='/MngDashBoard' component={MngrDashBoard}></Route>
   </Switch>
 );
 
