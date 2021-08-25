@@ -11,7 +11,9 @@ const taskRoute = require('../backend/routes/task.route')
 // Connecting mongoDB Database
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,  
 }).then(() => {
   console.log('Database sucessfully connected!')
 },
