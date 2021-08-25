@@ -9,19 +9,19 @@ function Header() {
       <nav>
             <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="yy.html">Job Portal</a>
+            <li><a href="yy.html">Dashboard</a>
                 <ul>
-                <li><a href="Login.html">Explore Jobs</a></li>
-                <li><a href="Login.html">Add Jobs</a></li>
+                <li><a href="Login.html">Mark Attendance</a></li>
+                <li><a href="Login.html">Announcements</a></li>
 
                 </ul>
             </li>
-            <li><a href="Map.html">Find Us</a></li>
-            <li><a href="about us.html" class="active">About Us</a>
+            <li><a href="">Find Us</a></li>
+            <li><a href="" class="active">About Us</a>
                 <ul>
-                <li><a href="about%20us.html#aboutsec">Our Story</a></li>
-                <li><a href="about%20us.html#missionpa">Our Mission</a></li>
-                <li><a href="about%20us.html#wherewebac">Where We Work</a></li>
+                <li><a href="">Our Story</a></li>
+                <li><a href="">Our Mission</a></li>
+                <li><a href="">Where We Work</a></li>
                 </ul>
             </li>
             <li><a href="contactUs.html">Contact Us</a></li>

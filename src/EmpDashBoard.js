@@ -90,7 +90,7 @@ export default function EmpDashBoard() {
             <Tab label="Leave" {...a11yProps(2)} />
             <Tab label="Salary And OT" {...a11yProps(3)} />
             <Tab label="Attendance" {...a11yProps(4)} />
-            <Tab label="Announcements" {...a11yProps(5)} />
+    
             </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
@@ -108,9 +108,7 @@ export default function EmpDashBoard() {
         <TabPanel value={value} index={4}>
             <Attendance/>
         </TabPanel>
-        <TabPanel value={value} index={5}>
-            <Attendance/>
-        </TabPanel>
+        
         
         </div>
         <Footer/>
