@@ -10,6 +10,7 @@ export default class Signup extends Component{
     super(props)
 
     // Setting up functions
+    this.onChangename = this.onChangename.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
@@ -19,12 +20,17 @@ export default class Signup extends Component{
 
     // Setting up state
     this.state = {
+      name:'',
       username: '',
       email:'',
       password:'',
       repassword:'',
       accounttype:''
     }
+  }
+
+  onChangename(e) {
+    this.setState({name: e.target.value})
   }
 
   onChangeUsername(e) {
@@ -52,6 +58,7 @@ export default class Signup extends Component{
     e.preventDefault()
 
     const UserOBJ = {
+      name: this.state.name,
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
@@ -62,7 +69,7 @@ export default class Signup extends Component{
       .then(res => console.log(res.data));
 
 
-    this.setState({username: '', email: '', password: '', repassword: '', accounttype: ''})
+    this.setState({ name: '', username: '', email: '', password: '', repassword: '', accounttype: ''})
     window.location.href = "/Login";
 
   }
@@ -76,6 +83,8 @@ export default class Signup extends Component{
           <Header />
           <div className="center">
             <form onSubmit={this.onSubmit}>
+            <label for="uname">Username :</label><br></br>
+              <input type="text" id="uname" name="uname"  value={this.state.name} onChange={this.onChangename} required /><br></br>
               <label for="uname">Username :</label><br></br>
               <input type="text" id="uname" name="uname"  value={this.state.username} onChange={this.onChangeUsername} required /><br></br>
               <label for="email">Email :</label><br></br>

@@ -7,6 +7,7 @@ function generateToken(user) {
     if (!user) return null;
    
     var u = {
+      name: user.name,
       email: user.email,
       username: user.username,
       roll: user.roll,
@@ -23,6 +24,7 @@ function generateToken(user) {
     if (!user) return null;
    
     return {
+      name: user.name,
       email: user.email,
       username: user.username,
       roll: user.roll,
