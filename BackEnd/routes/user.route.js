@@ -2,6 +2,10 @@ const jwt = require('jsonwebtoken');
 const util = require('./util');
 require('dotenv').config();
 
+const userData = {
+  email: "123456",
+  username: "tooti"
+};
 let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
@@ -35,7 +39,7 @@ router.route('/login-user').post((req, res, next) => {
       const token = util.generateToken(data);
       const userObj = util.getCleanUser(data);
       
-      return res.json({ username: userObj, token });
+      return res.json({ user: userObj, token });
     }
   })
 })
@@ -55,14 +59,25 @@ router.route('/').get((req, res) => {
 
 
 // Get Single Student
-router.route('/edit-student/:id').get((req, res) => {
-  userSchema.findById(req.params.id, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
+router.route('/verifyToken').get((req, res) => {
+    var token = req.body.token || req.query.token;
+    if (!token) {
+      return res.status(400).json({
+        error: true,
+        message: "Token is required."
+      });
     }
-  })
+    // check token that was passed by decoding token using secret
+    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+      if (err) return res.status(401).json({
+        error: true,
+        message: "Invalid token."
+      });
+
+      // get basic user details
+      var userObj = util.getCleanUser(user);
+      return res.json({ user: userObj, token });
+    });
 })
 
 module.exports = router;

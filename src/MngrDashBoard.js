@@ -18,7 +18,8 @@ import { getUser } from './Utils/Common';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  const user = getUser();
+  
   return (
     <div
       role="tabpanel"
@@ -32,6 +33,7 @@ function TabPanel(props) {
           <Typography>{children}</Typography>
         </Box>
       )}
+      Welcome {user.email}!<br /><br />
     </div>
   );
 }

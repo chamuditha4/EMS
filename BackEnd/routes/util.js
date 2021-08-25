@@ -8,7 +8,9 @@ function generateToken(user) {
    
     var u = {
       email: user.email,
-      username: user.username
+      username: user.username,
+      roll: user.roll,
+      salary: user.salary
     };
    
     return jwt.sign(u, process.env.JWT_SECRET, {
@@ -23,6 +25,8 @@ function generateToken(user) {
     return {
       email: user.email,
       username: user.username,
+      roll: user.roll,
+      salary: user.salary
     };
   }
    

@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import React, {Component} from "react";
 import axios from 'axios';
-import { setUserSession } from './Utils/Common';
+import { setUserSession  } from './Utils/Common';
 
 export default class Login extends Component{
 
@@ -42,11 +42,12 @@ export default class Login extends Component{
         axios.post('http://localhost:4000/users/login-user', UserOBJ)
           .then(res =>{
             console.log(res.data)
+            setUserSession(res.data.token, res.data.user);
 
-            if("username" === "Manager"){
-                //window.location.href = "/DashBoard";
+            if(res.data.user.roll === "Manager"){
+                window.location.href = "/DashBoard1";
             }else{
-                //window.location.href = "/DashBoard";
+                window.location.href = "/DashBoard";
             }
           });
     

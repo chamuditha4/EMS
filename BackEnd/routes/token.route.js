@@ -1,10 +1,18 @@
 require('dotenv').config();
 
-const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const utils = require('./utils');
+
+const userData = {
+  userId: "789789",
+  password: "123456",
+  name: "Clue Mediator",
+  username: "cluemediator",
+  isAdmin: true
+};
+
 
 let mongoose = require('mongoose'),
   express = require('express'),
