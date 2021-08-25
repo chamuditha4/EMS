@@ -73,10 +73,10 @@ export default function Progress() {
         <Tab label="Rated Submissions" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Fuck One
+        
       </TabPanel>
       <TabPanel value={value} index={1}>
-      Fuck Two
+      
       </TabPanel>
     </div>
   );
