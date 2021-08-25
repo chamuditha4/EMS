@@ -22,7 +22,6 @@ function TabPanel(props) {
 
   return (
     <div>
-       Welcome {user.name}!<br /><br />
       <div
         role="tabpanel"
         hidden={value !== index}
