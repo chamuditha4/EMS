@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+const util = require('./util');
+require('dotenv').config();
+
 let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
@@ -24,10 +28,14 @@ router.route('/login-user').post((req, res, next) => {
   userSchema .findOne({username: username,password:password },(error, data) => {
     if (error) {
       return next(error)
-    } else if(!userSchema){
-      console.log("No")
+    } else if(username !== data.username || password !== data.password){
+      console.log("Username or Password is Wrong.")
+      
     }else{
-      res.json(data)
+      const token = util.generateToken(data);
+      const userObj = util.getCleanUser(data);
+      
+      return res.json({ username: userObj, token });
     }
   })
 })

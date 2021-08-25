@@ -14,6 +14,7 @@ import SubmissionTabs from './Tabs/SubmissionTabs';
 import TasksTabs from './Tabs/TasksTabs';
 import AnnouncementTabs from './Tabs/AnnouncementTabs';
 import MngerSalaryTabs from './Tabs/MngerSalaryTabs';
+import { getUser } from './Utils/Common';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MngrDashBoard() {
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

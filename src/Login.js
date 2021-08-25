@@ -5,7 +5,6 @@ import React, {Component} from "react";
 import axios from 'axios';
 import { setUserSession } from './Utils/Common';
 
-
 export default class Login extends Component{
 
     constructor(props) {
@@ -42,15 +41,13 @@ export default class Login extends Component{
         };
         axios.post('http://localhost:4000/users/login-user', UserOBJ)
           .then(res =>{
-            console.log(res.data.email)
-            setUserSession(res.data.token,res.data.users)
-            if(res.data.roll === "Manager"){
-                window.location.href = "/DashBoard1";
+            console.log(res.data)
+
+            if("username" === "Manager"){
+                //window.location.href = "/DashBoard";
             }else{
-                window.location.href = "/DashBoard";
+                //window.location.href = "/DashBoard";
             }
-          }).catch(error => {
-            console.log("Something Wrong!.")
           });
     
     
