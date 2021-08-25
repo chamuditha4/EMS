@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const util = require('./util');
 require('dotenv').config();
 
+
 const userData = {
   email: "123456",
   username: "tooti"
