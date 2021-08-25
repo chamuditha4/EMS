@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Header from './Header';
+import Header from './HeaderLoged';
 import Footer from './Footer';
 import UsersTabs from './Tabs/UsersTabs';
 import MngerAttendanceTabs from './Tabs/MngerAttendanceTabs';
@@ -21,19 +21,22 @@ function TabPanel(props) {
   const user = getUser();
 
   return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-      Welcome {user.name}!<br /><br />
+    <div>
+       Welcome {user.name}!<br /><br />
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`scrollable-auto-tabpanel-${index}`}
+        aria-labelledby={`scrollable-auto-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box p={3}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+       
+      </div>
     </div>
   );
 }

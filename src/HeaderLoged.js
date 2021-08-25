@@ -1,8 +1,15 @@
 import React from 'react'
 import  './styles/App.css';
 import logo from './images/Blue logo-cropped.png';
+import { getUser, removeUserSession } from './Utils/Common';
 
-function Header() {
+function HeaderLoged(props) {
+  const user = getUser();
+
+  const handleLogout = () => {
+    removeUserSession();
+    window.location.href = "/Login";
+  }
 
   return (
     <div>
@@ -25,6 +32,7 @@ function Header() {
                 </ul>
             </li>
             <li><a href="contactUs.html">Contact Us</a></li>
+            <input className="logout" type="button" onClick={handleLogout} value="Logout" />
             </ul>
         </nav>
         <img src={logo} id="logo" alt="Logo"></img>
@@ -32,4 +40,4 @@ function Header() {
   )
 }
 
-export default Header
+export default HeaderLoged
