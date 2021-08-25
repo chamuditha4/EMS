@@ -6,21 +6,45 @@ import axios from 'axios';
 
 
 export default class Login extends Component{
+
+    constructor(props) {
+        super(props)
     
-    state = {
-        persons: []
+        // Setting up functions
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    
+        // Setting up state
+        this.state = {
+          username: '',
+          password:''
+        }
       }
     
-      componentDidMount() {
-        axios.get(`http://localhost:4000/users`,{
-            params: {
-                username: 'Barbara'
-              }
-        })
-          .then(res => {
-            const persons = res.data;
-            this.setState({ persons });
-          })
+      onChangeUsername(e) {
+        this.setState({username: e.target.value})
+      }
+    
+      onChangePassword(e) {
+        this.setState({password: e.target.value})
+      }
+    
+    
+    
+      onSubmit(e) {
+        e.preventDefault()
+    
+        const UserOBJ = {
+          username: this.state.username,
+          password: this.state.password
+        };
+        axios.post('http://localhost:4000/users/login-user', UserOBJ)
+          .then(res => console.log(res.data));
+    
+    
+        this.setState({username: '', password: ''})
+    
       }
   
     render() {
@@ -29,23 +53,12 @@ export default class Login extends Component{
             <Header />
             
             <div className="center">
-            <ul>
-                { this.state.persons.map(person => <li>{person.email}</li>)}
-            </ul>
-                <form>
+                <form  onSubmit={this.onSubmit}>
                     <p>Username:</p>
-                    <input type="text" id="uname" name="uname" value="" required/><br></br>
+                    <input type="text" id="uname" name="uname"  value={this.state.username} onChange={this.onChangeUsername}  required/><br></br>
                     <p>Password:</p>
-                    <input type="password" id="pwd" name="pwd" value="" required/><br></br><br></br>
-                    <label>Account type</label><br></br><br></br>
-                    <label className="container">Employee
-                        <input type="radio" id = "Employeerad"  name="radio" required/>
-                        <span className="checkmark"></span>
-                    </label><br></br>
-                    <label className="container">Job seeker
-                        <input type="radio" name="radio" id="Jobseekerrad" required/>
-                        <span className="checkmark"></span>
-                    </label><br></br>
+                    <input type="password" id="pwd" name="pwd"  value={this.state.password} onChange={this.onChangePassword}  required/><br></br><br></br>
+                    <br></br>
                     <input id = "Signin" type="submit" value="Submit"/>
                 </form>
             </div>

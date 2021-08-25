@@ -63,7 +63,11 @@ export default class Signup extends Component{
 
 
     this.setState({username: '', email: '', password: '', repassword: '', accounttype: ''})
+    window.location.href = "/Login";
+
   }
+
+
 
 
   render() {
@@ -89,6 +93,7 @@ export default class Signup extends Component{
               <input type="radio" name="radio"   value="Employee" checked={this.state.accounttype === "Employee"} onChange={this.onChangeAccountType}/>
               <span className="checkmark"></span>
               </label><br></br><br></br>
+
               <input type="submit" id="butto"  value="Submit" />
             </form>
           </div>

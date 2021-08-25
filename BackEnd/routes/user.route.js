@@ -17,6 +17,21 @@ router.route('/create-user').post((req, res, next) => {
   })
 });
 
+router.route('/login-user').post((req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  userSchema .findOne({username: username,password:password },(error, data) => {
+    if (error) {
+      return next(error)
+    } else if(!userSchema){
+      console.log("No")
+    }else{
+      res.json(data)
+    }
+  })
+})
+
 // READ Students
 router.route('/').get((req, res) => {
     userSchema .find((error, data) => {
@@ -28,16 +43,16 @@ router.route('/').get((req, res) => {
     })
   })
 
-  router.route('/update-student/:id').put((req, res, next) => {
-  studentSchema.findByIdAndUpdate(req.params.id, {
-    $set: req.body
-  }, (error, data) => {
+
+
+
+// Get Single Student
+router.route('/edit-student/:id').get((req, res) => {
+  userSchema.findById(req.params.id, (error, data) => {
     if (error) {
-      return next(error);
-      console.log(error)
+      return next(error)
     } else {
       res.json(data)
-      console.log('Student updated successfully !')
     }
   })
 })
