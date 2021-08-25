@@ -4,9 +4,9 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
 
-// Express Route
 const userRoute = require('../backend/routes/user.route')
-const tokenRoute = require('../backend/routes/token.route')
+const taskRoute = require('../backend/routes/task.route')
+// Express Route
 
 // Connecting mongoDB Database
 mongoose.Promise = global.Promise;
@@ -27,8 +27,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 app.use('/users', userRoute)
-app.use('/token', tokenRoute)
-
+app.use('/tasks', taskRoute)
 
 // PORT
 const port = process.env.PORT || 4000;

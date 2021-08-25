@@ -409,3 +409,16 @@ color: white;
     width: 100%;
     border-collapse: collapse;
   }
+
+  .logout{
+
+    float: right;
+    margin: 2.3% 2% 0 0;
+    background-color: #f88017c2;
+    border-radius: 10px;
+    transition: border 0.5s linear;
+    font-weight: 900;
+    color: #f4f7f3;
+    
+    
+  }

@@ -7,8 +7,11 @@ function generateToken(user) {
     if (!user) return null;
    
     var u = {
+      name: user.name,
       email: user.email,
-      username: user.username
+      username: user.username,
+      roll: user.roll,
+      salary: user.salary
     };
    
     return jwt.sign(u, process.env.JWT_SECRET, {
@@ -21,8 +24,11 @@ function generateToken(user) {
     if (!user) return null;
    
     return {
+      name: user.name,
       email: user.email,
       username: user.username,
+      roll: user.roll,
+      salary: user.salary
     };
   }
    

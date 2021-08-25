@@ -1,7 +1,9 @@
 import React from 'react'
+import  './styles/App.css';
 import logo from './images/Blue logo-cropped.png';
 
 function Header() {
+
   return (
     <div>
       <nav>

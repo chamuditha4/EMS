@@ -5,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Jobs from '../Functions/Submission/Jobs/Jobs';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,14 +70,10 @@ export default function JobTabs() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="Job 1" {...a11yProps(0)} />
-        <Tab label="Job 2" {...a11yProps(1)} />
+        <Tab label="My Jobs" {...a11yProps(0)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Fuck One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      Fuck Two
+        <Jobs/>
       </TabPanel>
     </div>
   );
