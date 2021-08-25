@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import React, {Component} from "react";
 import axios from 'axios';
+import { setUserSession } from './Utils/Common';
 
 
 export default class Login extends Component{
@@ -40,7 +41,17 @@ export default class Login extends Component{
           password: this.state.password
         };
         axios.post('http://localhost:4000/users/login-user', UserOBJ)
-          .then(res => console.log(res.data));
+          .then(res =>{
+            console.log(res.data.email)
+            setUserSession(res.data.token,res.data.users)
+            if(res.data.roll === "Manager"){
+                window.location.href = "/DashBoard1";
+            }else{
+                window.location.href = "/DashBoard";
+            }
+          }).catch(error => {
+            console.log("Something Wrong!.")
+          });
     
     
         this.setState({username: '', password: ''})
