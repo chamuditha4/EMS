@@ -9,7 +9,9 @@
   
 ### Install these 
 
-`npm install react-router-dom --save`
-`npm install mongoose express cors body-parser`
-`npm install nodemon --save-dev`
-`npm install axios`
+#### `npm install react-router-dom --save`
+#### `npm install mongoose express cors body-parser`
+#### `npm install nodemon --save-dev`
+#### `npm install axios`
+#### `npm install dotenv`
+#### `npm install jsonwebtoken --save`
