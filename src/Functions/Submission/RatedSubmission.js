@@ -21,9 +21,7 @@ function RatedSubmission() {
           <Rating name="size-large" defaultValue={4} size="large" readOnly />
           <br></br><br></br>
           <TextField id="outlined-multiline-flexible" label="" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue="Nice Job!." readOnly /><br></br><br></br>
-          <Button variant="contained" color="secondary">
-          Rate Task
-          </Button><br></br><br></br>
+          <br></br><br></br>
         </div>
       </div>
     )

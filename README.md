@@ -15,3 +15,4 @@
 #### `npm install axios`
 #### `npm install dotenv`
 #### `npm install jsonwebtoken --save`
+#### `npm install react-scripts --save`
