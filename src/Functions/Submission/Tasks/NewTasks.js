@@ -51,7 +51,6 @@ function NewTasks() {
             )}
           /><br></br>
           <TextField id="outlined-multiline-flexible" label="Job Description" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue=""/><br></br><br></br>
-          <TextField id="standard-uncontrolled" label="Price" defaultValue="" /><br></br><br></br>
           <Button variant="contained" color="secondary">
           Add Task {console.log(repos)}
           </Button><br></br><br></br>
