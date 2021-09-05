@@ -59,11 +59,11 @@ router.route('/').get((req, res) => {
 
 // READ Students
 router.route('/employees').get((req, res) => {
-  userSchema .findOne({roll:"Employee"},(error, data) => {
+  userSchema .find({roll:"Employee"},(error, data) => {
     if (error) {
       return next(error)
     } else {
-      let emp_data = [data].map(({name, _id}) => ({name, _id}));
+      let emp_data = data.map(({name, _id}) => ({name, _id}));
       res.json(emp_data)
     }
   })
