@@ -7,8 +7,9 @@ import axios from 'axios';
 
 function NewTasks() {
   const [repo,setRepo] = useState([]);
-  var Eids = [];
 
+  var Eids = [];
+  var TempEids = [];
 
   const getRepo = () => {
     axios.get('http://localhost:4000/users/employees')
@@ -21,6 +22,19 @@ function NewTasks() {
   };
   
 
+  function onSubmit() {
+    console.log(TempEids)
+
+  }
+
+  function val(val) {
+    TempEids = [];
+    TempEids.push(val);
+    //console.log(val)
+    console.log(TempEids)
+
+  }
+
   useEffect(() => getRepo(),[]);
 
   
@@ -29,10 +43,13 @@ function NewTasks() {
       <div>
         { repo.map((repos) => (
         <div className="prof">
-          <script>{Eids.push(repos)}</script>
+          <script>{Eids.push(repos)}
+          </script>
           <h2>New Tasks</h2>
+          <form onSubmit={onSubmit}>
           <TextField id="standard-uncontrolled" label="Title" defaultValue="" /><br></br><br></br>
           <Autocomplete
+            onChange={(event, value) => val(value)}
             multiple
             id="tags-standard"
             limitTags={1}
@@ -51,9 +68,10 @@ function NewTasks() {
             )}
           /><br></br>
           <TextField id="outlined-multiline-flexible" label="Job Description" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue=""/><br></br><br></br>
-          <Button variant="contained" color="secondary">
-          Add Task {console.log(repos)}
-          </Button><br></br><br></br>
+          <Button variant="contained" color="secondary"  type="submit">
+          Add Task 
+          </Button>
+          </form><br></br><br></br>
         </div>
         ))}
       </div>
