@@ -3,10 +3,15 @@ import Button from '@material-ui/core/Button';
 import  './../../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import axios from 'axios';
 
 
 function NewTasks() {
+  axios.get('http://localhost:4000/users/employees')
+          .then(res =>{
+            console.log(res)
+          });
+
     return (
       <div>
         <div className="prof">
@@ -47,4 +52,5 @@ function NewTasks() {
     { title: 'James D Reed', Eid: 3002  },
     { title: 'Marc L Benton', Eid: 3008  },
   ];
+  
   export default NewTasks

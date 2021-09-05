@@ -31,6 +31,10 @@ function generateToken(user) {
       salary: user.salary
     };
   }
+
+
+
+
    
   module.exports = {
     generateToken,

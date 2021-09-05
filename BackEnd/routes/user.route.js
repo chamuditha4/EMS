@@ -51,12 +51,23 @@ router.route('/').get((req, res) => {
       if (error) {
         return next(error)
       } else {
-        res.json(data)
+        let filtered_data = data.map(({_id, name, username, email, salary, roll}) => ({_id, name, username, email, salary, roll}));
+        res.json(filtered_data)
       }
     })
   })
 
-
+// READ Students
+router.route('/employees').get((req, res) => {
+  userSchema .findOne({roll:"Employee"},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      let emp_data = [data].map(({name, _id}) => ({name, _id}));
+      res.json(emp_data)
+    }
+  })
+})
 
 
 // Get Single Student
