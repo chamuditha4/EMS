@@ -22,14 +22,6 @@ function EditTasks() {
   };
 
 
-
-  function handleChange(e) {
-    setId('');
-    setId(e.target.value);
-    
-    
-  }
-
   function onSubmit(event) {
     event.preventDefault();
     setDescription('');
@@ -61,7 +53,8 @@ function EditTasks() {
         <div className="prof">
           <h2>Edit Tasks</h2>
           <form onSubmit={onSubmit}>
-          <select onChange={handleChange}>
+          <select onChange={e => setId(e.target.value)}>
+          <option value="Def" disabled>Select Task</option>
           { repo.map((repos) => (
             <option value={repos._id} name={repos.name} >{repos.name}</option>
           ))}
