@@ -4,15 +4,15 @@ import  './../../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
+import { getUser } from './../../../Utils/Common';
+var Eids = [{"name":"No Person","_id":"404"}];
 
 function NewTasks() {
+  const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [Eidss,setEidss] = useState([]);
-
-  var Eids = [];
-  var TempEids = [];
 
   const getRepo = () => {
     axios.get('http://localhost:4000/users/employees')
@@ -20,7 +20,6 @@ function NewTasks() {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
         setRepo(myRepo);
-        return Eids;
       });
   };
   
@@ -36,21 +35,25 @@ function NewTasks() {
 
   }
 
+  function fucked(){
+    Eids=[];
+    repo.map((repos) => ( Eids.push(repos)));
+    console.log(Eids);
+  }
 
 
   useEffect(() => getRepo(),[]);
-
   
 
     return (
+      
       <div>
-        { repo.map((repos) => (
+        {fucked()}
         <div className="prof">
-          <script>{Eids.push(repos)}
-          </script>
           <h2>New Tasks</h2>
           <form onSubmit={onSubmit}>
           <TextField id="standard-uncontrolled" label="Title" defaultValue="" onChange={e => setTitle(e.target.value)}/><br></br><br></br>
+          <div>
           <Autocomplete
             onChange={(event, value) => setEidss(value)}
             multiple
@@ -59,7 +62,6 @@ function NewTasks() {
             size="small"
             options={Eids}
             getOptionLabel={(option) => option.name}
-            defaultValue={[Eids[0]]}
             renderInput={(params) => (
               <TextField 
                 {...params}
@@ -69,14 +71,15 @@ function NewTasks() {
                 placeholder="EIDs"
               />
             )}
-          /><br></br>
+          />
+          </div><br></br>
           <TextField id="outlined-multiline-flexible" label="Job Description" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue="" onChange={e => setDescription(e.target.value)}/><br></br><br></br>
           <Button variant="contained" color="secondary"  type="submit">
           Add Task 
           </Button>
           </form><br></br><br></br>
         </div>
-        ))}
+        
       </div>
 
     )
