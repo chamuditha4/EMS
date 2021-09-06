@@ -44,6 +44,17 @@ function EditTasks() {
 
   }
 
+  function onPut(event) {
+    event.preventDefault();
+    console.log(Title);
+    const task = { name: Title,description: Description };
+    axios.put('http://localhost:4000/tasks/update-task/'+Id, task)
+        .then(response => {
+          console.log(response);
+        });
+
+  }
+
   useEffect(() => getRepo(),[]);
     return (
       <div>
@@ -60,12 +71,14 @@ function EditTasks() {
           Select Task
           </Button>
           </form><br></br><br></br>
+          <form onSubmit={onPut}>
           <TextField id="standard-uncontrolled" label="" value={Title} onChange={e => setTitle(e.target.value)}/><br></br><br></br>
           <br></br>
-          <TextField id="outlined-multiline-flexible" label="" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue={Description}/><br></br><br></br>
-          <Button variant="contained" color="secondary">
+          <TextField id="outlined-multiline-flexible" label="" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue={Description} onChange={e => setDescription(e.target.value)}/><br></br><br></br>
+          <Button variant="contained" color="secondary" type="submit">
           Edit Task
-          </Button><br></br><br></br>
+          </Button>
+          </form><br></br><br></br>
         </div>
       </div>
     )

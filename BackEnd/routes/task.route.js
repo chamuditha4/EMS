@@ -42,4 +42,20 @@ router.route('/get-task/:id').get((req, res) => {
   })
 })
 
+// Update Task
+router.route('/update-task/:id').put((req, res, next) => {
+  taskSchema.findByIdAndUpdate(req.params.id, {
+    $set: req.body
+  }, (error, data) => {
+    if (error) {
+      console.log(error)
+      return next(error);
+      
+    } else {
+      res.json(data)
+      console.log('Task updated successfully !')
+    }
+  })
+})
+
 module.exports = router;
