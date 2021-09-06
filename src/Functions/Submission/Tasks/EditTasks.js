@@ -4,16 +4,17 @@ import  './../../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
-
+import { getUser } from './../../../Utils/Common';
 
 function EditTasks() {
+  const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
 
   const getRepo = () => {
-    axios.get('http://localhost:4000/tasks')
+    axios.get('http://localhost:4000/tasks/' + user._id)
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
@@ -29,9 +30,12 @@ function EditTasks() {
     }else{
       setDescription('');
       setTitle('');
-      axios.get('http://localhost:4000/tasks/get-task/'+Id)
+      
+      
+      axios.get('http://localhost:4000/tasks/get-task/' +Id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
+        console.log(response);
           const myRepo = response.data;
           setDescription(myRepo.description);
           setTitle(myRepo.name);

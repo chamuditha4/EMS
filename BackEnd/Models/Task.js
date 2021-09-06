@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let TaskSchema = new Schema({
+  owner: {
+    type: String
+  },
   name: {
     type: String
   },

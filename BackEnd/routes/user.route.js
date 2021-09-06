@@ -39,7 +39,6 @@ router.route('/login-user').post((req, res, next) => {
     }else{
       const token = util.generateToken(data);
       const userObj = util.getCleanUser(data);
-      
       return res.json({ user: userObj, token });
     }
   })

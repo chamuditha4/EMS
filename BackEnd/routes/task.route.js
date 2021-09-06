@@ -8,8 +8,8 @@ let taskSchema = require('../models/Task');
 
 
 // READ Students
-router.route('/').get((req, res) => {
-  taskSchema.find((error, data) => {
+router.route('/:user').get((req, res) => {
+  taskSchema .find({owner:req.params.user},(error, data) => {
     if (error) {
       return next(error)
     } else {

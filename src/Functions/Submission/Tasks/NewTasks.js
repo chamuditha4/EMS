@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { getUser } from './../../../Utils/Common';
+
 var Eids = [{"name":"No Person","_id":"404"}];
 
 function NewTasks() {
@@ -20,6 +21,7 @@ function NewTasks() {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
         setRepo(myRepo);
+        console.log(user._id);
       });
   };
   
@@ -29,6 +31,7 @@ function NewTasks() {
     const taskOBJ = {
       name: Title,
       eids: Eidss,
+      owner:user._id,
       description: Description
     };
     axios.post('http://localhost:4000/tasks/create-task', taskOBJ)
