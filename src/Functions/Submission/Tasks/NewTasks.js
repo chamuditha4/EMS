@@ -24,7 +24,8 @@ function NewTasks() {
   };
   
 
-  function onSubmit() {
+  function onSubmit(event) {
+    event.preventDefault();
     const taskOBJ = {
       name: Title,
       eids: Eidss,
