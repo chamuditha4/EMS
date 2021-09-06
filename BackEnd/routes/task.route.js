@@ -18,6 +18,16 @@ router.route('/').get((req, res) => {
   })
 })
 
-
+// CREATE Tasks
+router.route('/create-task').post((req, res, next) => {
+  taskSchema.create(req.body, (error, data) => {
+  if (error) {
+    return next(error)
+  } else {
+    console.log(data)
+    res.json(data)
+  }
+})
+});
 
 module.exports = router;
