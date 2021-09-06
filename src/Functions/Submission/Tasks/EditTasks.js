@@ -24,15 +24,20 @@ function EditTasks() {
 
   function onSubmit(event) {
     event.preventDefault();
-    setDescription('');
-        setTitle('');
-    axios.get('http://localhost:4000/tasks/get-task/'+Id)
-      .then(response => {
-       // console.log(JSON.stringify(response.data));
-        const myRepo = response.data;
-        setDescription(myRepo.description);
-        setTitle(myRepo.name);
-      });
+    if (Id == ''){
+      alert("Please Select Task!.");
+    }else{
+      setDescription('');
+      setTitle('');
+      axios.get('http://localhost:4000/tasks/get-task/'+Id)
+        .then(response => {
+        // console.log(JSON.stringify(response.data));
+          const myRepo = response.data;
+          setDescription(myRepo.description);
+          setTitle(myRepo.name);
+        });
+      }
+    
 
   }
 
@@ -54,7 +59,7 @@ function EditTasks() {
           <h2>Edit Tasks</h2>
           <form onSubmit={onSubmit}>
           <select onChange={e => setId(e.target.value)}>
-          <option value="Def" disabled>Select Task</option>
+          <option value="Def" disabled selected="true">Select Task</option>
           { repo.map((repos) => (
             <option value={repos._id} name={repos.name} >{repos.name}</option>
           ))}
