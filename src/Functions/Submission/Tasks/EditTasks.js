@@ -1,46 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState  } from 'react';
 import Button from '@material-ui/core/Button';
 import  './../../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import axios from 'axios';
 
 
 function EditTasks() {
+  const [repo,setRepo] = useState([]);
+  const [Id, setId] = useState('');
+  const [Title, setTitle] = useState('');
+  const [Description, setDescription] = useState('');
+
+  const getRepo = () => {
+    axios.get('http://localhost:4000/tasks')
+      .then(response => {
+       // console.log(JSON.stringify(response.data));
+        const myRepo = response.data;
+        setRepo(myRepo);
+      });
+  };
+
+
+
+  function handleChange(e) {
+    setId('');
+    setId(e.target.value);
+    
+    
+  }
+
+  function onSubmit(event) {
+    event.preventDefault();
+    setDescription('');
+        setTitle('');
+    axios.get('http://localhost:4000/tasks/get-task/'+Id)
+      .then(response => {
+       // console.log(JSON.stringify(response.data));
+        const myRepo = response.data;
+        setDescription(myRepo.description);
+        setTitle(myRepo.name);
+      });
+
+  }
+
+  useEffect(() => getRepo(),[]);
     return (
       <div>
         <div className="prof">
           <h2>Edit Tasks</h2>
-          <select>
-            <option value="908">Web Design [0098]</option>
-            <option value="408">Web Design [0097]</option>
-            <option value="508">Web Design [0096]</option>
+          <form onSubmit={onSubmit}>
+          <select onChange={handleChange}>
+          { repo.map((repos) => (
+            <option value={repos._id} name={repos.name} >{repos.name}</option>
+          ))}
           </select>
           <br></br><br></br>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" type="submit">
           Select Task
-          </Button><br></br><br></br>
-          <TextField id="standard-uncontrolled" label="Title" defaultValue="Web Design Project" /><br></br><br></br>
-          <Autocomplete
-            multiple
-            id="tags-standard"
-            limitTags={1}
-            size="small"
-            options={Eids}
-            getOptionLabel={(option) => option.title}
-            defaultValue={[Eids[3]]}
-            renderInput={(params) => (
-              <TextField 
-                {...params}
-                style={{ width: 350 }}
-                variant="standard"
-                label="EIDs"
-                placeholder="EIDs"
-              />
-            )}
-          /><br></br>
-          <TextField id="outlined-multiline-flexible" label="Job Description" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue="1. Open Project using link https://bit.ly/2bGhJ"/><br></br><br></br>
-          <TextField id="standard-uncontrolled" label="Price" defaultValue="1890.65$" /><br></br><br></br>
+          </Button>
+          </form><br></br><br></br>
+          <TextField id="standard-uncontrolled" label="" value={Title} onChange={e => setTitle(e.target.value)}/><br></br><br></br>
+          <br></br>
+          <TextField id="outlined-multiline-flexible" label="" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue={Description}/><br></br><br></br>
           <Button variant="contained" color="secondary">
           Edit Task
           </Button><br></br><br></br>

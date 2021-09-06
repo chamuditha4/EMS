@@ -30,4 +30,16 @@ router.route('/create-task').post((req, res, next) => {
 })
 });
 
+
+
+router.route('/get-task/:id').get((req, res) => {
+  taskSchema.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 module.exports = router;

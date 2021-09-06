@@ -35,7 +35,7 @@ function NewTasks() {
 
   }
 
-  function fucked(){
+  function autoselect(){
     Eids=[];
     repo.map((repos) => ( Eids.push(repos)));
     console.log(Eids);
@@ -48,7 +48,7 @@ function NewTasks() {
     return (
       
       <div>
-        {fucked()}
+        {autoselect()}
         <div className="prof">
           <h2>New Tasks</h2>
           <form onSubmit={onSubmit}>
