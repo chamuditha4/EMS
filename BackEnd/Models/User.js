@@ -17,6 +17,9 @@ let userSchema = new Schema({
   salary: {
     type: String
   },
+  department: {
+    type: String
+  },
   roll: {
     type: String
   }

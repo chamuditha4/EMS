@@ -3,6 +3,10 @@ import Header from './Header';
 import Footer from './Footer';
 import React, {Component} from "react";
 import axios from 'axios';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
 
 
 export default class Signup extends Component{
@@ -16,6 +20,7 @@ export default class Signup extends Component{
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeRePassword = this.onChangeRePassword.bind(this);
     this.onChangeAccountType = this.onChangeAccountType.bind(this);
+    this.onDepartment = this.onDepartment.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     // Setting up state
@@ -25,7 +30,8 @@ export default class Signup extends Component{
       email:'',
       password:'',
       repassword:'',
-      accounttype:''
+      accounttype:'',
+      department:''
     }
   }
 
@@ -53,6 +59,10 @@ export default class Signup extends Component{
     this.setState({accounttype: e.target.value})
   }
 
+  onDepartment(e) {
+    this.setState({department: e.target.value})
+  }
+
 
   onSubmit(e) {
     e.preventDefault()
@@ -63,13 +73,15 @@ export default class Signup extends Component{
       email: this.state.email,
       password: this.state.password,
       salary: '0',
+      department: this.state.department,
       roll: this.state.accounttype
+      
     };
     axios.post('http://localhost:4000/users/create-user', UserOBJ)
       .then(res => console.log(res.data));
 
 
-    this.setState({ name: '', username: '', email: '', password: '', repassword: '', accounttype: ''})
+    this.setState({ name: '', username: '', email: '', password: '', repassword: '',department:'', accounttype: ''})
     window.location.href = "/Login";
 
   }
@@ -93,15 +105,19 @@ export default class Signup extends Component{
               <input type="password" id="password" name="password"   value={this.state.password} onChange={this.onChangePassword} /><br></br>
               <label for="password">Re-type Password:</label><br></br>
               <input type="password" id="cpassword" name="cpassword"    value={this.state.repassword} onChange={this.onChangeRePassword}  /><br></br><br></br>
-              <label>Account type</label><br></br>
-              <label className="container">Manager
-              <input type="radio" checked="checked" name="radio" value="Manager" checked={this.state.accounttype === "Manager"} onChange={this.onChangeAccountType}/>
-              <span className="checkmark"></span>
-              </label>
-              <label className="container">Employee
-              <input type="radio" name="radio"   value="Employee" checked={this.state.accounttype === "Employee"} onChange={this.onChangeAccountType}/>
-              <span className="checkmark"></span>
-              </label><br></br><br></br>
+              
+              <FormLabel component="legend">Role</FormLabel>
+              <RadioGroup aria-label="role" name="role" value={this.state.accounttype} onChange={this.onChangeAccountType} >
+                <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
+                <FormControlLabel value="Employee" control={<Radio />} label="Employee" />
+              </RadioGroup><br></br>
+
+              <FormLabel component="legend">Department</FormLabel>
+              <RadioGroup aria-label="Department" name="Department"  value={this.state.department} onChange={this.onDepartment}  >
+                <FormControlLabel value="IT" control={<Radio />} label="IT" />
+                <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" />
+                <FormControlLabel value="Management" control={<Radio />} label="Management" />
+              </RadioGroup><br></br>
 
               <input type="submit" id="butto"  value="Submit" />
             </form>
