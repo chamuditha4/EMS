@@ -69,4 +69,17 @@ router.route('/update-announcement/:id').put((req, res, next) => {
   })
 })
 
+// Delete announcement
+router.route('/delete-announcement/:id').delete((req, res, next) => {
+  AnnouncementSchema.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: data
+      })
+    }
+  })
+})
+
 module.exports = router;
