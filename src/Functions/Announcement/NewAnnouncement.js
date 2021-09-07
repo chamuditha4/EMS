@@ -11,7 +11,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 function NewAnnouncement() {
   const user = getUser();
-  const [repo,setRepo] = useState([]);
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [Department,setDepartment] = useState('');

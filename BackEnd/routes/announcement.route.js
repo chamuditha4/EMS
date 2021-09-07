@@ -9,7 +9,7 @@ let AnnouncementSchema = require('../models/Announcement');
 
 
 
-// READ Students
+// READ Announcement
 router.route('/').get((req, res) => {
   AnnouncementSchema .find((error, data) => {
     if (error) {
@@ -20,7 +20,7 @@ router.route('/').get((req, res) => {
   })
 })
 
-// CREATE Tasks
+// CREATE Announcement
 router.route('/create-announcement').post((req, res, next) => {
   AnnouncementSchema.create(req.body, (error, data) => {
   if (error) {
@@ -32,5 +32,41 @@ router.route('/create-announcement').post((req, res, next) => {
 })
 });
 
+// READ Announcement
+router.route('/:user').get((req, res) => {
+  AnnouncementSchema .find({owner:req.params.user},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+router.route('/get-announcement/:id').get((req, res) => {
+  AnnouncementSchema.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+// Update Announcement
+router.route('/update-announcement/:id').put((req, res, next) => {
+  AnnouncementSchema.findByIdAndUpdate(req.params.id, {
+    $set: req.body
+  }, (error, data) => {
+    if (error) {
+      console.log(error)
+      return next(error);
+      
+    } else {
+      res.json(data)
+      console.log('Task updated successfully !')
+    }
+  })
+})
 
 module.exports = router;
