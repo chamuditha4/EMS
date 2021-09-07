@@ -44,6 +44,16 @@ function AddRole() {
       
   }
 
+  function onPut(event) {
+    const task = { roll: Role };
+      axios.put('http://localhost:4000/users/update-user/'+Id, task)
+      .then(response => {
+        console.log(response);
+      });
+    
+
+  }
+
   useEffect(() => getRepo(),[]);
     return (
       <div>
@@ -60,14 +70,15 @@ function AddRole() {
           <Button variant="contained" color="primary" type="submit">
           Select User
           </Button></form><br></br><br></br>
+          <form onSubmit={onPut}>
           <FormLabel component="legend">Role</FormLabel>
-          <RadioGroup aria-label="role" value={Role} name="role">
+          <RadioGroup aria-label="role" value={Role} name="role" onChange={e => setRole(e.target.value)} >
             <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
             <FormControlLabel value="Employee" control={<Radio />} label="Employee" />
           </RadioGroup><br></br>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" type="submit">
           Set Role
-          </Button><br></br><br></br>
+          </Button></form><br></br><br></br>
         </div>
       </div>
     )
