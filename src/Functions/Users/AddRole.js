@@ -14,6 +14,7 @@ function AddRole() {
   const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
+  const [Role, setRole] = useState('');
 
   const getRepo = () => {
     axios.get('http://localhost:4000/users')
@@ -31,11 +32,24 @@ function AddRole() {
     
   }
 
+  function onSubmit(event) {
+    event.preventDefault();
+    axios.get('http://localhost:4000/users/get-user/' +Id)
+        .then(response => {
+        // console.log(JSON.stringify(response.data));
+        console.log(response);
+          const myRepo = response.data;
+          setRole(myRepo.roll);
+        });
+      
+  }
+
   useEffect(() => getRepo(),[]);
     return (
       <div>
         <div className="prof">
           <h2>Change User Role</h2>
+          <form onSubmit={onSubmit}>
           <select  onChange={handleChange}>
           <option value="Def" disabled selected="true">Select User</option>
           { repo.map((repos) => (
@@ -43,17 +57,13 @@ function AddRole() {
           ))}
           </select>
           <p id="removing"></p>
-
+          <Button variant="contained" color="primary" type="submit">
+          Select User
+          </Button></form><br></br><br></br>
           <FormLabel component="legend">Role</FormLabel>
-          <RadioGroup aria-label="role" name="role">
+          <RadioGroup aria-label="role" value={Role} name="role">
             <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
             <FormControlLabel value="Employee" control={<Radio />} label="Employee" />
-          </RadioGroup><br></br>
-          <FormLabel component="legend">Department</FormLabel>
-          <RadioGroup aria-label="dept" name="dept">
-            <FormControlLabel value="IT" control={<Radio />} label="IT" />
-            <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" />
-            <FormControlLabel value="Management" control={<Radio />} label="Management" />
           </RadioGroup><br></br>
           <Button variant="contained" color="primary">
           Set Role
