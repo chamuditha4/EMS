@@ -63,7 +63,6 @@ function NewTasks() {
           <Autocomplete
             onChange={(event, value) => setEidss(value)}
             multiple
-            values={Eidss}
             id="tags-standard"
             limitTags={1}
             size="small"
