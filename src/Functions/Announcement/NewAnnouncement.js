@@ -42,7 +42,7 @@ function NewAnnouncement() {
                 <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" />
                 <FormControlLabel value="Management" control={<Radio />} label="Management" />
               </RadioGroup><br></br><br></br>
-          <TextField id="outlined-multiline-flexible" label="Announcement" multiline Rows={4} variant="outlined" value={Description} style = {{width: 350}}  onChange={e => setDescription(e.target.value)}/><br></br><br></br>
+          <TextField id="outlined-multiline-flexible" label="Announcement" multiline Rows={10} variant="outlined" value={Description} style = {{width: 350},{height:50}}  onChange={e => setDescription(e.target.value)}/><br></br><br></br>
           <Button variant="contained" color="primary"  type="submit">
             Add Announcement
           </Button></form><br></br><br></br>
