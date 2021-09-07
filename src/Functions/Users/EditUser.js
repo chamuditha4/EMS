@@ -48,6 +48,25 @@ function EditUser() {
         });
       }
 
+  function onPut(event) {
+    event.preventDefault();
+    if (Password == ''){
+      const task = { name: Name,email: Email };
+      axios.put('http://localhost:4000/users/update-user/'+Id, task)
+      .then(response => {
+        console.log(response);
+      });
+    }else{
+      const task = { name: Name,email: Email, password:Password };
+      axios.put('http://localhost:4000/users/update-user/'+Id, task)
+      .then(response => {
+        console.log(response);
+      });
+    }
+    
+
+  }
+
   useEffect(() => getRepo(),[]);
 
     return (
@@ -68,13 +87,15 @@ function EditUser() {
           Select User
           </Button>
           </form><br></br>
-          <TextField id="standard-uncontrolled" label="Name"  value={Name} /><br></br><br></br>
-          <TextField id="standard-uncontrolled" label="Email"  value={Email} /><br></br><br></br>
-          <TextField id="standard-uncontrolled" label="Password"  value={Password} />
+          <form onSubmit={onPut}>
+          <TextField id="standard-uncontrolled" label="Name"  value={Name} onChange={e => setName(e.target.value)} /><br></br><br></br>
+          <TextField id="standard-uncontrolled" label="Email"  value={Email} onChange={e => setEmail(e.target.value)} /><br></br><br></br>
+          <TextField id="standard-uncontrolled" label="Password"  value={Password} onChange={e => setPassword(e.target.value)} />
           <h6>Please Leave a blank, if you are not changing password!.</h6>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary"  type="submit">
           Edit User
-          </Button><br></br><br></br>
+          </Button>
+          </form><br></br><br></br>
         </div>
       </div>
     )

@@ -101,4 +101,20 @@ router.route('/verifyToken').get((req, res) => {
     });
 })
 
+// Update User
+router.route('/update-user/:id').put((req, res, next) => {
+  userSchema.findByIdAndUpdate(req.params.id, {
+    $set: req.body
+  }, (error, data) => {
+    if (error) {
+      console.log(error)
+      return next(error);
+      
+    } else {
+      res.json(data)
+      console.log('Task updated successfully !')
+    }
+  })
+})
+
 module.exports = router;
