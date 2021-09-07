@@ -21,7 +21,7 @@ router.route('/').get((req, res) => {
 })
 
 // CREATE Tasks
-router.route('/create-task').post((req, res, next) => {
+router.route('/create-announcement').post((req, res, next) => {
   AnnouncementSchema.create(req.body, (error, data) => {
   if (error) {
     return next(error)
