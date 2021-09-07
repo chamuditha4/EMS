@@ -44,7 +44,7 @@ router.route('/create-salary').post((req, res, next) => {
 
 
 router.route('/get-salary/:id').get((req, res) => {
-  salarySchema.findById(req.params.id, (error, data) => {
+  salarySchema.find({eid:req.params.id},(error, data) => {
     if (error) {
       return next(error)
     } else {

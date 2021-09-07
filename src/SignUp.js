@@ -8,7 +8,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 
-
+var eids = '';
 export default class Signup extends Component{
   constructor(props) {
     super(props)
@@ -22,6 +22,7 @@ export default class Signup extends Component{
     this.onChangeAccountType = this.onChangeAccountType.bind(this);
     this.onDepartment = this.onDepartment.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    
 
     // Setting up state
     this.state = {
@@ -31,7 +32,8 @@ export default class Signup extends Component{
       password:'',
       repassword:'',
       accounttype:'',
-      department:''
+      department:'',
+      eid:''
     }
   }
 
@@ -64,7 +66,7 @@ export default class Signup extends Component{
   }
 
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault()
 
     const UserOBJ = {
@@ -77,8 +79,24 @@ export default class Signup extends Component{
       roll: this.state.accounttype
       
     };
-    axios.post('http://localhost:4000/users/create-user', UserOBJ)
-      .then(res => console.log(res.data));
+
+    
+    
+    await axios.post('http://localhost:4000/users/create-user', UserOBJ)
+      .then(async res => {console.log(res.data)
+        const myRepo = await res.data;
+        await this.setState({eid: myRepo._id});
+        eids = await myRepo._id;
+      });
+
+      const SalOBJ = {
+        eid: eids,
+        salary: '0',
+        bonus: '0'
+      };
+
+      axios.post('http://localhost:4000/salary/create-salary', SalOBJ)
+    .then(res1 => console.log(res1.data))
 
 
     this.setState({ name: '', username: '', email: '', password: '', repassword: '',department:'', accounttype: ''})
