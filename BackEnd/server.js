@@ -6,6 +6,7 @@ let dbConfig = require('./database/db');
 
 const userRoute = require('../backend/routes/user.route')
 const taskRoute = require('../backend/routes/task.route')
+const AnnouncementRoute = require('../backend/routes/announcement.route')
 // Express Route
 
 // Connecting mongoDB Database
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 app.use('/users', userRoute)
 app.use('/tasks', taskRoute)
+app.use('/Announcement', AnnouncementRoute)
 
 // PORT
 const port = process.env.PORT || 4000;
