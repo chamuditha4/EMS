@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState  } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -7,21 +7,43 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import  './../../styles/App.css';
+import { getUser } from './../../Utils/Common';
+import axios from 'axios';
 
 function AddRole() {
+  const user = getUser();
+  const [repo,setRepo] = useState([]);
+  const [Id, setId] = useState('');
+
+  const getRepo = () => {
+    axios.get('http://localhost:4000/users')
+      .then(response => {
+       // console.log(JSON.stringify(response.data));
+        const myRepo = response.data;
+        setRepo(myRepo);
+      });
+  };
+
+  function handleChange(e) {
+    setId(e.target.value);
+    //console.log(e.target.selectedOptions[0].getAttribute('data-id'));
+    document.getElementById("removing").innerHTML = "You are Changing: " + e.target.selectedOptions[0].getAttribute('data-id');
+    
+  }
+
+  useEffect(() => getRepo(),[]);
     return (
       <div>
         <div className="prof">
-          <h2>Remove User</h2>
-          <Autocomplete
-            id="combo-box-demo"
-            options={Users}
-            getOptionLabel={(option) => option.title}
-            style={{ width: 350 }}
-            renderInput={(params) => <TextField {...params} label="Select User" variant="outlined" />}
-          />
-          <p>You Selected User: A M D Amarasena </p>
-          <p>EID: 6002</p>
+          <h2>Change User Role</h2>
+          <select  onChange={handleChange}>
+          <option value="Def" disabled selected="true">Select User</option>
+          { repo.map((repos) => (
+            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
+          ))}
+          </select>
+          <p id="removing"></p>
+
           <FormLabel component="legend">Role</FormLabel>
           <RadioGroup aria-label="role" name="role">
             <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
