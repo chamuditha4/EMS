@@ -36,7 +36,9 @@ function NewTasks() {
     };
     axios.post('http://localhost:4000/tasks/create-task', taskOBJ)
       .then(res => console.log(res.data));
-
+      setTitle('');
+      setDescription('');
+      setEidss([]);
   }
 
   function autoselect(){
@@ -56,11 +58,12 @@ function NewTasks() {
         <div className="prof">
           <h2>New Tasks</h2>
           <form onSubmit={onSubmit}>
-          <TextField id="standard-uncontrolled" label="Title" defaultValue="" onChange={e => setTitle(e.target.value)}/><br></br><br></br>
+          <TextField id="standard-uncontrolled" label="Title" defaultValue="" value={Title} onChange={e => setTitle(e.target.value)}/><br></br><br></br>
           <div>
           <Autocomplete
             onChange={(event, value) => setEidss(value)}
             multiple
+            values={Eidss}
             id="tags-standard"
             limitTags={1}
             size="small"
@@ -77,7 +80,7 @@ function NewTasks() {
             )}
           />
           </div><br></br>
-          <TextField id="outlined-multiline-flexible" label="Job Description" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue="" onChange={e => setDescription(e.target.value)}/><br></br><br></br>
+          <TextField id="outlined-multiline-flexible" label="Job Description" multiline Rows={4} variant="outlined" style = {{width: 350}} defaultValue="" value={Description} onChange={e => setDescription(e.target.value)}/><br></br><br></br>
           <Button variant="contained" color="secondary"  type="submit">
           Add Task 
           </Button>

@@ -18,6 +18,17 @@ router.route('/:user').get((req, res) => {
   })
 })
 
+// READ Students
+router.route('/').get((req, res) => {
+  taskSchema .find((error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // CREATE Tasks
 router.route('/create-task').post((req, res, next) => {
   taskSchema.create(req.body, (error, data) => {
@@ -54,6 +65,19 @@ router.route('/update-task/:id').put((req, res, next) => {
     } else {
       res.json(data)
       console.log('Task updated successfully !')
+    }
+  })
+})
+
+// Delete Task
+router.route('/delete-task/:id').delete((req, res, next) => {
+  taskSchema.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: data
+      })
     }
   })
 })
