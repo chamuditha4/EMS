@@ -94,5 +94,9 @@
     	})
     
     })
+### Help Links For Update Methods:
+
+[Mongoose: findOneAndUpdate doesn't return updated document](https://stackoverflow.com/questions/32811510/mongoose-findoneandupdate-doesnt-return-updated-document)
+
 
 `![Good Luck](https://i.imgur.com/aLRN2U0.gif)
