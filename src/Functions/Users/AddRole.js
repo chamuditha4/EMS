@@ -15,6 +15,7 @@ function AddRole() {
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
   const [Role, setRole] = useState('');
+  const [Department, setDepartment] = useState('');
 
   const getRepo = () => {
     axios.get('http://localhost:4000/users')
@@ -40,12 +41,13 @@ function AddRole() {
         console.log(response);
           const myRepo = response.data;
           setRole(myRepo.roll);
+          setDepartment(myRepo.department);
         });
       
   }
 
   function onPut(event) {
-    const task = { roll: Role };
+    const task = { roll: Role, department:Department };
       axios.put('http://localhost:4000/users/update-user/'+Id, task)
       .then(response => {
         console.log(response);
@@ -76,6 +78,13 @@ function AddRole() {
             <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
             <FormControlLabel value="Employee" control={<Radio />} label="Employee" />
           </RadioGroup><br></br>
+
+          <FormLabel component="legend">Department</FormLabel>
+              <RadioGroup aria-label="Department" name="Department"  value={Department} onChange={e => setDepartment(e.target.value)}  >
+                <FormControlLabel value="IT" control={<Radio />} label="IT" />
+                <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" />
+                <FormControlLabel value="Management" control={<Radio />} label="Management" />
+              </RadioGroup><br></br>
           <Button variant="contained" color="primary" type="submit">
           Set Role
           </Button></form><br></br><br></br>

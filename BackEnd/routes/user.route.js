@@ -50,7 +50,7 @@ router.route('/').get((req, res) => {
       if (error) {
         return next(error)
       } else {
-        let filtered_data = data.map(({_id, name, username, email, salary, roll}) => ({_id, name, username, email, salary, roll}));
+        let filtered_data = data.map(({_id, name, username, email, salary,department, roll}) => ({_id, name, username, email, salary,department, roll}));
         res.json(filtered_data)
       }
     })
