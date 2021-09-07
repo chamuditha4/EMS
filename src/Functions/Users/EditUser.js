@@ -37,7 +37,7 @@ function EditUser() {
 
   function onSubmit(event) {
     event.preventDefault();
-    axios.get('http://localhost:4000/users/' +Id)
+    axios.get('http://localhost:4000/users/get-user/' +Id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
