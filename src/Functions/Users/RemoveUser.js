@@ -5,27 +5,12 @@ import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
 import { getUser } from './../../Utils/Common';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 function RemoveUser() {
   const user = getUser();
-  const classes = useStyles();
   const [repo,setRepo] = useState([]);
+  const [Id, setId] = useState('');
 
   const getRepo = () => {
     axios.get('http://localhost:4000/users')
@@ -36,26 +21,40 @@ function RemoveUser() {
       });
   };
 
+  function handleChange(e) {
+    setId(e.target.value);
+    //console.log(e.target.selectedOptions[0].getAttribute('data-id'));
+    document.getElementById("removing").innerHTML = "You are removing: " + e.target.selectedOptions[0].getAttribute('data-id');
+    
+  }
+
+  function onRemove(event) {
+    event.preventDefault();
+    axios.delete('http://localhost:4000/users/delete-user/'+Id)
+        .then(response => {
+          console.log(response);
+        });
+    window.location.reload(false);
+  }
+
   useEffect(() => getRepo(),[]);
     return (
       <div>
         <div className="prof">
           <h2>Remove User</h2>
-          <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Select User</InputLabel>
-          <Select labelId="demo-simple-select-label" id="demo-simple-select">
-          <MenuItem value="Def" disabled selected="true">Select User</MenuItem>
+          <form onSubmit={onRemove}>
+          <select  onChange={handleChange}>
+          <option value="Def" disabled selected="true">Select User</option>
           { repo.map((repos) => (
-            <MenuItem value={repos._id} data-id={repos.name} >{repos.name}</MenuItem>
+            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
           ))}
-          </Select>
-          </FormControl>
+          </select>
           <br></br><br></br>
-          <p>You Removing User: A M D Amarasena </p>
-          <p>EID: 6002</p>
-          <Button variant="contained" color="primary">
+          <p id="removing"></p>
+          <Button variant="contained" color="primary" type="submit">
           Remove User
-          </Button><br></br><br></br>
+          </Button>
+          </form><br></br><br></br>
         </div>
       </div>
     )
