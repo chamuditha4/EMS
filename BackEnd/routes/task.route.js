@@ -18,6 +18,16 @@ router.route('/:user').get((req, res) => {
   })
 })
 
+router.route('/get-job/:user').get((req, res) => {
+  taskSchema .find({eids:{$elemMatch:{ _id:req.params.user}}},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // READ Students
 router.route('/').get((req, res) => {
   taskSchema .find((error, data) => {
