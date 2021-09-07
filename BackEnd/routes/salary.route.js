@@ -55,7 +55,7 @@ router.route('/get-salary/:id').get((req, res) => {
 
 // Update Task
 router.route('/update-salary/:id').put((req, res, next) => {
-  salarySchema.findByIdAndUpdate(req.params.id, {
+  salarySchema.findOneAndUpdate({eid: req.params.id }, {
     $set: req.body
   }, (error, data) => {
     if (error) {

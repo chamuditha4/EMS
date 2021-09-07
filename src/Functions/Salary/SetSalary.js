@@ -26,13 +26,8 @@ function SetSalary() {
         // console.log(JSON.stringify(response.data));
         console.log(response);
           const myRepo = response.data;
-          if (myRepo.length == 0){
-            setSalary('0');
-            setBonus('0');
-          }else{
-            setSalary(myRepo.salary);
-            setBonus(myRepo.bonus);
-          }
+          setSalary(myRepo[0].salary);
+          setBonus(myRepo[0].bonus);
         });
       }
 
@@ -45,7 +40,7 @@ function SetSalary() {
 
   function onPut(event) {
     event.preventDefault();
-    const task = { eid: Id,salary: Salary,bonus:Bonus };
+    const task = { salary: Salary,bonus:Bonus };
     axios.put('http://localhost:4000/salary/update-salary/'+Id, task)
         .then(response => {
           console.log(response);
