@@ -9,7 +9,7 @@ let salarySchema = require('../models/Salary');
 
 // READ Students
 router.route('/:user').get((req, res) => {
-  salarySchema .find({owner:req.params.user},(error, data) => {
+  salarySchema .find({eid:req.params.user},(error, data) => {
     if (error) {
       return next(error)
     } else {

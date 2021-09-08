@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState  } from 'react';
 import  './../../styles/App.css';
+import axios from 'axios';
+import { getUser } from './../../Utils/Common';
 
 function ViewSalary() {
+  const user = getUser();
+  const [repo,setRepo] = useState([]);
+
+  const getRepo = () => {
+    axios.get('http://localhost:4000/salary/'+ user._id)
+      .then(response => {
+       // console.log(JSON.stringify(response.data));
+        const myRepo = response.data;
+        console.log(myRepo)
+        setRepo(myRepo);
+      });
+  };
+
+  useEffect(() => getRepo(),[]);
+
     return (
       <div>
         <div className="prof">
           <h2>Salary</h2>
           <h5>Your Monthly Salary</h5>
-          <p>Rs. 57,000</p>
-          <h5>OT</h5>
-          <p>Rs. 3,000</p>
-          <h5>Total</h5>
-          <p>Rs. 60,000</p>
+          { repo.map((repos) => (
+          <div>
+          
+            <p>{repos.salary} LKR</p>
+            <h5>Bonus</h5>
+            <p>{repos.bonus} LKR</p>
+            <h5>Total</h5>
+            <p>{(parseInt(repos.salary)+parseInt(repos.bonus))} LKR</p>
+          </div>
+          ))}
+          
         </div>
       </div>
     )
