@@ -16,12 +16,12 @@ function Header() {
 
                 </ul>
             </li>
-            <li><a href="">Find Us</a></li>
-            <li><a href="" class="active">About Us</a>
+            <li><a href="Login.html">Find Us</a></li>
+            <li><a href="Login.html" class="active">About Us</a>
                 <ul>
-                <li><a href="">Our Story</a></li>
-                <li><a href="">Our Mission</a></li>
-                <li><a href="">Where We Work</a></li>
+                <li><a href="Login.html">Our Story</a></li>
+                <li><a href="Login.html">Our Mission</a></li>
+                <li><a href="Login.html">Where We Work</a></li>
                 </ul>
             </li>
             <li><a href="contactUs.html">Contact Us</a></li>

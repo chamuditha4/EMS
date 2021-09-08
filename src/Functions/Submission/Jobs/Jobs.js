@@ -1,5 +1,4 @@
 import React, { useEffect, useState  } from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import  './../../../styles/App.css';
@@ -23,7 +22,7 @@ function Jobs() {
 
   function onSubmit(event) {
     event.preventDefault();
-    if (Id == ''){
+    if (Id === ''){
       alert("Please Select Job!.");
     }else{
       setDescription('');
@@ -73,11 +72,6 @@ function Jobs() {
       </div>
     )
   }
-  
-  const Users = [
-    { title: 'Web Design [920]', eid: 3002 },
-    { title: 'A M D Amarasena', eid: 6002 },
-    { title: 'A M D Amarasena', eid: 9005 },
-  ]
+
 
   export default Jobs

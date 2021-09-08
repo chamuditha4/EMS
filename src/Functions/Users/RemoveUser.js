@@ -1,14 +1,10 @@
 import React, { useEffect, useState  } from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
-import { getUser } from './../../Utils/Common';
 import axios from 'axios';
 
 
 function RemoveUser() {
-  const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
 

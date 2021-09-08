@@ -2,7 +2,6 @@ import React, { useEffect, useState  } from 'react';
 import Button from '@material-ui/core/Button';
 import  './../../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { getUser } from './../../../Utils/Common';
 
@@ -25,7 +24,7 @@ function EditTasks() {
 
   function onSubmit(event) {
     event.preventDefault();
-    if (Id == ''){
+    if (Id === ''){
       alert("Please Select Task!.");
     }else{
       setDescription('');
@@ -86,11 +85,5 @@ function EditTasks() {
     )
   }
   
-  const Eids = [
-    { title: 'Scott R Todd', Eid: 3006 },
-    { title: 'Terry J Moore', Eid: 3004  },
-    { title: 'Brittany D Bard', Eid: 3003  },
-    { title: 'James D Reed', Eid: 3002  },
-    { title: 'Marc L Benton', Eid: 3008  },
-  ];
+
   export default EditTasks

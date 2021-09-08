@@ -1,17 +1,13 @@
 import React, { useEffect, useState  } from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import  './../../styles/App.css';
-import { getUser } from './../../Utils/Common';
 import axios from 'axios';
 
 function AddRole() {
-  const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
   const [Role, setRole] = useState('');
@@ -93,10 +89,6 @@ function AddRole() {
     )
   }
   
-  const Users = [
-    { title: 'A M D Amarasena', eid: 3002 },
-    { title: 'A M D Amarasena', eid: 6002 },
-    { title: 'A M D Amarasena', eid: 9005 },
-  ]
+
 
   export default AddRole

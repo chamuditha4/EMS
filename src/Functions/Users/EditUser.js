@@ -1,5 +1,4 @@
 import React, { useEffect, useState  } from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
@@ -50,7 +49,7 @@ function EditUser() {
 
   function onPut(event) {
     event.preventDefault();
-    if (Password == ''){
+    if (Password === ''){
       const task = { name: Name,email: Email };
       axios.put('http://localhost:4000/users/update-user/'+Id, task)
       .then(response => {

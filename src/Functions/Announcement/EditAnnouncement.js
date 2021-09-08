@@ -28,7 +28,7 @@ function EditAnnouncement() {
 
   function onSubmit(event) {
     event.preventDefault();
-    if (Id == ''){
+    if (Id === ''){
       alert("Please Select Task!.");
     }else{
       setDescription('');

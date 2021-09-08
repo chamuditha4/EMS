@@ -1,10 +1,9 @@
 import React from 'react'
 import  './styles/App.css';
 import logo from './images/Blue logo-cropped.png';
-import { getUser, removeUserSession } from './Utils/Common';
+import { removeUserSession } from './Utils/Common';
 
 function HeaderLoged(props) {
-  const user = getUser();
 
   const handleLogout = () => {
     removeUserSession();
