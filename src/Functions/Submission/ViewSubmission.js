@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
 import axios from 'axios';
 import { getUser } from './../../Utils/Common';
+import ReactHtmlParser from 'react-html-parser'; 
 
 function ViewSubmission() {
   const user = getUser();
@@ -11,6 +12,7 @@ function ViewSubmission() {
   const [sub,setSub] = useState([]);
   const [Name,setName] = useState('');
   const [Id, setId] = useState('');
+  const [table, settable] = useState('');
 
   const getRepo = () => {
     axios.get('http://localhost:4000/tasks/' + user._id)
@@ -39,7 +41,7 @@ function ViewSubmission() {
     if (Id === ''){
       alert("Please Select Task!.");
     }else{
-      
+      settable('<tr><th>Time</th><th>Employee</th><th>Log</th></tr>');
       setSub(temprepo);
       
         
@@ -82,11 +84,7 @@ function ViewSubmission() {
           Show Submission
           </Button></form><br></br><br></br>
           <table>
-            <tr>
-              <th>Time</th>
-              <th>Employee</th>
-              <th>Log</th>
-            </tr>
+            {ReactHtmlParser(table)}
             { sub.map((repos) => (
             <tr>
               <td>{repos.time_start} - {repos.time_end}</td>
