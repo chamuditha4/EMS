@@ -10,11 +10,17 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import EmpDash from './EmpDashBoard';
 import Logout from './Logout';
-
+import Profile from './Utils/Profile';
+import Footer from './Footer';
+import { getUser } from './Utils/Common';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  const user = getUser();
+  if(user.roll === "Manager"){
+    window.location.href = "/MngDashBoard";
+  }else{
+  }
   
 
   return (
@@ -67,6 +73,7 @@ export default function HeaderLoged() {
   };
 
   return (
+    <div>
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs value={value} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary"  centered>
@@ -80,7 +87,7 @@ export default function HeaderLoged() {
         </AppBar>
       <img src={logo} id="logo" alt="Logo"></img>
       <TabPanel value={value} index={0}>
-        Item Two
+        <Profile/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Three
@@ -94,6 +101,9 @@ export default function HeaderLoged() {
       <TabPanel value={value} index={4}>
         <Logout/>
       </TabPanel>
+      
+    </div>
+    <Footer/>
     </div>
   );
 }

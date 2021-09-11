@@ -6,23 +6,19 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Footer from './Footer';
 import UsersTabs from './Tabs/UsersTabs';
 import MngerAttendanceTabs from './Tabs/MngerAttendanceTabs';
 import SubmissionTabs from './Tabs/SubmissionTabs';
 import TasksTabs from './Tabs/TasksTabs';
 import AnnouncementTabs from './Tabs/AnnouncementTabs';
 import MngerSalaryTabs from './Tabs/MngerSalaryTabs';
-import { getUser } from './Utils/Common';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-  const user = getUser();
+  
 
-  if(user.roll === "Manager"){
-  }else{
-    window.location.href = "/EmpDashBoard";
-  }
+  
 
   return (
     <div>
@@ -116,7 +112,7 @@ export default function MngrDashBoard() {
         </TabPanel>
         
         </div>
-        <Footer/>
+        
     </div>
   );
 }
