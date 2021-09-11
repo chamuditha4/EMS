@@ -17,6 +17,17 @@ router.route('/').get((req, res) => {
   })
 })
 
+// READ Students
+router.route('/:jobid').get((req, res) => {
+  SubmissionSchema .find({job_id:req.params.jobid},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 // CREATE Tasks
 router.route('/create-submission').post((req, res, next) => {
   SubmissionSchema.create(req.body, (error, data) => {
