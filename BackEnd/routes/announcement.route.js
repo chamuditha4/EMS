@@ -43,6 +43,17 @@ router.route('/:user').get((req, res) => {
   })
 })
 
+// READ Announcement
+router.route('/read/:dept').get((req, res) => {
+  AnnouncementSchema .find({department:req.params.dept},(error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 router.route('/get-announcement/:id').get((req, res) => {
   AnnouncementSchema.findById(req.params.id, (error, data) => {
     if (error) {

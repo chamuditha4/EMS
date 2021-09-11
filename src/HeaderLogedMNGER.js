@@ -13,6 +13,7 @@ import Logout from './Logout';
 import Footer from './Footer';
 import { getUser } from './Utils/Common';
 import Profile from './Utils/Profile';
+import Announcement from './Utils/Announcement';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -96,7 +97,7 @@ export default function HeaderLoged() {
         <MNGDash/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Three
+        <Announcement/>
       </TabPanel>
       <TabPanel value={value} index={4} >
         <Logout/>
