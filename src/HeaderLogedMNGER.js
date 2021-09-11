@@ -73,14 +73,15 @@ export default function HeaderLoged() {
   };
 
   return (
+    <div>
     <div className={classes.root}>
       <AppBar position="static" color="default">
-        <Tabs value={value} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary"  centered>
+        <Tabs value={value} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary" centered>
           <Tab label="Profile" {...a11yProps(0)} />
           <Tab label="Chat" {...a11yProps(1)} />
           <Tab label="Actions" {...a11yProps(2)} />
           <Tab label="Announcements" {...a11yProps(3)} />
-          <Tab label="Logout" {...a11yProps(4)} />
+          <Tab label="Logout" {...a11yProps(4)} style={{backgroundColor:'orange'}} />
           
         </Tabs>
         </AppBar>
@@ -97,10 +98,12 @@ export default function HeaderLoged() {
       <TabPanel value={value} index={3}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel value={value} index={4} >
         <Logout/>
       </TabPanel>
-      <Footer/>
+      
+    </div>
+    <Footer/>
     </div>
   );
 }

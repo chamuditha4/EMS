@@ -81,7 +81,7 @@ export default function HeaderLoged() {
           <Tab label="Chat" {...a11yProps(1)} />
           <Tab label="Actions" {...a11yProps(2)} />
           <Tab label="Announcements" {...a11yProps(3)} />
-          <Tab label="Logout" {...a11yProps(4)} />
+          <Tab label="Logout" {...a11yProps(4)}  style={{backgroundColor:'orange'}}/>
           
         </Tabs>
         </AppBar>
