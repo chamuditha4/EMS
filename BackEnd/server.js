@@ -9,6 +9,7 @@ const taskRoute = require('../backend/routes/task.route')
 const AnnouncementRoute = require('../backend/routes/announcement.route')
 const salaryRoute = require('../backend/routes/salary.route')
 const SubmissionRoute = require('../backend/routes/submission.route')
+const RateRoute = require('../backend/routes/rate.route')
 
 // Express Route
 
@@ -37,6 +38,7 @@ app.use('/tasks', taskRoute)
 app.use('/Announcement', AnnouncementRoute)
 app.use('/salary', salaryRoute)
 app.use('/Submission', SubmissionRoute)
+app.use('/Rate', RateRoute)
 
 // PORT
 const port = process.env.PORT || 4000;
