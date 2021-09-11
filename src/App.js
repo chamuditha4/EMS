@@ -5,8 +5,8 @@ import Header from './Header';
 import Footer from './Footer';
 import Login from './Login';
 import Signup from './SignUp';
-import EmpDashBoard from './HeaderLoged';
-import MngrDashBoard from './MngrDashBoard';
+import EmpDashBoard from './HeaderLogedEMP';
+import MngrDashBoard from './HeaderLogedMNGER.js';
 
 class App extends React.Component {
    render() {

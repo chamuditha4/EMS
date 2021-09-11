@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box';
 import EmpDash from './EmpDashBoard';
 import Logout from './Logout';
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -26,7 +27,7 @@ function TabPanel(props) {
     >
       
       {value === index && (
-        <Box p={6}>
+        <Box p={5}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -67,34 +68,30 @@ export default function HeaderLoged() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Home" {...a11yProps(0)} />
-          <Tab label="Profile" {...a11yProps(1)} />
-          <Tab label="Chat" {...a11yProps(2)} />
-          <Tab label="Actions" {...a11yProps(3)} />
-          <Tab label="Announcements" {...a11yProps(4)} />
-          <Tab label="Logout" {...a11yProps(5)} />
+      <AppBar position="static" color="default">
+        <Tabs value={value} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary"  centered>
+          <Tab label="Profile" {...a11yProps(0)} />
+          <Tab label="Chat" {...a11yProps(1)} />
+          <Tab label="Actions" {...a11yProps(2)} />
+          <Tab label="Announcements" {...a11yProps(3)} />
+          <Tab label="Logout" {...a11yProps(4)} />
           
         </Tabs>
-      </AppBar>
+        </AppBar>
       <img src={logo} id="logo" alt="Logo"></img>
       <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={2}>
         <EmpDash/>
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel value={value} index={3}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      <TabPanel value={value} index={4}>
         <Logout/>
       </TabPanel>
     </div>
