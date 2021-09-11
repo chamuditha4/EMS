@@ -1,10 +1,13 @@
 import React, { useEffect, useState  } from 'react';
 import  './../../styles/App.css';
 import axios from 'axios';
+import ReactHtmlParser from 'react-html-parser'; 
+var count = 0;
+var naamee = [];
 
  function SalaryReport() {
   const [repo,setRepo] = useState([]);
-  const [name1,setname] = useState([]);
+  const [name1,setname] = useState('');
 
   const getRepo = () => {
     axios.get('http://localhost:4000/salary')
@@ -12,15 +15,29 @@ import axios from 'axios';
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
         setRepo(myRepo);
+
+        for (var i=0;i<myRepo.length;i++){
+          console.log(myRepo[i].eid);
+          axios.get('http://localhost:4000/users/get-user/' +myRepo[i].eid)
+          .then(response1 => {
+          // console.log(JSON.stringify(response.data));
+          
+          const myRepo1 = response1.data.name;
+          naamee.push(myRepo1);
+          console.log(count);
+          });
+        }
+
       });
   };
 
-  async function getuser(usern){
-    await axios.get('http://localhost:4000/users/get-user/'+ usern)
+  function getuser(usern){
+    axios.get('http://localhost:4000/users/get-user/'+usern)
       .then(response => {
        // console.log(JSON.stringify(response.data));
-        const myRepo1 = response.data;
-        setname(myRepo1[0]);
+        const myRepo1 = response.data.name;
+        console.log(myRepo1);
+        return myRepo1;
       });
   }
 
@@ -32,12 +49,17 @@ import axios from 'axios';
           <table>
           <tr>
             <th>ID</th>
+            <th>Name</th>
             <th>Salary</th>
           </tr>
+          <script>{count = 0}</script>
           { repo.map((repos) => (
           <tr>
+            
             <td>{repos.eid}</td>
+            <td>{naamee[count]}</td>
             <td>{(parseInt(repos.salary)+parseInt(repos.bonus))} LKR</td>
+            <script>{count++}</script>
           </tr>
           ))}
         </table>
