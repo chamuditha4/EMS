@@ -1,13 +1,11 @@
 import React, { useEffect, useState  } from 'react';
 import  './../../styles/App.css';
 import axios from 'axios';
-import ReactHtmlParser from 'react-html-parser'; 
 var count = 0;
 var naamee = [];
 
  function SalaryReport() {
   const [repo,setRepo] = useState([]);
-  const [name1,setname] = useState('');
 
   const getRepo = () => {
     axios.get('http://localhost:4000/salary')
@@ -24,22 +22,12 @@ var naamee = [];
           
           const myRepo1 = response1.data.name;
           naamee.push(myRepo1);
-          console.log(count);
           });
         }
 
       });
   };
 
-  function getuser(usern){
-    axios.get('http://localhost:4000/users/get-user/'+usern)
-      .then(response => {
-       // console.log(JSON.stringify(response.data));
-        const myRepo1 = response.data.name;
-        console.log(myRepo1);
-        return myRepo1;
-      });
-  }
 
   useEffect(() => getRepo(),[]);
     return (
