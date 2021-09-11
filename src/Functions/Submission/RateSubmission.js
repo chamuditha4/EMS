@@ -55,18 +55,7 @@ function RateSubmission() {
       });
     
   }
-  function onSubmit(event) {
-    event.preventDefault();
-    const rateOBJ = {
-      jobid: Id,
-      rate: Rate,
-      feedback:Feedback
-    };
-    axios.post('http://localhost:4000/Rate/create-rate', rateOBJ)
-      .then(res => console.log(res.data));
-    
 
-  }
 
   useEffect(() => getRepo(),[]);
     return (

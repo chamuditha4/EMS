@@ -46,7 +46,7 @@ var naamee = [];
             
             <td>{repos.eid}</td>
             <td>{naamee[count]}</td>
-            <td>{(parseInt(repos.salary)+parseInt(repos.bonus))} LKR</td>
+            <td>{(parseInt(repos.salary,10)+parseInt(repos.bonus,10))} LKR</td>
             <script>{count++}</script>
           </tr>
           ))}

@@ -31,7 +31,7 @@ function ViewSalary() {
             <h5>Bonus</h5>
             <p>{repos.bonus} LKR</p>
             <h5>Total</h5>
-            <p>{(parseInt(repos.salary)+parseInt(repos.bonus))} LKR</p>
+            <p>{(parseInt(repos.salary,10)+parseInt(repos.bonus,10))} LKR</p>
           </div>
           ))}
           

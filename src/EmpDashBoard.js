@@ -6,7 +6,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Header from './HeaderLoged';
 import Footer from './Footer';
 import Progress from './Tabs/Progress';
 import Attendance from './Functions/Attendance/Attendance';
@@ -72,7 +71,6 @@ export default function EmpDashBoard() {
 
   return (
     <div>
-        <Header />
         <div className={classes.root}>
         <AppBar position="static" color="default">
             <Tabs

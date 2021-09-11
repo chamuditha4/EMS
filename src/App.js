@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Login from './Login';
 import Signup from './SignUp';
-import EmpDashBoard from './EmpDashBoard';
+import EmpDashBoard from './HeaderLoged';
 import MngrDashBoard from './MngrDashBoard';
 
 class App extends React.Component {
