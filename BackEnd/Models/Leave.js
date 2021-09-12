@@ -5,7 +5,16 @@ let LeaveSchema = new Schema({
   eid: {
     type: String
   },
-  time: {
+  hrs: {
+    type: String
+  },
+  min: {
+    type: String
+  },
+  year: {
+    type: String
+  },
+  mo: {
     type: String
   },
   date: {

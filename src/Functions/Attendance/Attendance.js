@@ -19,7 +19,8 @@ function Attendance() {
         if (myRepo.length === 0){
           setisDisable('');
         }else{
-          var startDate = new Date(myRepo[0].year, myRepo[0].mo, myRepo[0].date, myRepo[0].hrs,myRepo[0].min, 0);
+          var count = (myRepo.length-1)
+          var startDate = new Date(myRepo[(count)].year, myRepo[(count)].mo, myRepo[(count)].date, myRepo[(count)].hrs,myRepo[(count)].min, 0);
           var endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), 0);
           var diff = endDate.getTime() - startDate.getTime();
           var hours = Math.floor(diff / 1000 / 60 / 60);
@@ -29,9 +30,10 @@ function Attendance() {
           console.log(final_diff);
 
           if (final_diff <= 8){
-            setMarkedTime(myRepo[0].hrs + ':' + myRepo[0].min);
+            setisDisable('disabled');
+            setMarkedTime(myRepo[(count)].hrs + ':' + myRepo[(count)].min);
           }else{
-            setMarkedTime('You need to mark leave 😊 ');
+            setisDisable('');
           }
         }
       });
