@@ -8,6 +8,7 @@ function Leave() {
   var today = new Date();
   const user = getUser();
   const [isDisable, setisDisable] = useState('disabled');
+  const [MarkedTime, setMarkedTime] = useState('');
 
   async function getAttendance(){
     await axios.get('http://localhost:4000/attendance/'+ user._id)
@@ -33,12 +34,13 @@ function Leave() {
             //setMarkedTime(myRepo[(count)].hrs + ':' + myRepo[(count)].min);
           }else{
             setisDisable('disabled');
+            setMarkedTime(myRepo[(count)].hrs + ':' + myRepo[(count)].min);
           }
         }
       });
 
 
-      await axios.get('http://localhost:4000/attendance/leave/'+ user._id)
+      await axios.get('http://localhost:4000/attendance/leave/get/'+ user._id)
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
@@ -58,7 +60,7 @@ function Leave() {
 
           if (final_diff <= 8){
             setisDisable('disabled');
-            //setMarkedTime(myRepo[(count)].hrs + ':' + myRepo[(count)].min);
+            setMarkedTime(myRepo[(count)].hrs + ':' + myRepo[(count)].min);
           }else{
             setisDisable('');
           }
@@ -100,7 +102,7 @@ function Leave() {
             Mark Leave
           </Button></form><br></br><br></br>
           <Button variant="contained" disabled>
-            Marked Time: 
+            Marked Time: {MarkedTime}
           </Button><br></br><br></br>
         </div>
       </div>

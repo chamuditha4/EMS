@@ -42,7 +42,7 @@ router.route('/create').post((req, res, next) => {
 });
 
 // READ Students
-router.route('/leave/').get((req, res) => {
+router.route('/leave/all').get((req, res) => {
   LeaveSchema .find((error, data) => {
     if (error) {
       return next(error)
@@ -53,7 +53,7 @@ router.route('/leave/').get((req, res) => {
 })
 
 // READ Students
-router.route('/leave/:eid').get((req, res) => {
+router.route('/leave/get/:eid').get((req, res) => {
   LeaveSchema .find({eid:req.params.eid},(error, data) => {
     if (error) {
       return next(error)
