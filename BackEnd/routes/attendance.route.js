@@ -75,6 +75,32 @@ router.route('/leave/create').post((req, res, next) => {
 })
 });
 
+// Delete User
+router.route('/delete/:id').delete((req, res, next) => {
+  AttendanceSchema.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: data
+      })
+    }
+  })
+})
+
+// Delete User
+router.route('/leave/delete/:id').delete((req, res, next) => {
+  LeaveSchema.findByIdAndRemove(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        msg: data
+      })
+    }
+  })
+})
+
 
 
 module.exports = router;

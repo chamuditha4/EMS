@@ -8,6 +8,9 @@ let LeaveSchema = new Schema({
   time: {
     type: String
   },
+  date: {
+    type: String
+  },
   name: {
     type: String
   }

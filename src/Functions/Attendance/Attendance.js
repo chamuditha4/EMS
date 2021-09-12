@@ -1,17 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState  } from 'react';
 import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
+import axios from 'axios';
+import { getUser } from './../../Utils/Common';
 
 function Attendance() {
+  var today = new Date();
+  const user = getUser();
+  const [isDisable, setisDisable] = useState('disabled');
+  const [MarkedTime, setMarkedTime] = useState('');
+
+  function getAttendance(){
+    axios.get('http://localhost:4000/attendance/'+ user._id)
+      .then(response => {
+       // console.log(JSON.stringify(response.data));
+        const myRepo = response.data;
+        
+        if (myRepo.length === 0){
+          setisDisable('');
+        }else{
+          var startDate = new Date(myRepo[0].year, myRepo[0].mo, myRepo[0].date, myRepo[0].hrs,myRepo[0].min, 0);
+          var endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), 0);
+          var diff = endDate.getTime() - startDate.getTime();
+          var hours = Math.floor(diff / 1000 / 60 / 60);
+          diff -= hours * 1000 * 60 * 60;
+
+          var final_diff = parseInt((hours < 9 ? "0" : "") + hours,10);
+          console.log(final_diff);
+
+          if (final_diff <= 8){
+            setMarkedTime(myRepo[0].hrs + ':' + myRepo[0].min);
+          }else{
+            setMarkedTime('You need to mark leave 😊 ');
+          }
+        }
+      });
+
+      
+  }
+
+
+  function onSubmit(event) {
+    event.preventDefault();
+    
+
+    const attOBJ = {
+      eid: user._id,
+      hrs:  today.getHours(),
+      min: today.getMinutes(),
+      year:today.getFullYear(),
+      mo: today.getMonth(),
+      date: today.getDate(),
+      name: user.name
+    };
+    axios.post('http://localhost:4000/attendance/create', attOBJ)
+      .then(res => console.log(res.data));
+
+    
+
+  }
+
+
+  useEffect(() => getAttendance(),[]);
+
     return (
       <div>
         <div className="prof">
           <h2>Mark Attendance</h2>
-          <Button variant="contained" color="secondary">
+          <form onSubmit={onSubmit}>
+          <Button variant="contained" color="secondary"  type="submit"  disabled={isDisable}>
             Mark Attendance
-          </Button><br></br><br></br>
+          </Button></form><br></br><br></br>
           <Button variant="contained" disabled>
-            Marked Time: 
+            Marked Time: {MarkedTime}
           </Button><br></br><br></br>
         </div>
       </div>
