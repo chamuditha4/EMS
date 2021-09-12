@@ -113,7 +113,7 @@ export default class Signup extends Component{
           <Header />
           <div className="center">
             <form onSubmit={this.onSubmit}>
-            <label for="uname">Username :</label><br></br>
+            <label for="uname">Name :</label><br></br>
               <input type="text" id="uname" name="uname"  value={this.state.name} onChange={this.onChangename} required /><br></br>
               <label for="uname">Username :</label><br></br>
               <input type="text" id="uname" name="uname"  value={this.state.username} onChange={this.onChangeUsername} required /><br></br>
