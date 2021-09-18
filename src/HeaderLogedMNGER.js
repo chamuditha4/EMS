@@ -75,7 +75,8 @@ export default function HeaderLoged() {
 
   return (
     <div>
-    <div className={classes.root}>
+      <div className={classes.root}>
+        <img src={logo} id="logo" alt="Logo"></img>
       <AppBar position="static" color="default">
         <Tabs value={value} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary" centered>
           <Tab label="Profile" {...a11yProps(0)} />
@@ -86,7 +87,7 @@ export default function HeaderLoged() {
           
         </Tabs>
         </AppBar>
-      <img src={logo} id="logo" alt="Logo"></img>
+      
       <TabPanel value={value} index={0}>
         <Profile/>
       </TabPanel>
