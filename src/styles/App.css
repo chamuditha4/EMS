@@ -400,6 +400,17 @@ color: white;
     background-color:#cecece6b ;
   }
 
+  .prof1{
+    margin-top: 1%;
+    margin-left: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: inline-block;
+    width: 400px;
+    height: 100%;
+    background-color:#cecece6b ;
+  }
+
   table, td, th {
     border: 1px solid black;
   }
