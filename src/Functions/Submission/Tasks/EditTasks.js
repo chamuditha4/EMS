@@ -4,8 +4,16 @@ import  './../../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { getUser } from './../../../Utils/Common';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function EditTasks() {
+  const [open, setOpen] = React.useState(false);
   const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
@@ -21,6 +29,17 @@ function EditTasks() {
       });
   };
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   function onSubmit(event) {
     event.preventDefault();
@@ -51,6 +70,7 @@ function EditTasks() {
     axios.put('http://localhost:4000/tasks/update-task/'+Id, task)
         .then(response => {
           console.log(response);
+          handleClick();
         });
 
   }
@@ -81,6 +101,14 @@ function EditTasks() {
           </Button>
           </form><br></br><br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+              Task Edited Succuessfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

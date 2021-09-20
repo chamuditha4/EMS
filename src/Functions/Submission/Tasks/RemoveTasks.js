@@ -3,8 +3,16 @@ import Button from '@material-ui/core/Button';
 import  './../../../styles/App.css';
 import axios from 'axios';
 import { getUser } from './../../../Utils/Common';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function RemoveTasks() {
+  const [open, setOpen] = React.useState(false);
   const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
@@ -16,6 +24,18 @@ function RemoveTasks() {
         const myRepo = response.data;
         setRepo(myRepo);
       });
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   function handleChange(e) {
@@ -30,6 +50,7 @@ function RemoveTasks() {
     axios.delete('http://localhost:4000/tasks/delete-task/'+Id)
         .then(response => {
           console.log(response);
+          handleClick();
         });
 
   }
@@ -54,6 +75,13 @@ function RemoveTasks() {
           </Button>
           </form><br></br><br></br>
         </div>
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Task Removed!
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

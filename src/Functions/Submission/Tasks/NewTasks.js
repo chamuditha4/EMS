@@ -5,10 +5,17 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { getUser } from './../../../Utils/Common';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 var Eids = [{"name":"No Person","_id":"404"}];
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function NewTasks() {
+  const [open, setOpen] = React.useState(false);
   const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Title, setTitle] = useState('');
@@ -23,6 +30,18 @@ function NewTasks() {
         setRepo(myRepo);
         console.log(user._id);
       });
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
   
 
@@ -39,6 +58,7 @@ function NewTasks() {
       setTitle('');
       setDescription('');
       setEidss([]);
+      handleClick();
   }
 
   function autoselect(){
@@ -87,6 +107,15 @@ function NewTasks() {
           </form><br></br><br></br>
         </div>
         
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Task Added Succuessfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
       </div>
 
     )
