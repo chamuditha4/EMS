@@ -60,7 +60,7 @@ function NewTasks() {
 
   function onSubmit(event) {
     event.preventDefault();
-    if (Eidss.length === 0){
+    if (Eidss.length === 0 || Title.length===0 || Description.length === 0){
       handleClick1();
     }else{
       const taskOBJ = {
@@ -138,7 +138,7 @@ function NewTasks() {
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
             <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
-              You need to Add Employees!
+              Please Fill Everything!
             </Alert>
           </Snackbar>
         </Stack>
