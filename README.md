@@ -36,7 +36,8 @@
 #### `npm install @material-ui/core@next and npm install @material-ui/lab@next`
 
 #### `npm install @mui/material @emotion/react @emotion/styled`
-  
+
+#### `npm i crypto-js`  
 
 ### Tutorials For axios:
 
