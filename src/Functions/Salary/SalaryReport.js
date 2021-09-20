@@ -36,7 +36,7 @@ var sal1 = '';
 
       console.log(repi1.length)
       if(repi1.length >0){
-        
+        sal1 ='';
 
         for (var i=0; i<repi1.length;i++){
           settable('<p>Loading .</p>');
