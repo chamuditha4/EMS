@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const util = require('./util');
 require('dotenv').config();
-
+const CryptoJS = require("crypto-js");
+var key = "ASECRET";
 
 const userData = {
   email: "123456",
@@ -30,15 +31,21 @@ router.route('/create-user').post((req, res, next) => {
 router.route('/login-user').post((req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
-
-  userSchema .findOne({username: username,password:password },(error, data) => {
-    if (error) {
-      return 'error';
-      console.log("Username or Password is Wrong.")
+  const user = userSchema .findOne({username: username },(error, data) => {
+    console.log(user)
+    if (data){
+      if ((CryptoJS.AES.decrypt((data.password),key)).toString(CryptoJS.enc.Utf8) === password){
+        const token = util.generateToken(data);
+        const userObj = util.getCleanUser(data);
+        return res.json({ user: userObj, token });
+      }else{
+        return res.json({ user: 'pw Error' });
+      }
+      
+    }else if(error){
+      return res.json({ user: 'Error' });
     }else{
-      const token = util.generateToken(data);
-      const userObj = util.getCleanUser(data);
-      return res.json({ user: userObj, token });
+      return res.json({ user: 'User Error' });
     }
   })
 })

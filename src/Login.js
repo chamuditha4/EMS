@@ -41,11 +41,16 @@ export default class Login extends Component{
         axios.post('http://localhost:4000/users/login-user', UserOBJ)
           .then(res =>{
             console.log(res.data.user)
-            if (res.data.user!=null){
+            if (res.data.user==='pw Error'){
+              alert("Please Check Password!");
+            }else if (res.data.user==='User Error'){
+              alert("Please Check Username!");
+            }else if (res.data.user==='Error'){
+              alert("Error!");
+            }
+            else{
               setUserSession(res.data.token, res.data.user);
               window.location.href = "/EmpDashBoard";
-            }else{
-              alert("Please Check Username And Password");
             }
             
           });

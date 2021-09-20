@@ -7,6 +7,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
+const CryptoJS = require("crypto-js");
+var key = "ASECRET";
 
 var eids = '';
 export default class Signup extends Component{
@@ -73,7 +75,7 @@ export default class Signup extends Component{
       name: this.state.name,
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password,
+      password: (CryptoJS.AES.encrypt((this.state.password), key)).toString(),
       salary: '0',
       department: this.state.department,
       roll: this.state.accounttype
