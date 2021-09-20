@@ -4,8 +4,13 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.6.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^5.0.0-beta.5",
     "@material-ui/lab": "^5.0.0-alpha.44",
+    "@mui/material": "^5.0.0",
+    "@mui/styled-engine-sc": "^5.0.0",
+    "@mui/styles": "^5.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -32,6 +37,7 @@
     "react-scripts": "^1.1.5",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
+    "styled-components": "^5.3.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -66,5 +72,17 @@
   },
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.2.0"
-  }
+  },
+  "description": "[How To Use Axios with React](https://www.digitalocean.com/community/tutorials/react-axios-react)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chamuditha4/EMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chamuditha4/EMS/issues"
+  },
+  "homepage": "https://github.com/chamuditha4/EMS#readme"
 }

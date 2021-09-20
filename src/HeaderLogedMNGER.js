@@ -2,7 +2,7 @@ import React from 'react'
 import  './styles/App.css';
 import logo from './images/Blue logo-cropped.png';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
