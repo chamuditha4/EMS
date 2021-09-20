@@ -33,7 +33,9 @@
 
 #### `npm install react-scripts --save`
 
-  
+#### `npm install @material-ui/core@next and npm install @material-ui/lab@next`
+
+#### `npm install @mui/material @emotion/react @emotion/styled`
   
 
 ### Tutorials For axios:
