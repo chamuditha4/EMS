@@ -70,7 +70,7 @@ function ViewAttendanceReport() {
         settbl('<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>' + myRepo1[0].hrs + ':'+  myRepo1[0].min+ '</td></tr>');
       } catch (err){
         settable('<tr><th>Error</th></tr>');
-        settbl('<tr><td> He/She Need to Mardk Attendance!!. </td></tr>');
+        settbl('<tr><td> He/She Need to Mark Attendance!!. </td></tr>');
           console.log(err);
       }
 
