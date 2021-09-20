@@ -33,10 +33,7 @@ router.route('/login-user').post((req, res, next) => {
 
   userSchema .findOne({username: username,password:password },(error, data) => {
     if (error) {
-      return next(error)
-    } else if(username !== data.username || password !== data.password){
       console.log("Username or Password is Wrong.")
-      
     }else{
       const token = util.generateToken(data);
       const userObj = util.getCleanUser(data);
