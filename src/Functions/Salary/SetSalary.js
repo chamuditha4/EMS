@@ -3,10 +3,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import  './../../styles/App.css';
 import axios from 'axios';
+import Autocomplete from '@mui/material/Autocomplete';
+
+var Eids = [{"name":"No Person","_id":"404"}];
 
 function SetSalary() {
   const [repo,setRepo] = useState([]);
-  const [Id, setId] = useState('');
+  const [Eidss,setEidss] = useState('');
   const [Salary, setSalary] = useState('');
   const [Bonus, setBonus] = useState('');
 
@@ -21,7 +24,7 @@ function SetSalary() {
 
   function onSubmit(event) {
     event.preventDefault();
-    axios.get('http://localhost:4000/salary/get-salary/' +Id)
+    axios.get('http://localhost:4000/salary/get-salary/' +Eidss._id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -31,37 +34,50 @@ function SetSalary() {
         });
       }
 
-  function handleChange(e) {
-    setId(e.target.value);
-    console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("editing").innerHTML = "You are Selected: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
-  }
+
 
   function onPut(event) {
     event.preventDefault();
     const task = { salary: Salary,bonus:Bonus };
-    axios.put('http://localhost:4000/salary/update-salary/'+Id, task)
+    axios.put('http://localhost:4000/salary/update-salary/'+Eidss._id, task)
         .then(response => {
           console.log(response);
         });
 
   }
 
+  function autoselect(){
+    Eids=[];
+    repo.map((repos) => ( Eids.push(repos)));
+    //console.log(Eids);
+  }
+
   useEffect(() => getRepo(),[]);
 
     return (
       <div>
+        {autoselect()}
         <div className="prof">
           <h2>Set Salary</h2>
           <form onSubmit={onSubmit}>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select User</option>
-          { repo.map((repos) => (
-            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
-          ))}
-          </select><br></br><br></br>
-          <p id="editing"></p>
+          <Autocomplete
+            onChange={(event, value) => setEidss(value)}
+            values={Eidss}
+            id="tags-standard"
+            limitTags={1}
+            size="small"
+            options={Eids}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField 
+                {...params}
+                style={{ width: 350 }}
+                variant="standard"
+                label="User Name"
+                placeholder="EIDs"
+              />
+            )}
+          /><br></br><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select User
           </Button></form><br></br>
