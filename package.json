@@ -34,7 +34,7 @@
     "react-dom": "^17.0.2",
     "react-html-parser": "^2.0.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^1.1.5",
+    "react-scripts": "^4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "styled-components": "^5.3.1",
@@ -83,6 +83,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chamuditha4/EMS/issues"
-  },
-  "homepage": "https://github.com/chamuditha4/EMS#readme"
+  }
 }
