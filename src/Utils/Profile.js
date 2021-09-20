@@ -46,7 +46,7 @@ function EditUser() {
 
     return (
       <div>
-        <div className="prof">
+        <div className="prof1">
           <h2>Profile</h2>
           <form onSubmit={onPut}>
           <TextField id="standard-uncontrolled" label="Name"  value={Name} onChange={e => setName(e.target.value)} /><br></br><br></br>
