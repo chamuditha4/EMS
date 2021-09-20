@@ -16,6 +16,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function NewTasks() {
   const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
   const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Title, setTitle] = useState('');
@@ -43,22 +44,40 @@ function NewTasks() {
 
     setOpen(false);
   };
+
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
   
 
   function onSubmit(event) {
     event.preventDefault();
-    const taskOBJ = {
-      name: Title,
-      eids: Eidss,
-      owner:user._id,
-      description: Description
-    };
-    axios.post('http://localhost:4000/tasks/create-task', taskOBJ)
-      .then(res => console.log(res.data));
-      setTitle('');
-      setDescription('');
-      setEidss([]);
-      handleClick();
+    if (Eidss.length === 0){
+      handleClick1();
+    }else{
+      const taskOBJ = {
+        name: Title,
+        eids: Eidss,
+        owner:user._id,
+        description: Description
+      };
+      axios.post('http://localhost:4000/tasks/create-task', taskOBJ)
+        .then(res => console.log(res.data));
+        setTitle('');
+        setDescription('');
+        setEidss([]);
+        handleClick();
+    }
+    
+    
   }
 
   function autoselect(){
@@ -112,6 +131,14 @@ function NewTasks() {
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
               Task Added Succuessfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              You need to Add Employees!
             </Alert>
           </Snackbar>
         </Stack>
