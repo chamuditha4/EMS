@@ -6,7 +6,6 @@ import axios from 'axios';
 import { setUserSession  } from './Utils/Common';
 
 export default class Login extends Component{
-
     constructor(props) {
         super(props)
     
@@ -41,9 +40,14 @@ export default class Login extends Component{
         };
         axios.post('http://localhost:4000/users/login-user', UserOBJ)
           .then(res =>{
-            console.log(res.data)
-            setUserSession(res.data.token, res.data.user);
-            window.location.href = "/EmpDashBoard";
+            console.log(res.data.user)
+            if (res.data.user!=null){
+              setUserSession(res.data.token, res.data.user);
+              window.location.href = "/EmpDashBoard";
+            }else{
+              alert("Please Check Username And Password");
+            }
+            
           });
     
     
