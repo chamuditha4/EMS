@@ -23,20 +23,22 @@ nav a:hover{
 }
 
 nav li{
-    box-shadow: #000000;
-    width: 10%;
+    background-color: white;
+    box-shadow: 0 0 20px 0px #888888;
+    width: 8%;
+    border-radius: 5px;
     transition: width 0.25s linear;
 	/*border-right: 3px solid red; */
-	line-height: 50px;
+	line-height: 35px;
 	font-size: 140%;
 	margin-right: -4px;
 	display: inline-block;
 }
 
 nav li:hover{
-    background-color:#b00020;
-    width: 15%;
-    border-radius: 10px;
+    background-color:#24cf0d;
+    width: 12%;
+    border-radius: 5px;
 }
 
 nav li ul{
@@ -101,7 +103,7 @@ body{
     width:140px;
     height:40px;
     color:#fcfaf8;
-    background-color: #b00020;
+    background-color: #1eb10c;
     margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
