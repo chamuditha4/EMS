@@ -72,7 +72,7 @@ var sal1 = '';
     event.preventDefault();
     console.log(Eidss)
     if (Eidss.length === 0){
-      alert("Please Select Task!.");
+      alert("Please Select User!.");
     }else{
       settable('<tr><th>ID</th><th>Name</th><th>Salary</th><th>Bonus</th></tr>');
       await axios.get('http://localhost:4000/salary/get-salary/' +Eidss._id )
