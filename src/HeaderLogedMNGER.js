@@ -14,6 +14,7 @@ import Footer from './Footer';
 import { getUser } from './Utils/Common';
 import Profile from './Utils/Profile';
 import Announcement from './Utils/Announcement';
+import Chat from './Utils/Chat';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -92,7 +93,7 @@ export default function HeaderLoged() {
         <Profile/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Three
+        <Chat/>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <MNGDash/>

@@ -11,6 +11,8 @@ const salaryRoute = require('../backend/routes/salary.route')
 const SubmissionRoute = require('../backend/routes/submission.route')
 const RateRoute = require('../backend/routes/rate.route')
 const AttendanceRoute = require('../backend/routes/attendance.route')
+const ChatRoute = require('../backend/routes/chat.route')
+
 
 // Express Route
 
@@ -41,6 +43,7 @@ app.use('/salary', salaryRoute)
 app.use('/Submission', SubmissionRoute)
 app.use('/Rate', RateRoute)
 app.use('/attendance', AttendanceRoute)
+app.use('/chat', ChatRoute)
 
 // PORT
 const port = process.env.PORT || 4000;

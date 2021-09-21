@@ -12,11 +12,12 @@ function RateSubmission() {
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
   const [Rate, setRate] = useState('');
+  const [selected, setselected] = useState('true');
   const [Feedback, setFeedback] = useState('');
   const [isDisable, setisDisable] = useState('disabled');
 
-  const getRepo = () => {
-    axios.get('http://localhost:4000/tasks/' + user._id)
+  async function getRepo(){
+    await axios.get('http://localhost:4000/tasks/' + user._id)
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
@@ -24,27 +25,29 @@ function RateSubmission() {
       });
   };
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault();
     const rateOBJ = {
       jobid: Id,
       rate: Rate,
       feedback:Feedback
     };
-    axios.post('http://localhost:4000/Rate/create-rate', rateOBJ)
+    console.log("ID:" +Id);
+    await axios.post('http://localhost:4000/Rate/create-rate', rateOBJ)
       .then(res => console.log(res.data));
+    
+    setselected('true');
     setisDisable('disabled');
-
   }
 
   async function handleChange(e) {
-    setId(e.target.value);
-
-    await axios.get('http://localhost:4000/Rate/' + Id)
+    await setId((e.target.value).toString());
+    console.log("eref:" +Id);
+    await axios.get('http://localhost:4000/Rate/' + e.target.value)
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
-        console.log(myRepo.length);
+        
         if(myRepo.length === 0){
           setisDisable('');
         }else{
@@ -63,7 +66,7 @@ function RateSubmission() {
         <div className="prof">
           <h2>Rate Submission</h2>
           <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select Task</option>
+          <option value="Def" disabled selected={selected}>Select Task</option>
           { repo.map((repos) => (
             <option value={repos._id} name={repos.name} >{repos.name}</option>
           ))}
