@@ -3,6 +3,7 @@
 nav ul{
 	list-style: none;
 	background:#ffffff;
+    
 	padding: 0;
 
     text-align: center;
@@ -22,19 +23,22 @@ nav a:hover{
 }
 
 nav li{
-    width: 10%;
+    background-color: white;
+    box-shadow: 0 0 20px 0px #888888;
+    width: 8%;
+    border-radius: 5px;
     transition: width 0.25s linear;
 	/*border-right: 3px solid red; */
-	line-height: 50px;
+	line-height: 35px;
 	font-size: 140%;
 	margin-right: -4px;
 	display: inline-block;
 }
 
 nav li:hover{
-    background-color:#b00020;
-    width: 15%;
-    border-radius: 10px;
+    background-color:#24cf0d;
+    width: 12%;
+    border-radius: 5px;
 }
 
 nav li ul{
@@ -99,7 +103,7 @@ body{
     width:140px;
     height:40px;
     color:#fcfaf8;
-    background-color: #b00020;
+    background-color: #1eb10c;
     margin-top: 10%;
     margin-right: auto;
     margin-left: auto;
@@ -132,7 +136,7 @@ a{
 }
 
 footer{
-    margin-top: 23%;
+    margin-top: 33%;
     padding: 1%;
     background-color: #ffffff;
     box-shadow: 0px 0px 20px 4px #888888;
@@ -391,8 +395,9 @@ color: white;
 
 .prof{
     margin-top: 1%;
-    /* margin-left: 30%; */
-    /* margin-bottom: 2%; */
+    margin-left: 40%;
+    margin-right: 30%;
+    margin-bottom: 2%;
     padding-left: 50px;
     padding-right: 50px;
     display: inline-block;
@@ -403,7 +408,7 @@ color: white;
 
   .prof1{
     margin-top: 1%;
-    margin-left: 50px;
+    /* margin-left: 50px; */
     padding-left: 50px;
     padding-right: 50px;
     display: inline-block;
