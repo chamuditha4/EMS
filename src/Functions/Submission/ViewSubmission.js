@@ -4,6 +4,10 @@ import  './../../styles/App.css';
 import axios from 'axios';
 import { getUser } from './../../Utils/Common';
 import ReactHtmlParser from 'react-html-parser'; 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 var submissn = '';
 function ViewSubmission() {
@@ -11,7 +15,6 @@ function ViewSubmission() {
   const [temprepo,setTempRepo] = useState([]);
   const [repo,setRepo] = useState([]);
   const [sub,setSub] = useState([]);
-  const [Name,setName] = useState('');
   const [Id, setId] = useState('');
   const [table, settable] = useState('');
 
@@ -75,13 +78,22 @@ function ViewSubmission() {
         <div className="prof">
           <h2>View Submission</h2>
           <form onSubmit={onSubmit}>
-          <select   onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select Task</option>
-          { repo.map((repos) => (
-            
-            <option value={repos._id} name={repos.name} >{repos.name}</option>
-          ))}
-          </select>
+          <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Submission</InputLabel>
+            <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Submission"
+            onChange={handleChange}
+            >
+            <MenuItem  value="Def" disabled selected="true">Select Task</MenuItem >
+            { repo.map((repos) => (
+              
+              <MenuItem  value={repos._id} name={repos.name} >{repos.name}</MenuItem >
+            ))}
+            </Select>
+          </FormControl>
           <br></br><br></br>
           <Button variant="contained" color="primary" type="submit">
           Show Submission

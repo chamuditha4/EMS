@@ -5,6 +5,10 @@ import  './../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { getUser } from './../../Utils/Common';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 function RateSubmission() {
@@ -42,7 +46,7 @@ function RateSubmission() {
 
   async function handleChange(e) {
     await setId((e.target.value).toString());
-    console.log("eref:" +Id);
+    console.log("eref:" +e.target.value);
     await axios.get('http://localhost:4000/Rate/' + e.target.value)
       .then(response => {
        // console.log(JSON.stringify(response.data));
@@ -65,12 +69,21 @@ function RateSubmission() {
       <div>
         <div className="prof">
           <h2>Rate Submission</h2>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected={selected}>Select Task</option>
+          <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Submission</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Submission"
+            onChange={handleChange}
+            >
+          <MenuItem value="Def" disabled selected={selected}>Select Submission</MenuItem>
           { repo.map((repos) => (
-            <option value={repos._id} name={repos.name} >{repos.name}</option>
+            <MenuItem value={repos._id} name={repos.name} >{repos.name}</MenuItem>
           ))}
-          </select>
+          </Select>
+          </FormControl>
           <br></br><br></br>
           <form onSubmit={onSubmit}>
           <Rating name="size-large" defaultValue={''} size="large" onChange={e => setRate(e.target.value)}  disabled={isDisable} value={Rate}/>
