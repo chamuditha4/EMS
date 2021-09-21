@@ -42,7 +42,7 @@ function ViewAttendanceReport() {
       atd = '';
       for (var i=0; i<attd.length;i++){
         settable('<p>Loading .</p>');
-        atd = (atd + '<tr><td>' + attd[i].eid + '</td><td>'+ attd[i].name + '</td><td>' + attd[i].hrs + ':'+  attd[i].min+ '</td></tr>');
+        atd = (atd + '<tr><td>' + attd[i].eid + '</td><td>'+ attd[i].name + '</td><td>' + attd[i].mo + '/' + attd[i].date + ' - ' + attd[i].hrs + ':'+  attd[i].min+ '</td></tr>');
         
       }
       settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');
@@ -70,7 +70,7 @@ function ViewAttendanceReport() {
         const myRepo1 = response.data;
 
       try{
-        settbl('<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>' + myRepo1[0].hrs + ':'+  myRepo1[0].min+ '</td></tr>');
+        settbl('<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>'  + myRepo1[0].hrs + ':'+  myRepo1[0].min+ '</td></tr>');
       } catch (err){
         settable('<tr><th>Error</th></tr>');
         settbl('<tr><td> He/She Need to Mark Leave!!. </td></tr>');

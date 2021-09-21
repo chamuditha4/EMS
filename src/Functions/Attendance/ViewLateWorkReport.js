@@ -17,7 +17,7 @@ function ViewLateWorkReport() {
 
           for (var i=0; i<myRepo.length;i++){
             if (myRepo[i].hrs >= 8){
-              sal1 = (sal1 + '<tr><td>' + myRepo[i].eid + '</td><td>'+ myRepo[i].name + '</td><td>' + myRepo[i].hrs + ':'+  myRepo[i].min+ '</td></tr>');
+              sal1 = (sal1 + '<tr><td>' + myRepo[i].eid + '</td><td>'+ myRepo[i].name + '</td><td>' + myRepo[i].mo + '/' + myRepo[i].date + ' - ' + myRepo[i].hrs + ':'+  myRepo[i].min+ '</td></tr>');
               console.log(late)
             }
             
