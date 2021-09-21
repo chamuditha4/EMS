@@ -54,6 +54,8 @@ function RateSubmission() {
         
         if(myRepo.length === 0){
           setisDisable('');
+          setRate('');
+          setFeedback('');
         }else{
           setisDisable('disabled');
           setRate(myRepo[0].rate);
