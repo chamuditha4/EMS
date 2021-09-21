@@ -30,7 +30,7 @@ function ViewSubmission() {
   async function handleChange(e) {
     setId(e.target.value);
     
-    await axios.get('http://localhost:4000/Submission/' +Id)
+    await axios.get('http://localhost:4000/Submission/' +e.target.value)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         //console.log(response);
