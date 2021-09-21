@@ -45,13 +45,14 @@ function RemoveTasks() {
     
   }
 
-  function onRemove(event) {
+  async function onRemove(event) {
     event.preventDefault();
-    axios.delete('http://localhost:4000/tasks/delete-task/'+Id)
-        .then(response => {
-          console.log(response);
-          handleClick();
-        });
+    await axios.delete('http://localhost:4000/tasks/delete-task/'+Id)
+    .then(response => {
+      console.log(response);
+      handleClick();
+    });
+    getRepo();
 
   }
 

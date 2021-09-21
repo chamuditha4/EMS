@@ -24,13 +24,13 @@ function RemoveUser() {
     
   }
 
-  function onRemove(event) {
+  async function onRemove(event) {
     event.preventDefault();
-    axios.delete('http://localhost:4000/users/delete-user/'+Id)
+    await axios.delete('http://localhost:4000/users/delete-user/'+Id)
         .then(response => {
           console.log(response);
         });
-    window.location.reload(false);
+    getRepo();
   }
 
   useEffect(() => getRepo(),[]);
