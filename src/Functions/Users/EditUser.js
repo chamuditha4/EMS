@@ -3,10 +3,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
 import axios from 'axios';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 const CryptoJS = require("crypto-js");
 var key = "ASECRET";
 
-var users = [];
+var Eids = [{"name":"No Person","_id":"404"}];
 
 function EditUser() {
   const [repo,setRepo] = useState([]);
@@ -24,22 +26,18 @@ function EditUser() {
       });
   };
 
+
+
   function autoselect(){
-    users=[];
-    repo.map((repos) => ( users.push(repos)));
-    console.log(users);
+    Eids=[];
+    repo.map((repos) => ( Eids.push(repos)));
+    //console.log(Eids);
   }
 
-  function handleChange(e) {
-    setId(e.target.value);
-    console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("editing").innerHTML = "You are Editing: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
-  }
-
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault();
-    axios.get('http://localhost:4000/users/get-user/' +Id)
+    console.log(Id);
+    await axios.get('http://localhost:4000/users/get-user/' +Id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -77,14 +75,24 @@ function EditUser() {
         <div className="prof">
           <h2>Edit User</h2>
           <form onSubmit={onSubmit}>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select User</option>
-          { repo.map((repos) => (
-            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
-          ))}
-          </select>
-          <br></br><br></br>
-          <p id="editing"></p>
+          <Autocomplete
+            onChange={(event, value) => setId(value._id)}
+            values={Id}
+            id="tags-standard"
+            limitTags={1}
+            size="small"
+            options={Eids}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField 
+                {...params}
+                style={{ width: 350 }}
+                variant="standard"
+                label="User Name"
+                placeholder="Names"
+              />
+            )}
+          /><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select User
           </Button>
