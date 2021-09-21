@@ -19,12 +19,6 @@ function RemoveUser() {
       });
   };
 
-  function handleChange(e) {
-    setId(e.target.value);
-    //console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("removing").innerHTML = "You are removing: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
-  }
 
   async function onRemove(event) {
     event.preventDefault();
@@ -35,20 +29,37 @@ function RemoveUser() {
     getRepo();
   }
 
+  function autoselect(){
+    Eids=[];
+    repo.map((repos) => ( Eids.push(repos)));
+    //console.log(Eids);
+  }
+
   useEffect(() => getRepo(),[]);
     return (
       <div>
+        {autoselect()}
         <div className="prof">
           <h2>Remove User</h2>
           <form onSubmit={onRemove}>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select User</option>
-          { repo.map((repos) => (
-            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
-          ))}
-          </select>
-          <br></br><br></br>
-          <p id="removing"></p>
+          <Autocomplete
+            onChange={(event, value) => setId(value._id)}
+            values={Id}
+            id="tags-standard"
+            limitTags={1}
+            size="small"
+            options={Eids}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField 
+                {...params}
+                style={{ width: 350 }}
+                variant="standard"
+                label="User Name"
+                placeholder="Names"
+              />
+            )}
+          /><br></br>
           <Button variant="contained" color="primary" type="submit">
           Remove User
           </Button>

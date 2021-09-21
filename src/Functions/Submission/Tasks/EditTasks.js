@@ -7,7 +7,9 @@ import { getUser } from './../../../Utils/Common';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
+var Taskids = [{"name":"No task","_id":"404"}];
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -29,6 +31,12 @@ function EditTasks() {
       });
   };
 
+  function autoselect(){
+    Taskids=[];
+    repo.map((repos) => ( Taskids.push(repos)));
+    //console.log(Eids);
+  }
+
   const handleClick = () => {
     setOpen(true);
   };
@@ -43,14 +51,15 @@ function EditTasks() {
 
   function onSubmit(event) {
     event.preventDefault();
-    if (Id === ''){
+    console.log(Id);
+    if (Id === null){
       alert("Please Select Task!.");
     }else{
       setDescription('');
       setTitle('');
       
       
-      axios.get('http://localhost:4000/tasks/get-task/' +Id)
+      axios.get('http://localhost:4000/tasks/get-task/' +Id._id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -67,7 +76,7 @@ function EditTasks() {
     event.preventDefault();
     console.log(Title);
     const task = { name: Title,description: Description };
-    axios.put('http://localhost:4000/tasks/update-task/'+Id, task)
+    axios.put('http://localhost:4000/tasks/update-task/'+Id._id, task)
         .then(response => {
           console.log(response);
           handleClick();
@@ -78,16 +87,28 @@ function EditTasks() {
   useEffect(() => getRepo(),[]);
     return (
       <div>
+        {autoselect()}
         <div className="prof">
           <h2>Edit Tasks</h2>
           <form onSubmit={onSubmit}>
-          <select onChange={e => setId(e.target.value)}>
-          <option value="Def" disabled selected="true">Select Task</option>
-          { repo.map((repos) => (
-            <option value={repos._id} name={repos.name} >{repos.name}</option>
-          ))}
-          </select>
-          <br></br><br></br>
+          <Autocomplete
+            onChange={(event, value) => setId(value)}
+            values={Id}
+            id="tags-standard"
+            limitTags={1}
+            size="small"
+            options={Taskids}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField 
+                {...params}
+                style={{ width: 350 }}
+                variant="standard"
+                label="Select Task"
+                placeholder="Names"
+              />
+            )}
+          /><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select Task
           </Button>

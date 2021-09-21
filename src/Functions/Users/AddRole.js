@@ -6,7 +6,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import  './../../styles/App.css';
 import axios from 'axios';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
+var Eids = [{"name":"No Person","_id":"404"}];
 function AddRole() {
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
@@ -21,6 +24,12 @@ function AddRole() {
         setRepo(myRepo);
       });
   };
+
+  function autoselect(){
+    Eids=[];
+    repo.map((repos) => ( Eids.push(repos)));
+    //console.log(Eids);
+  }
 
   function handleChange(e) {
     setId(e.target.value);
@@ -55,16 +64,28 @@ function AddRole() {
   useEffect(() => getRepo(),[]);
     return (
       <div>
+        {autoselect()}
         <div className="prof">
           <h2>Change User Role</h2>
           <form onSubmit={onSubmit}>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select User</option>
-          { repo.map((repos) => (
-            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
-          ))}
-          </select>
-          <p id="removing"></p>
+          <Autocomplete
+            onChange={(event, value) => setId(value._id)}
+            values={Id}
+            id="tags-standard"
+            limitTags={1}
+            size="small"
+            options={Eids}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField 
+                {...params}
+                style={{ width: 350 }}
+                variant="standard"
+                label="User Name"
+                placeholder="Names"
+              />
+            )}
+          /><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select User
           </Button></form><br></br><br></br>
