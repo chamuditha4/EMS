@@ -48,7 +48,7 @@ function ViewSubmission() {
       settable('<tr><th>Time</th><th>Employee</th><th>Log</th></tr>');
       
       
-        
+      submissn='';
         for (var i=0;i<temprepo.length;i++){
           console.log(temprepo[i].eid);
           settable('Loading.');
