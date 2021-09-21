@@ -77,7 +77,7 @@ export default function EmpDashBoard() {
             >
             <Tab label="Progress" {...a11yProps(0)} />
             <Tab label="Jobs" {...a11yProps(1)} />
-            <Tab label="Salary And OT" {...a11yProps(2)} />
+            <Tab label="Salary" {...a11yProps(2)} />
             <Tab label="Leave" {...a11yProps(3)} />
             <Tab label="Attendance" {...a11yProps(4)} />
     
