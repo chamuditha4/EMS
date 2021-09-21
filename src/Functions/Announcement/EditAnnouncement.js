@@ -8,6 +8,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import { getUser } from './../../Utils/Common';
 import axios from 'axios';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function EditAnnouncement() {
   const user = getUser();
@@ -59,19 +63,28 @@ function EditAnnouncement() {
         });
 
   }
-
+  
   useEffect(() => getRepo(),[]);
     return (
       <div>
         <div className="prof">
           <h2>Edit Announcement</h2>
           <form onSubmit={onSubmit}>
-          <select onChange={e => setId(e.target.value)}>
-          <option value="Def" disabled selected="true">Select Announcement</option>
+          <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Select Announcement</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Select Announcement"
+            onChange={e => setId(e.target.value)}
+            >
+          <MenuItem value="Def" disabled selected="true">Select Announcement</MenuItem>
           { repo.map((repos) => (
-            <option value={repos._id} name={repos.name} >{repos.name}</option>
+            <MenuItem value={repos._id} name={repos.name} >{repos.name}</MenuItem>
           ))}
-          </select>
+          </Select>
+          </FormControl>
           <br></br><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select Announcement

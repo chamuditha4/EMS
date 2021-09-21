@@ -3,6 +3,10 @@ import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
 import axios from 'axios';
 import { getUser } from './../../Utils/Common';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function RemoveAnnouncement() {
   const user = getUser();
@@ -18,12 +22,7 @@ function RemoveAnnouncement() {
       });
   };
 
-  function handleChange(e) {
-    setId(e.target.value);
-    console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("removing").innerHTML = "You are removing: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
-  }
+
 
   async function onRemove(event) {
     event.preventDefault();
@@ -41,14 +40,21 @@ function RemoveAnnouncement() {
         <div className="prof">
           <h2>Remove Announcement</h2>
           <form onSubmit={onRemove}>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select Announcement</option>
+          <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Select Announcement</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Select Announcement"
+            onChange={e => setId(e.target.value)}
+            >
+          <MenuItem value="Def" disabled selected="true">Select Announcement</MenuItem>
           { repo.map((repos) => (
-            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
+            <MenuItem value={repos._id} data-id={repos.name} >{repos.name}</MenuItem>
           ))}
-          </select>
-          <br></br><br></br>
-          <p id="removing"></p>
+          </Select>
+          </FormControl>
           <br></br><br></br>
           <Button variant="contained" color="primary" type="submit">
           Remove Announcement

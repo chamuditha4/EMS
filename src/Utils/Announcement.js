@@ -2,6 +2,10 @@ import React, { useState  } from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser'; 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function Announcement() {
   const [repo,setRepo] = useState([]);
@@ -32,12 +36,21 @@ function Announcement() {
         <div>
           <h2>Announcement</h2>
           <form onSubmit={onSubmit}>
-          <select onChange={e => setDepartment(e.target.value)}>
-          <option value="Def" disabled selected="true">Select Department</option>
-          <option value="IT" name="IT" >IT</option>
-          <option value="Accounting" name="Accounting" >Accounting</option>
-          <option value="Management" name="Management" >Management</option>
-          </select>
+          <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Select Department</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Department}
+            label="Select Department"
+            onChange={e => setDepartment(e.target.value)}
+            >
+          <MenuItem value="Def" disabled selected="true">Select Department</MenuItem>
+          <MenuItem value="IT" name="IT" >IT</MenuItem>
+          <MenuItem value="Accounting" name="Accounting" >Accounting</MenuItem>
+          <MenuItem value="Management" name="Management" >Management</MenuItem>
+          </Select>
+          </FormControl>
           <br></br><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select Department
