@@ -39,7 +39,7 @@ function ViewAttendanceReport() {
       atd = '';
       for (var i=0; i<attd.length;i++){
         settable('<p>Loading .</p>');
-        atd = (atd + '<tr><td>' + attd[i].eid + '</td><td>'+ attd[i].name + '</td><td>' + attd[i].hrs + ':'+  attd[i].min+ '</td></tr>');
+        atd = (atd + '<tr><td>' + attd[i].eid + '</td><td>'+ attd[i].name + '</td><td>' + attd[i].mo + '/' + attd[i].date + ' - ' + attd[i].hrs + ':'+  attd[i].min+ '</td></tr>');
         
       }
       settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');

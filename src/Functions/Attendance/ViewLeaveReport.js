@@ -20,7 +20,7 @@ function ViewAttendanceReport() {
 
 
   async function getRepo(){
-    axios.get('http://localhost:4000/attendance/leave/all')
+    await axios.get('http://localhost:4000/attendance/leave/all')
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
