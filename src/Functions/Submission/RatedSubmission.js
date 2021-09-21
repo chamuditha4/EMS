@@ -23,15 +23,26 @@ function RatedSubmission() {
 
   async function handleChange(e) {
     setId(e.target.value);
-
-    await axios.get('http://localhost:4000/Rate/' + Id)
+    if (e.target.value === null){
+      setRate('');
+      setFeedback('');
+    }else{
+      await axios.get('http://localhost:4000/Rate/' + e.target.value)
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo = response.data;
         console.log(myRepo.length);
-        setRate(myRepo[0].rate);
-        setFeedback(myRepo[0].feedback);
+        if (myRepo.length > 0){
+          setRate(myRepo[0].rate);
+          setFeedback(myRepo[0].feedback);
+        }else{
+          setRate('');
+          setFeedback('Not Rated yet!');
+        }
+        
       });
+    }
+    
     
   }
 
