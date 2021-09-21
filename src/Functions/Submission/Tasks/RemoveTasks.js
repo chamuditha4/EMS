@@ -6,6 +6,10 @@ import { getUser } from './../../../Utils/Common';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
+
+var Taskids = [{"name":"No task","_id":"404"}];
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -26,6 +30,12 @@ function RemoveTasks() {
       });
   };
 
+  function autoselect(){
+    Taskids=[];
+    repo.map((repos) => ( Taskids.push(repos)));
+    //console.log(Eids);
+  }
+
   const handleClick = () => {
     setOpen(true);
   };
@@ -38,16 +48,10 @@ function RemoveTasks() {
     setOpen(false);
   };
 
-  function handleChange(e) {
-    setId(e.target.value);
-    console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("removing").innerHTML = "You are removing: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
-  }
 
   async function onRemove(event) {
     event.preventDefault();
-    await axios.delete('http://localhost:4000/tasks/delete-task/'+Id)
+    await axios.delete('http://localhost:4000/tasks/delete-task/'+Id._id)
     .then(response => {
       console.log(response);
       handleClick();
@@ -59,18 +63,28 @@ function RemoveTasks() {
   useEffect(() => getRepo(),[]);
     return (
       <div>
+        {autoselect()}
         <div className="prof">
           <h2>Remove Tasks</h2>
           <form onSubmit={onRemove}>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select Task</option>
-          { repo.map((repos) => (
-            <option value={repos._id} data-id={repos.name} >{repos.name}</option>
-          ))}
-          </select>
-          <br></br><br></br>
-          <p id="removing"></p>
-          <br></br><br></br>
+          <Autocomplete
+            onChange={(event, value) => setId(value)}
+            values={Id}
+            id="tags-standard"
+            limitTags={1}
+            size="small"
+            options={Taskids}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField 
+                {...params}
+                style={{ width: 350 }}
+                variant="standard"
+                label="Select Task"
+                placeholder="Names"
+              />
+            )}
+          /><br></br>
           <Button variant="contained" color="primary" type="submit">
           Remove Task
           </Button>

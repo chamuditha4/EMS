@@ -22,7 +22,7 @@ function RemoveUser() {
 
   async function onRemove(event) {
     event.preventDefault();
-    await axios.delete('http://localhost:4000/users/delete-user/'+Id)
+    await axios.delete('http://localhost:4000/users/delete-user/'+Id._id)
         .then(response => {
           console.log(response);
         });
@@ -43,7 +43,7 @@ function RemoveUser() {
           <h2>Remove User</h2>
           <form onSubmit={onRemove}>
           <Autocomplete
-            onChange={(event, value) => setId(value._id)}
+            onChange={(event, value) => setId(value)}
             values={Id}
             id="tags-standard"
             limitTags={1}

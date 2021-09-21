@@ -31,16 +31,10 @@ function AddRole() {
     //console.log(Eids);
   }
 
-  function handleChange(e) {
-    setId(e.target.value);
-    //console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("removing").innerHTML = "You are Changing: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
-  }
 
   function onSubmit(event) {
     event.preventDefault();
-    axios.get('http://localhost:4000/users/get-user/' +Id)
+    axios.get('http://localhost:4000/users/get-user/' +Id._id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -53,7 +47,7 @@ function AddRole() {
 
   function onPut(event) {
     const task = { roll: Role, department:Department };
-      axios.put('http://localhost:4000/users/update-user/'+Id, task)
+      axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
       .then(response => {
         console.log(response);
       });
@@ -69,7 +63,7 @@ function AddRole() {
           <h2>Change User Role</h2>
           <form onSubmit={onSubmit}>
           <Autocomplete
-            onChange={(event, value) => setId(value._id)}
+            onChange={(event, value) => setId(value)}
             values={Id}
             id="tags-standard"
             limitTags={1}

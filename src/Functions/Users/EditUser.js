@@ -36,8 +36,8 @@ function EditUser() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    console.log(Id);
-    await axios.get('http://localhost:4000/users/get-user/' +Id)
+    console.log(Id._id);
+    await axios.get('http://localhost:4000/users/get-user/' +Id._id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -52,13 +52,13 @@ function EditUser() {
     event.preventDefault();
     if (Password === ''){
       const task = { name: Name,email: Email };
-      axios.put('http://localhost:4000/users/update-user/'+Id, task)
+      axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
       .then(response => {
         console.log(response);
       });
     }else{
       const task = { name: Name,email: Email, password:(CryptoJS.AES.encrypt((Password),key)).toString() };
-      axios.put('http://localhost:4000/users/update-user/'+Id, task)
+      axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
       .then(response => {
         console.log(response);
       });
@@ -76,7 +76,7 @@ function EditUser() {
           <h2>Edit User</h2>
           <form onSubmit={onSubmit}>
           <Autocomplete
-            onChange={(event, value) => setId(value._id)}
+            onChange={(event, value) => setId(value)}
             values={Id}
             id="tags-standard"
             limitTags={1}
