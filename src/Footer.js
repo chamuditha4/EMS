@@ -7,7 +7,7 @@ import youtube from './images/iconfinder_youtube_281826.png';
 
 function Footer() {
   return (
-    <div>
+    <div className="footerdiv">
      <footer>
 
         <p className= "copy" >© 2021 BetterJobs®</p>
