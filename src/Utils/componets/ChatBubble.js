@@ -54,7 +54,7 @@ class ChatBubble extends Component {
 
     return (
       <div className="chats">
-        <div>
+        <div className="chat-list">
           {chatList}
         </div>
          

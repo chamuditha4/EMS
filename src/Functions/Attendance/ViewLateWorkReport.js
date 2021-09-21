@@ -2,7 +2,7 @@ import React, { useEffect, useState  } from 'react';
 import  './../../styles/App.css';
 import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser'; 
-
+var sal1 = '';
 function ViewLateWorkReport() {
   const [table, settable] = useState('');
   const [late, setlate] = useState('');
@@ -17,11 +17,12 @@ function ViewLateWorkReport() {
 
           for (var i=0; i<myRepo.length;i++){
             if (myRepo[i].hrs >= 8){
-              setlate(late + '<tr><td>' + myRepo[i].eid + '</td><td>'+ myRepo[i].name + '</td><td>' + myRepo[i].hrs + ':'+  myRepo[i].min+ '</td></tr>');
+              sal1 = (sal1 + '<tr><td>' + myRepo[i].eid + '</td><td>'+ myRepo[i].name + '</td><td>' + myRepo[i].hrs + ':'+  myRepo[i].min+ '</td></tr>');
               console.log(late)
             }
             
           }
+          setlate(sal1);
         }
 
       });
