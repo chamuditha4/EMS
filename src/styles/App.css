@@ -36,7 +36,8 @@ nav li{
 }
 
 nav li:hover{
-    background-color:#24cf0d;
+    background-color:#1da70b;
+    box-shadow: none;
     width: 12%;
     border-radius: 5px;
 }
