@@ -26,6 +26,7 @@ function RemoveAnnouncement() {
   }
 
   function onRemove(event) {
+    event.preventDefault();
     axios.delete('http://localhost:4000/Announcement/delete-announcement/'+Id)
         .then(response => {
           console.log(response);

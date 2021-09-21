@@ -42,9 +42,9 @@ function Attendance() {
   }
 
 
-  function onSubmit(event) {
+ async function onSubmit(event) {
     event.preventDefault();
-    
+    setisDisable('disabled');
 
     const attOBJ = {
       eid: user._id,
@@ -55,7 +55,7 @@ function Attendance() {
       date: today.getDate(),
       name: user.name
     };
-    axios.post('http://localhost:4000/attendance/create', attOBJ)
+    await axios.post('http://localhost:4000/attendance/create', attOBJ)
       .then(res => console.log(res.data));
 
     

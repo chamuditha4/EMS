@@ -74,7 +74,7 @@ function Leave() {
 
   function onSubmit(event) {
     event.preventDefault();
-    
+    setisDisable('disabled');
 
     const attOBJ = {
       eid: user._id,
