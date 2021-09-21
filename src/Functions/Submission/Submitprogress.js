@@ -4,7 +4,10 @@ import  './../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import { getUser } from './../../Utils/Common';
 import axios from 'axios';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function Submitprogress() {
   const user = getUser();
@@ -26,9 +29,6 @@ function Submitprogress() {
 
   function handleChange(e) {
     setId(e.target.value);
-    console.log(e.target.selectedOptions[0].getAttribute('data-id'));
-    document.getElementById("progress").innerHTML = "You are Submitting Progress For: " + e.target.selectedOptions[0].getAttribute('data-id');
-    
   }
 
   function onSubmit(event) {
@@ -69,13 +69,21 @@ function Submitprogress() {
         <div className="prof">
           <h2>Submit Progress</h2>
           <form onSubmit={onSubmit}>
-          <select onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select Job</option>
+          <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel id="demo-simple-select-label">Select Job</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Select Job"
+            onChange={handleChange}
+            >
+          <MenuItem value="Def" disabled selected="true">Select Job</MenuItem>
           { repo.map((repos) => (
-            <option value={repos._id} name={repos.name} data-id={repos.name} >{repos.name}</option>
+            <MenuItem value={repos._id} name={repos.name} data-id={repos.name} >{repos.name}</MenuItem>
           ))}
-          </select>
-
+          </Select>
+          </FormControl>
           <br></br>
           <p id="progress"></p>
           <br></br>

@@ -4,6 +4,10 @@ import  './../../styles/App.css';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { getUser } from './../../Utils/Common';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function RatedSubmission() {
   const user = getUser();
@@ -51,12 +55,21 @@ function RatedSubmission() {
       <div>
         <div className="prof">
           <h2>Rated Submission</h2>
-          <select  onChange={handleChange}>
-          <option value="Def" disabled selected="true">Select Task</option>
+          <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel id="demo-simple-select-label">Select Job</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Select Job"
+            onChange={handleChange}
+            >
+          <MenuItem value="Def" disabled selected="true">Select Task</MenuItem>
           { repo.map((repos) => (
-            <option value={repos._id} name={repos.name} >{repos.name}</option>
+            <MenuItem value={repos._id} name={repos.name} >{repos.name}</MenuItem>
           ))}
-          </select>
+          </Select>
+          </FormControl>
           <br></br><br></br>
           <Rating name="size-large" defaultValue={''} size="large" readOnly  value={Rate}/>
           <br></br><br></br>

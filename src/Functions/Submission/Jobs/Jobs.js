@@ -4,6 +4,10 @@ import Button from '@material-ui/core/Button';
 import  './../../../styles/App.css';
 import { getUser } from './../../../Utils/Common';
 import axios from 'axios';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function Jobs() {
   const user = getUser();
@@ -46,12 +50,21 @@ function Jobs() {
         <div className="prof">
           <h2>My Jobs</h2>
           <form onSubmit={onSubmit}>
-          <select onChange={e => setId(e.target.value)}>
-          <option value="Def" disabled selected="true">Select Job</option>
+          <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel id="demo-simple-select-label">Select Job</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={Id}
+            label="Select Job"
+            onChange={e => setId(e.target.value)}
+            >
+          <MenuItem value="Def" disabled selected="true">Select Job</MenuItem>
           { repo.map((repos) => (
-            <option value={repos._id} name={repos.name} >{repos.name}</option>
+            <MenuItem value={repos._id} name={repos.name} >{repos.name}</MenuItem>
           ))}
-          </select>
+          </Select>
+          </FormControl>
           <br></br><br></br>
           <Button variant="contained" color="primary" type="submit">
           Select Job
