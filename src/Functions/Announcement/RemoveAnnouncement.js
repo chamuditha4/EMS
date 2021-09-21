@@ -26,6 +26,7 @@ function RemoveAnnouncement() {
 
   async function onRemove(event) {
     event.preventDefault();
+    console.log(Id);
     await axios.delete('http://localhost:4000/Announcement/delete-announcement/'+Id)
         .then(response => {
           console.log(response);
@@ -40,7 +41,7 @@ function RemoveAnnouncement() {
         <div className="prof">
           <h2>Remove Announcement</h2>
           <form onSubmit={onRemove}>
-          <FormControl fullWidth>
+          <FormControl sx={{ minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Select Announcement</InputLabel>
           <Select
             labelId="demo-simple-select-label"

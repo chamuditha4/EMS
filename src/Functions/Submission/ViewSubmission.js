@@ -78,7 +78,7 @@ function ViewSubmission() {
         <div className="prof">
           <h2>View Submission</h2>
           <form onSubmit={onSubmit}>
-          <FormControl fullWidth>
+          <FormControl sx={{ minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Submission</InputLabel>
             <Select
             labelId="demo-simple-select-label"

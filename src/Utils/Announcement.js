@@ -36,7 +36,7 @@ function Announcement() {
         <div>
           <h2>Announcement</h2>
           <form onSubmit={onSubmit}>
-          <FormControl fullWidth>
+          <FormControl sx={{ minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Select Department</InputLabel>
           <Select
             labelId="demo-simple-select-label"

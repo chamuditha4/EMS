@@ -69,7 +69,7 @@ function RateSubmission() {
       <div>
         <div className="prof">
           <h2>Rate Submission</h2>
-          <FormControl fullWidth>
+          <FormControl sx={{ minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Submission</InputLabel>
           <Select
             labelId="demo-simple-select-label"

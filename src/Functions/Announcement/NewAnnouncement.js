@@ -8,26 +8,51 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function NewAnnouncement() {
   const user = getUser();
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [Department,setDepartment] = useState('');
+  const [open1, setOpen1] = React.useState(false);
+
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
 
   function onSubmit(event) {
     event.preventDefault();
-    const taskOBJ = {
-      name: Title,
-      department: Department,
-      owner:user._id,
-      description: Description
-    };
-    axios.post('http://localhost:4000/Announcement/create-announcement', taskOBJ)
-      .then(res => console.log(res.data));
-      setTitle('');
-      setDescription('');
-      setDepartment('');
+    if (Department.length === 0 || Title.length===0 || Description.length === 0){
+      handleClick1();
+    }else{
+      const taskOBJ = {
+        name: Title,
+        department: Department,
+        owner:user._id,
+        description: Description
+      };
+      axios.post('http://localhost:4000/Announcement/create-announcement', taskOBJ)
+        .then(res => console.log(res.data));
+        setTitle('');
+        setDescription('');
+        setDepartment('');
+    }
+    
   }
 
     return (
@@ -47,6 +72,13 @@ function NewAnnouncement() {
             Add Announcement
           </Button></form><br></br><br></br>
         </div>
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please Fill Everything!
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

@@ -70,7 +70,7 @@ function EditAnnouncement() {
         <div className="prof">
           <h2>Edit Announcement</h2>
           <form onSubmit={onSubmit}>
-          <FormControl fullWidth>
+          <FormControl sx={{ minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Select Announcement</InputLabel>
           <Select
             labelId="demo-simple-select-label"
