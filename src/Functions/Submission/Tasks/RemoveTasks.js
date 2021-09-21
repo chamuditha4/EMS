@@ -81,7 +81,7 @@ function RemoveTasks() {
                 style={{ width: 350 }}
                 variant="standard"
                 label="Select Task"
-                placeholder="Names"
+                placeholder="Tasks"
               />
             )}
           /><br></br>
