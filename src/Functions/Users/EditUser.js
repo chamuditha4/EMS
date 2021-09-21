@@ -3,6 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import  './../../styles/App.css';
 import axios from 'axios';
+const CryptoJS = require("crypto-js");
+var key = "ASECRET";
+
 var users = [];
 
 function EditUser() {
@@ -56,7 +59,7 @@ function EditUser() {
         console.log(response);
       });
     }else{
-      const task = { name: Name,email: Email, password:Password };
+      const task = { name: Name,email: Email, password:(CryptoJS.AES.encrypt((Password),key)).toString() };
       axios.put('http://localhost:4000/users/update-user/'+Id, task)
       .then(response => {
         console.log(response);

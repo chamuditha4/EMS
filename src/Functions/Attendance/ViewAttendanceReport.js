@@ -102,7 +102,7 @@ function ViewAttendanceReport() {
                 style={{ width: 350 }}
                 variant="standard"
                 label="User Name"
-                placeholder="EIDs"
+                placeholder="Names"
               />
             )}
           /><br></br>

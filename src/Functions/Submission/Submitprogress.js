@@ -89,7 +89,7 @@ function Submitprogress() {
             InputLabelProps={{
               shrink: true,
             }}
-          />
+          /><br></br><br></br>
           <TextField
             onChange={e => setTime_Start(e.target.value)}
             id="time"
@@ -103,7 +103,7 @@ function Submitprogress() {
             inputProps={{
               step: 60, // 5 min
             }}
-          />
+          /><br></br><br></br>
 
           <TextField
               onChange={e => setTime_End(e.target.value)}
