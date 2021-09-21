@@ -5,6 +5,7 @@ import axios from 'axios';
 import { getUser } from './../../Utils/Common';
 import ReactHtmlParser from 'react-html-parser'; 
 
+var submissn = '';
 function ViewSubmission() {
   const user = getUser();
   const [temprepo,setTempRepo] = useState([]);
@@ -42,20 +43,22 @@ function ViewSubmission() {
       alert("Please Select Task!.");
     }else{
       settable('<tr><th>Time</th><th>Employee</th><th>Log</th></tr>');
-      setSub(temprepo);
+      
       
         
         for (var i=0;i<temprepo.length;i++){
           console.log(temprepo[i].eid);
-          axios.get('http://localhost:4000/users/get-user/' +temprepo[i].eid)
+          settable('Loading.');
+          await axios.get('http://localhost:4000/users/get-user/' +temprepo[i].eid)
           .then(response1 => {
           // console.log(JSON.stringify(response.data));
           
           const myRepo1 = response1.data.name;
-          setName(myRepo1);
-          console.log(myRepo1);
+          submissn = submissn +  '<tr><td>' + temprepo[i].time_start + '-'+ temprepo[i].time_end + '</td><td>' + myRepo1 + '</td><td>'+  temprepo[i].log+ '</td></tr>';
           });
         }
+        settable('<tr><th>Time</th><th>Employee</th><th>Log</th></tr>');
+        setSub(submissn);
         
 
         
@@ -85,13 +88,7 @@ function ViewSubmission() {
           </Button></form><br></br><br></br>
           <table>
             {ReactHtmlParser(table)}
-            { sub.map((repos) => (
-            <tr>
-              <td>{repos.time_start} - {repos.time_end}</td>
-              <td>{Name}</td>
-              <td>{repos.log}</td>
-            </tr>
-            ))}
+            {ReactHtmlParser(sub)}
           </table>
           <br></br><br></br>
         </div>
