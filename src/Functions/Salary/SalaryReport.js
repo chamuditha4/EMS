@@ -43,12 +43,18 @@ var sal1 = '';
           await axios.get('http://localhost:4000/users/get-user/' +repi1[i].eid)
             .then(response1 => {
             // console.log(JSON.stringify(response.data));
-            const myRepo11 = response1.data.name;
-            console.log(repi1[i].eid)
-            sal1 = (sal1 + '<tr><td>' + repi1[i].eid + '</td><td>'+ myRepo11 + '</td><td>' + repi1[i].salary + '</td><td>'+  repi1[i].bonus+ '</td></tr>');
-            console.log(i)
+            if (response1.data === null){
+              const myRepo11 = '';
+            }else{
+              const myRepo11 = response1.data.name;
+              console.log(repi1[i].eid)
+              sal1 = (sal1 + '<tr><td>' + repi1[i].eid + '</td><td>'+ myRepo11 + '</td><td>' + repi1[i].salary + '</td><td>'+  repi1[i].bonus+ '</td></tr>');
+              console.log(i)
+              
+              console.log(myRepo11)
+            }
             
-            console.log(myRepo11)
+            
             
           });
           
