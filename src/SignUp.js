@@ -71,38 +71,43 @@ export default class Signup extends Component{
   async onSubmit(e) {
     e.preventDefault()
 
-    const UserOBJ = {
-      name: this.state.name,
-      username: this.state.username,
-      email: this.state.email,
-      password: (CryptoJS.AES.encrypt((this.state.password), key)).toString(),
-      salary: '0',
-      department: this.state.department,
-      roll: this.state.accounttype
-      
-    };
-
-    
-    
-    await axios.post('http://localhost:4000/users/create-user', UserOBJ)
-      .then(async res => {console.log(res.data)
-        const myRepo = await res.data;
-        await this.setState({eid: myRepo._id});
-        eids = await myRepo._id;
-      });
-
-      const SalOBJ = {
-        eid: eids,
+    if (this.state.password === this.state.repassword){
+      const UserOBJ = {
+        name: this.state.name,
+        username: this.state.username,
+        email: this.state.email,
+        password: (CryptoJS.AES.encrypt((this.state.password), key)).toString(),
         salary: '0',
-        bonus: '0'
+        department: this.state.department,
+        roll: this.state.accounttype
+        
       };
-
-      axios.post('http://localhost:4000/salary/create-salary', SalOBJ)
-    .then(res1 => console.log(res1.data))
-
-
-    this.setState({ name: '', username: '', email: '', password: '', repassword: '',department:'', accounttype: ''})
-    window.location.href = "/Login";
+  
+      
+      
+      await axios.post('http://localhost:4000/users/create-user', UserOBJ)
+        .then(async res => {console.log(res.data)
+          const myRepo = await res.data;
+          await this.setState({eid: myRepo._id});
+          eids = await myRepo._id;
+        });
+  
+        const SalOBJ = {
+          eid: eids,
+          salary: '0',
+          bonus: '0'
+        };
+  
+        axios.post('http://localhost:4000/salary/create-salary', SalOBJ)
+      .then(res1 => console.log(res1.data))
+  
+  
+      this.setState({ name: '', username: '', email: '', password: '', repassword: '',department:'', accounttype: ''})
+      window.location.href = "/Login";
+    }else{
+      alert("Passwords are not matching!.");
+    }
+    
 
   }
 
