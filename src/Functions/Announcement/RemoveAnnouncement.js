@@ -26,12 +26,16 @@ function RemoveAnnouncement() {
 
   async function onRemove(event) {
     event.preventDefault();
-    console.log(Id);
-    await axios.delete('http://localhost:4000/Announcement/delete-announcement/'+Id)
-        .then(response => {
-          console.log(response);
-        });
-    getRepo();
+    if (Id === null){
+      alert('Please Select Announcement!.');
+    }else{
+      console.log(Id);
+      await axios.delete('http://localhost:4000/Announcement/delete-announcement/'+Id)
+          .then(response => {
+            console.log(response);
+          });
+      getRepo();
+    }
 
   }
 

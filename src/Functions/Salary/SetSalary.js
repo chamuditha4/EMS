@@ -38,11 +38,15 @@ function SetSalary() {
 
   function onPut(event) {
     event.preventDefault();
-    const task = { salary: Salary,bonus:Bonus };
-    axios.put('http://localhost:4000/salary/update-salary/'+Eidss._id, task)
-        .then(response => {
-          console.log(response);
-        });
+    if (Salary=== null || Bonus === null){
+      alert('Please Fill everything!.');
+    }else{
+      const task = { salary: Salary,bonus:Bonus };
+      axios.put('http://localhost:4000/salary/update-salary/'+Eidss._id, task)
+          .then(response => {
+            console.log(response);
+          });
+    }
 
   }
 
