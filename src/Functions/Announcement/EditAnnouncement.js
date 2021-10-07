@@ -55,12 +55,16 @@ function EditAnnouncement() {
 
   function onPut(event) {
     event.preventDefault();
-    console.log(Title);
-    const task = { name: Title,description: Description,department:Department };
-    axios.put('http://localhost:4000/Announcement/update-announcement/'+Id, task)
-        .then(response => {
-          console.log(response);
-        });
+    if (Title === null || Description === null || Department === null){
+      alert('Please Fill Everything!.');
+    }else{
+      console.log(Title);
+      const task = { name: Title,description: Description,department:Department };
+      axios.put('http://localhost:4000/Announcement/update-announcement/'+Id, task)
+          .then(response => {
+            console.log(response);
+          });
+    }
 
   }
   

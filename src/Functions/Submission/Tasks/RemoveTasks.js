@@ -51,12 +51,16 @@ function RemoveTasks() {
 
   async function onRemove(event) {
     event.preventDefault();
-    await axios.delete('http://localhost:4000/tasks/delete-task/'+Id._id)
+    if (Id._id === null){
+      alert('Please Select One!.');
+    }else{
+      await axios.delete('http://localhost:4000/tasks/delete-task/'+Id._id)
     .then(response => {
       console.log(response);
       handleClick();
     });
     getRepo();
+    }
 
   }
 

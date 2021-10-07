@@ -74,6 +74,9 @@ function EditTasks() {
 
   function onPut(event) {
     event.preventDefault();
+    if (Title === null || Description === null ){
+      alert('Please Fill Everything!.');
+    }else{
     console.log(Title);
     const task = { name: Title,description: Description };
     axios.put('http://localhost:4000/tasks/update-task/'+Id._id, task)
@@ -81,6 +84,7 @@ function EditTasks() {
           console.log(response);
           handleClick();
         });
+    }
 
   }
 

@@ -46,11 +46,16 @@ function AddRole() {
   }
 
   function onPut(event) {
-    const task = { roll: Role, department:Department };
+    if (Role===null || Department === null){
+      alert('You need to fill everything!.')
+    }else{
+      const task = { roll: Role, department:Department };
       axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
       .then(response => {
         console.log(response);
       });
+    }
+    
     
 
   }
