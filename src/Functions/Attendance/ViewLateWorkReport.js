@@ -16,7 +16,7 @@ function ViewLateWorkReport() {
           settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');
           sal1 = '';
           for (var i=0; i<myRepo.length;i++){
-            if (myRepo[i].hrs >= 8){
+            if (myRepo[i].hrs >= 8){  //update table
               sal1 = (sal1 + '<tr><td>' + myRepo[i].eid + '</td><td>'+ myRepo[i].name + '</td><td>' + myRepo[i].mo + '/' + myRepo[i].date + ' - ' + myRepo[i].hrs + ':'+  myRepo[i].min+ '</td></tr>');
               console.log(late)
             }
