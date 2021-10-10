@@ -40,7 +40,7 @@ export default class Login extends Component{
         };
         axios.post('http://localhost:4000/users/login-user', UserOBJ)
           .then(res =>{
-            console.log(res.data.user)
+            console.log(res.data.user) //log to terminal
             if (res.data.user==='pw Error'){
               alert("Please Check Password!");
             }else if (res.data.user==='User Error'){

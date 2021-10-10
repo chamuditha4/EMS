@@ -55,8 +55,8 @@ function Attendance() {
       date: today.getDate(),
       name: user.name
     };
-    await axios.post('http://localhost:4000/attendance/create', attOBJ)
-      .then(res => console.log(res.data));
+    await axios.post('http://localhost:4000/attendance/create', attOBJ) //add to database
+      .then(res => console.log(res.data));  //log to terminal
 
     
 

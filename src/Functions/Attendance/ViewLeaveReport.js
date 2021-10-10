@@ -61,7 +61,7 @@ function ViewAttendanceReport() {
     event.preventDefault();
     console.log(Eidss)
     if (Eidss.length === 0){
-      alert("Please Select User!.");
+      alert("Please Select User!.");  //ALERT BOX
     }else{
       settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');
       await axios.get('http://localhost:4000/attendance/leave/get/' +Eidss._id )
@@ -69,7 +69,7 @@ function ViewAttendanceReport() {
        // console.log(JSON.stringify(response.data));
         const myRepo1 = response.data;
 
-      try{
+      try{  //update table
         settbl('<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>'  + myRepo1[0].hrs + ':'+  myRepo1[0].min+ '</td></tr>');
       } catch (err){
         settable('<tr><th>Error</th></tr>');

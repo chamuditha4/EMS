@@ -6,7 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import ReactHtmlParser from 'react-html-parser'; 
 
-var Eids = [];
+var Eids = [{"name":"No Person","_id":"404"}];
 var attd = [{"name":"No Person","_id":"404"}];
 var atd = '';
 
@@ -57,9 +57,8 @@ function ViewAttendanceReport() {
   async function onSubmit(event) {
     event.preventDefault();
     console.log(Eidss)
-    if (Eidss === null){
-      alert("Please Select User!.");
-      setEidss(null);
+    if (Eidss.length === 0){
+      alert("Please Select User!.");  //ALERT BOX
     }else{
       settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');
       await axios.get('http://localhost:4000/attendance/' +Eidss._id )
@@ -67,7 +66,7 @@ function ViewAttendanceReport() {
        // console.log(JSON.stringify(response.data));
         const myRepo1 = response.data;
 
-      try{
+      try{    //update the table
         settbl('<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>' + myRepo1[0].hrs + ':'+  myRepo1[0].min+ '</td></tr>');
       } catch (err){
         settable('<tr><th>Error</th></tr>');
@@ -78,9 +77,8 @@ function ViewAttendanceReport() {
        
         console.log(myRepo1)
       });
-      setEidss(null);
     }
-    console.log(Eidss);
+    console.log(Eidss.length);
   }
 
   useEffect(() => getRepo(),[]);
