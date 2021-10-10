@@ -12,9 +12,20 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function EditAnnouncement() {
   const user = getUser();
+  const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
   const [repo,setRepo] = useState([]);
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
@@ -33,7 +44,7 @@ function EditAnnouncement() {
   function onSubmit(event) {
     event.preventDefault();
     if (Id === ''){
-      alert("Please Select Task!.");
+      handleClick3();
     }else{
       setDescription('');
       setTitle('');
@@ -53,17 +64,77 @@ function EditAnnouncement() {
 
   }
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
+  };
+
+  const handleClick3 = () => {
+    setOpen3(true);
+  };
+
+  const handleClose3 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen3(false);
+  };
+
   function onPut(event) {
     event.preventDefault();
     if (Title === null || Description === null || Department === null){
-      alert('Please Fill Everything!.');
+      handleClick2();
     }else{
-      console.log(Title);
-      const task = { name: Title,description: Description,department:Department };
-      axios.put('http://localhost:4000/Announcement/update-announcement/'+Id, task)
-          .then(response => {
-            console.log(response);
-          });
+      try{
+        console.log(Title);
+        const task = { name: Title,description: Description,department:Department };
+        axios.put('http://localhost:4000/Announcement/update-announcement/'+Id, task)
+            .then(response => {
+              console.log(response);
+            });
+          setDescription('');
+          setTitle('');
+          setDepartment('')
+          handleClick();
+      }
+      catch(err){
+        handleClick1();
+        console.log(err);
+      }
+      
     }
 
   }
@@ -107,6 +178,39 @@ function EditAnnouncement() {
             Update Announcement
           </Button></form><br></br><br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            Announcement update Succuessfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={600} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Something Wrong!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={600} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+            Please Fill Everything!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open3} autoHideDuration={600} onClose={handleClose3}>
+            <Alert onClose={handleClose3} severity="warning" sx={{ width: '100%' }}>
+            Please Select Announcement!.
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

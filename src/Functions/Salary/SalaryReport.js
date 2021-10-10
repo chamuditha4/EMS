@@ -5,10 +5,16 @@ import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import ReactHtmlParser from 'react-html-parser'; 
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 var Eids = [{"name":"No Person","_id":"404"}];
 var repi1 = [{"name":"No Person","_id":"404"}];
 var sal1 = '';
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
  function SalaryReport() {
   const [repo,setRepo] = useState([]);
@@ -16,6 +22,7 @@ var sal1 = '';
   const [Eidss,setEidss] = useState('');
   const [table, settable] = useState('');
   const [name, setname] = useState('');
+  const [open1, setOpen1] = React.useState(false);
 
  async function getRepo(){
    await axios.get('http://localhost:4000/users')
@@ -66,6 +73,18 @@ var sal1 = '';
       }
   };
 
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
   function autoselect(){
     Eids=[];
     repi1=[];
@@ -78,7 +97,7 @@ var sal1 = '';
     event.preventDefault();
     console.log(Eidss)
     if (Eidss.length === 0){
-      alert("Please Select User!.");
+      handleClick1();
     }else{
       settable('<tr><th>ID</th><th>Name</th><th>Salary</th><th>Bonus</th></tr>');
       await axios.get('http://localhost:4000/salary/get-salary/' +Eidss._id )
@@ -127,6 +146,15 @@ var sal1 = '';
         </table>
         <br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please Select User!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
       </div>
     )
   }

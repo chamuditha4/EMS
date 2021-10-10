@@ -18,10 +18,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function NewAnnouncement() {
   const user = getUser();
+  const [open, setOpen] = React.useState(false);
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [Department,setDepartment] = useState('');
   const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClick1 = () => {
     setOpen1(true);
@@ -35,22 +37,54 @@ function NewAnnouncement() {
     setOpen1(false);
   };
 
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   function onSubmit(event) {
     event.preventDefault();
     if (Department.length === 0 || Title.length===0 || Description.length === 0){
       handleClick1();
     }else{
-      const taskOBJ = {
-        name: Title,
-        department: Department,
-        owner:user._id,
-        description: Description
-      };
-      axios.post('http://localhost:4000/Announcement/create-announcement', taskOBJ)
-        .then(res => console.log(res.data));
-        setTitle('');
-        setDescription('');
-        setDepartment('');
+
+      try{
+        const taskOBJ = {
+          name: Title,
+          department: Department,
+          owner:user._id,
+          description: Description
+        };
+        axios.post('http://localhost:4000/Announcement/create-announcement', taskOBJ)
+          .then(res => console.log(res.data));
+          setTitle('');
+          setDescription('');
+          setDepartment('');
+          handleClick();
+      }
+      catch(err){
+        handleClick2();
+      }
+      
     }
     
   }
@@ -72,10 +106,27 @@ function NewAnnouncement() {
             Add Announcement
           </Button></form><br></br><br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Task Added Succuessfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
             <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
               Please Fill Everything!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+              Something went wrong, Please try again!
             </Alert>
           </Snackbar>
         </Stack>
