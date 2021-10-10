@@ -78,7 +78,7 @@ router.route('/employees').get((req, res) => {
     if (error) {
       return next(error)
     } else {
-      let emp_data = data.map(({name, _id}) => ({name, _id}));
+      let emp_data = data.map(({username,name, _id}) => ({username,name, _id}));
       res.json(emp_data)
     }
   })

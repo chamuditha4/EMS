@@ -71,7 +71,7 @@ function SetSalary() {
             limitTags={1}
             size="small"
             options={Eids}
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.username}
             renderInput={(params) => (
               <TextField 
                 {...params}
