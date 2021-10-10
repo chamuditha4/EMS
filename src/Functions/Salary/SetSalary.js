@@ -33,7 +33,10 @@ function SetSalary() {
 
   function onSubmit(event) {
     event.preventDefault();
-    axios.get('http://localhost:4000/salary/get-salary/' +Eidss._id)
+    console.log(Eidss._id);
+    if (Eidss._id !== undefined){
+      try{
+        axios.get('http://localhost:4000/salary/get-salary/' +Eidss._id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -41,6 +44,14 @@ function SetSalary() {
           setSalary(myRepo[0].salary);
           setBonus(myRepo[0].bonus);
         });
+      }catch(err){
+        console.log(err);
+      }
+    }else{
+      handleClick1();
+    }
+    
+    
     }
 
 
