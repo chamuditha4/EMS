@@ -5,11 +5,17 @@ import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import ReactHtmlParser from 'react-html-parser'; 
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 var Eids = [{"name":"No Person","_id":"404"}];
 var attd = [{"name":"No Person","_id":"404"}];
 var atd = '';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function ViewAttendanceReport() {
   const [repo,setRepo] = useState([]);
@@ -17,7 +23,7 @@ function ViewAttendanceReport() {
   const [table, settable] = useState('');
   const [Eidss,setEidss] = useState('');
   const [tbl,settbl] = useState('');
-
+  const [open1, setOpen1] = React.useState(false);
 
   async function getRepo(){
     await axios.get('http://localhost:4000/attendance/leave/all')
@@ -49,6 +55,18 @@ function ViewAttendanceReport() {
       settbl(atd);
   };
 
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
   function autoselect(){
     Eids=[];
     attd=[];
@@ -71,7 +89,7 @@ function ViewAttendanceReport() {
     event.preventDefault();
     console.log(Eidss)
     if (Eidss.length === 0){
-      alert("Please Select User!.");  //ALERT BOX
+      handleClick1();
     }else{
       settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');
       await axios.get('http://localhost:4000/attendance/leave/get/' +Eidss._id )
@@ -128,6 +146,13 @@ function ViewAttendanceReport() {
           </table>
         <br></br>
         </div>
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please Select User!.
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

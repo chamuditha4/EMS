@@ -21,6 +21,7 @@ function EditTasks() {
   const [Id, setId] = useState('');
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
+  const [open1, setOpen1] = React.useState(false);
 
   const getRepo = () => {
     axios.get('http://localhost:4000/tasks/' + user._id)
@@ -49,11 +50,24 @@ function EditTasks() {
     setOpen(false);
   };
 
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+  
+
   function onSubmit(event) {
     event.preventDefault();
     console.log(Id);
-    if (Id === null){
-      alert("Please Select Task!.");
+    if (Id === ''){
+      handleClick1();
     }else{
       setDescription('');
       setTitle('');
@@ -74,8 +88,8 @@ function EditTasks() {
 
   function onPut(event) {
     event.preventDefault();
-    if (Title === null || Description === null ){
-      alert('Please Fill Everything!.');
+    if (Title === '' || Description === ''|| Id === ''){
+      handleClick1();
     }else{
     console.log(Title);
     const task = { name: Title,description: Description };
@@ -131,6 +145,14 @@ function EditTasks() {
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
               Task Edited Succuessfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please Fill everything!.
             </Alert>
           </Snackbar>
         </Stack>
