@@ -93,6 +93,16 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     //console.log(Eids);
   }
 
+  async function EidSelect(e,value){
+    console.log(value)
+    if ( value !== null){
+      setEidss(value);
+    }else{
+      setEidss('');
+    }
+    
+  }
+
   async function onSubmit(event) {
     event.preventDefault();
     console.log(Eidss)
@@ -120,7 +130,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
           <div>
           <form onSubmit={onSubmit}>
           <Autocomplete
-            onChange={(event, value) => setEidss(value)}
+            onChange={EidSelect}
             values={Eidss}
             id="tags-standard"
             limitTags={1}
