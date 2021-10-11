@@ -93,7 +93,7 @@ function SetSalary() {
 
   function onPut(event) {
     event.preventDefault();
-    if (Salary=== null || Bonus === null){
+    if (Salary=== null || Bonus === null || Eidss === ''){
       handleClick1();
     }else{
       try{
