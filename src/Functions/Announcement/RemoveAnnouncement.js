@@ -123,7 +123,7 @@ function RemoveAnnouncement() {
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            Announcement Removed Succuessfuly!
+            Announcement Removed successfuly!
             </Alert>
           </Snackbar>
         </Stack>

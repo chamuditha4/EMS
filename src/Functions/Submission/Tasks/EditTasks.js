@@ -167,7 +167,7 @@ function EditTasks() {
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
-              Task Edited Succuessfuly!
+              Task Edited successfuly!
             </Alert>
           </Snackbar>
         </Stack>

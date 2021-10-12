@@ -24,6 +24,7 @@ function ViewAttendanceReport() {
   const [Eidss,setEidss] = useState('');
   const [tbl,settbl] = useState('');
   const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   async function getRepo(){
     await axios.get('http://localhost:4000/attendance/leave/all')
@@ -65,6 +66,18 @@ function ViewAttendanceReport() {
     }
 
     setOpen1(false);
+  };
+
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
   };
 
   function autoselect(){
@@ -113,7 +126,8 @@ function ViewAttendanceReport() {
     
           } catch (err){
             settable('<tr><th>Error</th></tr>');
-            settbl('<tr><td> He/She Need to Mark Attendance!!. </td></tr>');
+            settbl('<tr><td> </td></tr>');
+            handleClick2();
             console.log(err);
           }
         }
@@ -163,6 +177,14 @@ function ViewAttendanceReport() {
           <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
             <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
               Please Select User!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={600} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+            Something Wrong!
             </Alert>
           </Snackbar>
         </Stack>

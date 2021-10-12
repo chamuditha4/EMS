@@ -8,13 +8,25 @@ import  './../../styles/App.css';
 import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 var Eids = [{"name":"No Person","_id":"404"}];
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
 function AddRole() {
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
   const [Role, setRole] = useState('');
   const [Department, setDepartment] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
 
   const getRepo = () => {
     axios.get('http://localhost:4000/users')
@@ -45,15 +57,72 @@ function AddRole() {
       
   }
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
+  };
+
+  const handleClick3 = () => {
+    setOpen3(true);
+  };
+
+  const handleClose3 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen3(false);
+  };
+
   function onPut(event) {
-    if (Role===null || Department === null){
-      alert('You need to fill everything!.')
+    if (Role===null){
+      handleClick2();
+    }if(Department === null){
+      handleClick3();
     }else{
-      const task = { roll: Role, department:Department };
-      axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
-      .then(response => {
-        console.log(response);
-      });
+      try{
+        const task = { roll: Role, department:Department };
+        axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
+        .then(response => {
+          console.log(response);
+          handleClick();
+        });
+      }catch(err){
+        handleClick1();
+      }
+      
     }
     
     
@@ -105,6 +174,38 @@ function AddRole() {
           Set Role
           </Button></form><br></br><br></br>
         </div>
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            Role update successfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={600} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Something Wrong!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={600} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+            Please Fill Role!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open3} autoHideDuration={600} onClose={handleClose3}>
+            <Alert onClose={handleClose3} severity="warning" sx={{ width: '100%' }}>
+            Please Fill Department!.
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

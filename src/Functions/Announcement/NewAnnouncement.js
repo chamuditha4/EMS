@@ -110,7 +110,7 @@ function NewAnnouncement() {
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            Announcement Added Succuessfuly!
+            Announcement Added successfuly!
             </Alert>
           </Snackbar>
         </Stack>
