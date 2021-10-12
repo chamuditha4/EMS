@@ -71,7 +71,7 @@ router.route('/update-salary/:id').put((req, res, next) => {
 
 // Delete Task
 router.route('/delete-salary/:id').delete((req, res, next) => {
-  salarySchema.findByIdAndRemove(req.params.id, (error, data) => {
+  salarySchema.deleteOne({eid: req.params.id }, (error, data) => {
     if (error) {
       return next(error);
     } else {

@@ -73,11 +73,21 @@ function RemoveUser() {
       handleClick1();
     }else{
       try{
+
+        await axios.delete('http://localhost:4000/salary/delete-salary/'+Id._id)
+        .then(response => {
+          console.log(response);
+        });
+
         await axios.delete('http://localhost:4000/users/delete-user/'+Id._id)
         .then(response => {
           console.log(response);
         });
+
+        
         getRepo();
+        autoselect();
+        handleClick();
       }catch(err){
         handleClick2();
       }
