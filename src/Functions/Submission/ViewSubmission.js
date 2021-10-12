@@ -8,9 +8,19 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 var submissn = '';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 function ViewSubmission() {
+  const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
   const user = getUser();
   const [temprepo,setTempRepo] = useState([]);
   const [repo,setRepo] = useState([]);
@@ -25,6 +35,30 @@ function ViewSubmission() {
         const myRepo = response.data;
         setRepo(myRepo);
       });
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
   };
 
   async function handleChange(e) {
@@ -43,7 +77,7 @@ function ViewSubmission() {
  async function onSubmit(event) {
     event.preventDefault();
     if (Id === ''){
-      alert("Please Select Task!.");
+      handleClick1();
     }else{
       settable('<tr><th>Time</th><th>Employee</th><th>Log</th></tr>');
       
@@ -52,13 +86,20 @@ function ViewSubmission() {
         for (var i=0;i<temprepo.length;i++){
           console.log(temprepo[i].eid);
           settable('Loading.');
-          await axios.get('http://localhost:4000/users/get-user/' +temprepo[i].eid)
-          .then(response1 => {
-          // console.log(JSON.stringify(response.data));
+
+          try{
+            await axios.get('http://localhost:4000/users/get-user/' +temprepo[i].eid)
+            .then(response1 => {
+            // console.log(JSON.stringify(response.data));
+            
+            const myRepo1 = response1.data.name;
+            submissn = submissn +  '<tr><td>' + temprepo[i].time_start + '-'+ temprepo[i].time_end + '</td><td>' + myRepo1 + '</td><td>'+  temprepo[i].log+ '</td></tr>';
+            });
+          }catch(err){
+            handleClick();
+            console.log(err);
+          }
           
-          const myRepo1 = response1.data.name;
-          submissn = submissn +  '<tr><td>' + temprepo[i].time_start + '-'+ temprepo[i].time_end + '</td><td>' + myRepo1 + '</td><td>'+  temprepo[i].log+ '</td></tr>';
-          });
         }
         settable('<tr><th>Time</th><th>Employee</th><th>Log</th></tr>');
         setSub(submissn);
@@ -104,6 +145,22 @@ function ViewSubmission() {
           </table>
           <br></br><br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Something wrong!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please select task to show Submission!
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

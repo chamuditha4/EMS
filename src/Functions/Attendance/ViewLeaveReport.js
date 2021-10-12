@@ -96,14 +96,27 @@ function ViewAttendanceReport() {
       .then(response => {
        // console.log(JSON.stringify(response.data));
         const myRepo1 = response.data;
+        if (myRepo1.length <= 0) {
+          settable('<tr><th>Error</th></tr>');
+          settbl('<tr><td> He/She Need to Mark Attendance!!. </td></tr>');
+        }else{
+          try{    //update the table
 
-      try{  //update table
-        settbl('<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>'  + myRepo1[0].hrs + ':'+  myRepo1[0].min+ '</td></tr>');
-      } catch (err){
-        settable('<tr><th>Error</th></tr>');
-        settbl('<tr><td> He/She Need to Mark Leave!!. </td></tr>');
-          console.log(err);
-      }
+            atd = '';
+            for (var i=0; i<myRepo1.length;i++){
+              settable('<p>Loading .</p>');
+              atd = (atd + '<tr><td>' + Eidss._id  + '</td><td>'+ Eidss.name + '</td><td>' + myRepo1[i].hrs + ':'+  myRepo1[i].min+ '</td></tr>');
+              
+            }
+            settable('<tr><th>EID</th><th>Name</th><th>Marked Time</th></tr>');
+            settbl(atd);
+    
+          } catch (err){
+            settable('<tr><th>Error</th></tr>');
+            settbl('<tr><td> He/She Need to Mark Attendance!!. </td></tr>');
+            console.log(err);
+          }
+        }
 
        
         console.log(myRepo1)

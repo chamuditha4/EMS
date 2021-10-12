@@ -17,6 +17,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function RemoveTasks() {
   const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
   const user = getUser();
   const [repo,setRepo] = useState([]);
   const [Id, setId] = useState('');
@@ -48,11 +49,24 @@ function RemoveTasks() {
     setOpen(false);
   };
 
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
 
   async function onRemove(event) {
+    console.log(Id._id)
     event.preventDefault();
-    if (Id._id === null){
-      alert('Please Select One!.');
+    if (Id._id === undefined || Id._id === '' || Id._id === null){
+      handleClick1();
     }else{
       await axios.delete('http://localhost:4000/tasks/delete-task/'+Id._id)
     .then(response => {
@@ -64,6 +78,16 @@ function RemoveTasks() {
 
   }
 
+  async function IdHandler(e,value){
+    console.log(value)
+    if ( value !== null){
+      setId(value);
+    }else{
+      setId('');
+    }
+    
+  }
+
   useEffect(() => getRepo(),[]);
     return (
       <div>
@@ -72,7 +96,7 @@ function RemoveTasks() {
           <h2>Remove Tasks</h2>
           <form onSubmit={onRemove}>
           <Autocomplete
-            onChange={(event, value) => setId(value)}
+            onChange={IdHandler}
             values={Id}
             id="tags-standard"
             limitTags={1}
@@ -101,6 +125,15 @@ function RemoveTasks() {
             </Alert>
           </Snackbar>
         </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please select task!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
       </div>
     )
   }

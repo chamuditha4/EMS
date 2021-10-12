@@ -9,7 +9,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function RateSubmission() {
   const user = getUser();
@@ -19,6 +25,7 @@ function RateSubmission() {
   const [selected, setselected] = useState('true');
   const [Feedback, setFeedback] = useState('');
   const [isDisable, setisDisable] = useState('disabled');
+  const [open2, setOpen2] = React.useState(false);
 
   async function getRepo(){
     await axios.get('http://localhost:4000/tasks/' + user._id)
@@ -27,6 +34,18 @@ function RateSubmission() {
         const myRepo = response.data;
         setRepo(myRepo);
       });
+  };
+
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
   };
 
   async function onSubmit(event) {
@@ -45,23 +64,30 @@ function RateSubmission() {
   }
 
   async function handleChange(e) {
-    await setId((e.target.value).toString());
-    console.log("eref:" +e.target.value);
-    await axios.get('http://localhost:4000/Rate/' + e.target.value)
-      .then(response => {
-       // console.log(JSON.stringify(response.data));
-        const myRepo = response.data;
-        
-        if(myRepo.length === 0){
-          setisDisable('');
-          setRate('');
-          setFeedback('');
-        }else{
-          setisDisable('disabled');
-          setRate(myRepo[0].rate);
-          setFeedback(myRepo[0].feedback);
-        }
-      });
+    try{
+      await setId((e.target.value).toString());
+      console.log("eref:" +e.target.value);
+      await axios.get('http://localhost:4000/Rate/' + e.target.value)
+        .then(response => {
+        // console.log(JSON.stringify(response.data));
+          const myRepo = response.data;
+          
+          if(myRepo.length === 0){
+            setisDisable('');
+            setRate('');
+            setFeedback('');
+          }else{
+            setisDisable('disabled');
+            setRate(myRepo[0].rate);
+            setFeedback(myRepo[0].feedback);
+          }
+        });
+    }
+    catch(err){
+      handleClick2();
+      console.log(err);
+    }
+    
     
   }
 
@@ -95,6 +121,14 @@ function RateSubmission() {
           Rate Task
           </Button></form><br></br><br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+              Something went wrong, Please try again!
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }

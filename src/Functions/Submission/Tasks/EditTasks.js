@@ -22,6 +22,7 @@ function EditTasks() {
   const [Title, setTitle] = useState('');
   const [Description, setDescription] = useState('');
   const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const getRepo = () => {
     axios.get('http://localhost:4000/tasks/' + user._id)
@@ -50,6 +51,18 @@ function EditTasks() {
     setOpen(false);
   };
 
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
+  };
+
   const handleClick1 = () => {
     setOpen1(true);
   };
@@ -72,8 +85,8 @@ function EditTasks() {
       setDescription('');
       setTitle('');
       
-      
-      axios.get('http://localhost:4000/tasks/get-task/' +Id._id)
+      try{
+        axios.get('http://localhost:4000/tasks/get-task/' +Id._id)
         .then(response => {
         // console.log(JSON.stringify(response.data));
         console.log(response);
@@ -81,6 +94,11 @@ function EditTasks() {
           setDescription(myRepo.description);
           setTitle(myRepo.name);
         });
+      }catch(err){
+        handleClick2();
+      }
+      
+      
       }
     
 
@@ -91,13 +109,18 @@ function EditTasks() {
     if (Title === '' || Description === ''|| Id === ''){
       handleClick1();
     }else{
-    console.log(Title);
-    const task = { name: Title,description: Description };
-    axios.put('http://localhost:4000/tasks/update-task/'+Id._id, task)
-        .then(response => {
-          console.log(response);
-          handleClick();
-        });
+      try{
+        console.log(Title);
+        const task = { name: Title,description: Description };
+        axios.put('http://localhost:4000/tasks/update-task/'+Id._id, task)
+            .then(response => {
+              console.log(response);
+              handleClick();
+            });
+      }catch(err){
+        handleClick2();
+      }
+    
     }
 
   }
@@ -153,6 +176,14 @@ function EditTasks() {
           <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose1}>
             <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
               Please Fill everything!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+              Something went wrong, Please try again!
             </Alert>
           </Snackbar>
         </Stack>
