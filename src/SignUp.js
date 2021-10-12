@@ -33,8 +33,8 @@ export default class Signup extends Component{
       email:'',
       password:'',
       repassword:'',
-      accounttype:'',
-      department:'',
+      accounttype:'Manager',
+      department:'Accounting',
       eid:''
     }
   }
@@ -132,15 +132,15 @@ export default class Signup extends Component{
               <input type="password" id="cpassword" name="cpassword"    value={this.state.repassword} required onChange={this.onChangeRePassword}  /><br></br><br></br>
               
               <FormLabel component="legend">Role</FormLabel>
-              <RadioGroup aria-label="role" name="role" value={this.state.accounttype} onChange={this.onChangeAccountType}  >
-                <FormControlLabel value="Manager" control={<Radio />} label="Manager" checked />
+              <RadioGroup aria-label="role" name="role" defaultValue="Manager" onChange={this.onChangeAccountType}  >
+                <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
                 <FormControlLabel value="Employee" control={<Radio />} label="Employee" />
               </RadioGroup><br></br>
 
               <FormLabel component="legend">Department</FormLabel>
-              <RadioGroup aria-label="Department" name="Department"  value={this.state.department} onChange={this.onDepartment}  >
+              <RadioGroup aria-label="Department" name="Department" defaultValue="Accounting" onChange={this.onDepartment}  >
                 <FormControlLabel value="IT" control={<Radio />} label="IT" />
-                <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" checked/>
+                <FormControlLabel value="Accounting" control={<Radio />} label="Accounting"/>
                 <FormControlLabel value="Management" control={<Radio />} label="Management" />
               </RadioGroup><br></br>
 
