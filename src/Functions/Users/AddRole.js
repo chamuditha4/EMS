@@ -20,7 +20,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function AddRole() {
   const [repo,setRepo] = useState([]);
-  const [Id, setId] = useState('');
+  const [Id, setId] = useState(null);
   const [Role, setRole] = useState('');
   const [Department, setDepartment] = useState('');
   const [open, setOpen] = React.useState(false);
@@ -44,18 +44,7 @@ function AddRole() {
   }
 
 
-  function onSubmit(event) {
-    event.preventDefault();
-    axios.get('http://localhost:4000/users/get-user/' +Id._id)
-        .then(response => {
-        // console.log(JSON.stringify(response.data));
-        console.log(response);
-          const myRepo = response.data;
-          setRole(myRepo.roll);
-          setDepartment(myRepo.department);
-        });
-      
-  }
+
 
   const handleClick = () => {
     setOpen(true);
@@ -106,7 +95,30 @@ function AddRole() {
     setOpen3(false);
   };
 
+
+  function onSubmit(event) {
+    event.preventDefault();
+    if (Id === null){
+      handleClick2();
+    }else{
+      axios.get('http://localhost:4000/users/get-user/' +Id._id)
+      .then(response => {
+      // console.log(JSON.stringify(response.data));
+      console.log(response);
+        const myRepo = response.data;
+        setRole(myRepo.roll);
+        setDepartment(myRepo.department);
+      });
+    }
+    
+      
+  }
+
   function onPut(event) {
+    event.preventDefault();
+    if (Id===null){
+      handleClick2();
+    }
     if (Role===null){
       handleClick2();
     }if(Department === null){
@@ -194,7 +206,7 @@ function AddRole() {
         <Stack spacing={2} sx={{ width: '100%' }}>
           <Snackbar open={open2} autoHideDuration={600} onClose={handleClose2}>
             <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
-            Please Fill Role!.
+            Please Fill Everything!.
             </Alert>
           </Snackbar>
         </Stack>

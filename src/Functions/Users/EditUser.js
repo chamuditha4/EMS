@@ -117,6 +117,9 @@ function EditUser() {
   function onPut(event) {
     event.preventDefault();
     try{
+      if(Id.length === 0){
+        handleClick1();
+      }
       if (Password === ''){
         const task = { name: Name,email: Email };
         axios.put('http://localhost:4000/users/update-user/'+Id._id, task)
