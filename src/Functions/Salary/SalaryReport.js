@@ -12,10 +12,10 @@ import Stack from '@mui/material/Stack';
 var Eids = [{"name":"No Person","_id":"404"}];
 var repi1 = [{"name":"No Person","_id":"404"}];
 var sal1 = '';
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-
  function SalaryReport() {
   const [repo,setRepo] = useState([]);
   const [repo1,setRepo1] = useState([]);

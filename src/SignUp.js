@@ -125,22 +125,22 @@ export default class Signup extends Component{
               <label for="uname">Username :</label><br></br>
               <input type="text" id="uname" name="uname"  value={this.state.username} onChange={this.onChangeUsername} required /><br></br>
               <label for="email">Email :</label><br></br>
-              <input type="email" id="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"   value={this.state.email} onChange={this.onChangeEmail}   /><br></br>
+              <input type="email" id="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  required  value={this.state.email} onChange={this.onChangeEmail}   /><br></br>
               <label for="uname">Password:</label><br></br>
-              <input type="password" id="password" name="password"   value={this.state.password} onChange={this.onChangePassword} /><br></br>
+              <input type="password" id="password" name="password"   value={this.state.password} required onChange={this.onChangePassword} /><br></br>
               <label for="password">Re-type Password:</label><br></br>
-              <input type="password" id="cpassword" name="cpassword"    value={this.state.repassword} onChange={this.onChangeRePassword}  /><br></br><br></br>
+              <input type="password" id="cpassword" name="cpassword"    value={this.state.repassword} required onChange={this.onChangeRePassword}  /><br></br><br></br>
               
               <FormLabel component="legend">Role</FormLabel>
-              <RadioGroup aria-label="role" name="role" value={this.state.accounttype} onChange={this.onChangeAccountType} >
-                <FormControlLabel value="Manager" control={<Radio />} label="Manager" />
+              <RadioGroup aria-label="role" name="role" value={this.state.accounttype} onChange={this.onChangeAccountType}  >
+                <FormControlLabel value="Manager" control={<Radio />} label="Manager" checked />
                 <FormControlLabel value="Employee" control={<Radio />} label="Employee" />
               </RadioGroup><br></br>
 
               <FormLabel component="legend">Department</FormLabel>
               <RadioGroup aria-label="Department" name="Department"  value={this.state.department} onChange={this.onDepartment}  >
                 <FormControlLabel value="IT" control={<Radio />} label="IT" />
-                <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" />
+                <FormControlLabel value="Accounting" control={<Radio />} label="Accounting" checked/>
                 <FormControlLabel value="Management" control={<Radio />} label="Management" />
               </RadioGroup><br></br>
 
