@@ -8,6 +8,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack'
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Submitprogress() {
   const user = getUser();
@@ -17,6 +24,10 @@ function Submitprogress() {
   const [Time_Start,setTime_Start] = useState('');
   const [Time_End,setTime_End] = useState('');
   const [Log,setLog] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+
 
   const getRepo = () => {
     axios.get('http://localhost:4000/tasks/get-job/' + user._id)
@@ -31,33 +42,77 @@ function Submitprogress() {
     setId(e.target.value);
   }
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+  const handleClick1 = () => {
+    setOpen1(true);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
+  };
+
+
   function onSubmit(event) {
     event.preventDefault();
     if (Id === '' || Date === '' || Time_Start === '' || Time_End === '' || Log === '' ){
-      alert("Please Fill Everything!.");
+      handleClick1();
     }else{
-      console.log(Id)
-      console.log(Date)
-      console.log(Time_Start)
-      console.log(Time_End)
-      console.log(Log)
+      try{
+        console.log(Id)
+        console.log(Date)
+        console.log(Time_Start)
+        console.log(Time_End)
+        console.log(Log)
+  
+        const subOBJ = {
+          job_id: Id,
+          eid: user._id,
+          time_start:Time_Start,
+          time_end: Time_End,
+          log: Log
+        };
+  
+        axios.post('http://localhost:4000/Submission/create-submission', subOBJ)
+        .then(res => console.log(res.data));
+        setDate('');
+        setTime_Start('');
+        setTime_End('');
+        setLog('');
+  
+        handleClick();
 
-      const subOBJ = {
-        job_id: Id,
-        eid: user._id,
-        time_start:Time_Start,
-        time_end: Time_End,
-        log: Log
-      };
+      }catch(err){
+        handleClick2();
+      }
 
-      axios.post('http://localhost:4000/Submission/create-submission', subOBJ)
-      .then(res => console.log(res.data));
-      setDate('');
-      setTime_Start('');
-      setTime_End('');
-      setLog('');
-
-      alert("Submission is Succuessfull!.");
 
     }
 
@@ -133,6 +188,31 @@ function Submitprogress() {
           Submit Progress
           </Button></form><br></br><br></br>
         </div>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            Removed Successfuly!
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open1} autoHideDuration={600} onClose={handleClose1}>
+            <Alert onClose={handleClose1} severity="warning" sx={{ width: '100%' }}>
+              Please Fill everything!.
+            </Alert>
+          </Snackbar>
+        </Stack>
+
+
+        <Stack spacing={2} sx={{ width: '100%' }}>
+          <Snackbar open={open2} autoHideDuration={600} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity="warning" sx={{ width: '100%' }}>
+            Something Wrong!.
+            </Alert>
+          </Snackbar>
+        </Stack>
       </div>
     )
   }
